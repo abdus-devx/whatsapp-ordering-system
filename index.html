@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Shop WA Project</title>
+
+<style>
+    /* ==========================
+     GLOBAL
+  ========================== */
+  
+  .retail-page{
+      font-family:Poppins,Arial,sans-serif;
+      animation:retailFade .8s ease;
+  }
+  
+  @keyframes retailFade{
+      from{
+          opacity:0;
+          transform:translateY(20px);
+      }
+      to{
+          opacity:1;
+          transform:translateY(0);
+      }
+  }
+  /* Container Utama */
+  .prd-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 280px);
+    gap: 25px;
+    padding: 15px 0;
+    justify-content: center;
+
+  }
+  
+  /* Box Produk */
+  .prd-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+
+  }
+  .prd-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Gambar Produk */
+  .prd-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* Isi Konten */
+  .prd-content {
+    padding: 20px;
+  }
+  
+  /* Nama Produk */
+  .prd-title {
+    font-size: 18px !important;
+    font-weight: 600;
+    color: #2d3436;
+    margin: 0 0 10px 0;
+  }
+  
+  /* Deskripsi */
+  .prd-desc {
+    font-size: 14px;
+    color: #636e72;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+  
+  /* Harga */
+  .prd-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #e17055;
+    margin-bottom: 18px;
+  }
+  
+  /* Tombol Tambah Keranjang */
+  .prd-btn-cart {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    background: #059669;
+    color: white !important;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.3s;
+    box-sizing: border-box;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 8px;
+  }
+  .prd-btn-cart:hover {
+    background: #02571a;
+  }
+  
+  /* Tombol Checkout */
+  .prd-btn-checkout {
+    position: fixed;
+    text-align: center;
+    bottom: 40px;
+    right: 20px;
+    background: #059669;
+    color: #fff !important;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-weight: 400;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 999;
+    display: none; /* Awalnya hilang */
+  }
+    @media (max-width: 786px){
+     .prd-btn-checkout {
+       bottom: 100px;
+       left: 80px;
+       right: 80px;
+      }
+    }
+  .prd-btn-checkout.show {
+    display: block;
+  }
+  .prd-btn-checkout:hover {
+    background: #1da851;
+  }
+  
+  /* STYLE KOLOM PENCARIAN */
+  #prd-search-box {
+    width: 100%;
+    max-width: 600px;
+    padding: 12px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 30px;
+    font-size: 15px;
+    margin: 10px auto 20px auto;
+    display: block;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  #prd-search-box:focus {
+    border-color: #0984e3;
+  }
+  .prd-search-wrapper {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  /* Badge Jumlah */
+  .prd-qty {
+    background: #D4AF37;
+    color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-left: 8px;
+  }
+  /* ==========================
+     HERO
+  ========================== */
+    .prd-hero {
+       text-align: center;
+       gap: 10px;
+       margin-bottom: 14px;
+       
+    }
+    
+    .prd-hero-title {
+      font-size:30px !important;
+      font-weight:600;
+      color:#02571a;
+      
+      letter-spacing:-0.5px;
+      margin:0; 
+    }
+    .prd-hero-sub {
+      text-align: center;
+      font-size: 15px;
+      margin-top: 0;
+    }
+    
+  </style>
+</head>
+<body>
+    
+  <section class="retail-page">
+    <!--HERO TITLE-->
+    <div class="prd-hero">
+        <h2 class="prd-hero-title" id="produk">Produk Herbal Pilihan</h2>
+    </div>
+    
+    <p class="prd-hero-sub">
+        Koleksi produk herbal berkualitas yang siap dipesan kapan saja. Tambahkan produk ke keranjang dan kirim pesanan langsung melalui WhatsApp dengan format otomatis.
+    </p>
+    
+    <!--KOLOM PENCARIAN-->
+    <div class="prd-search-wrapper">
+      <input id="prd-search-box" onkeyup="prdSearchFunction()" placeholder="🔍︎ Cari produk disini... " type="text" />
+    </div>
+    
+    <div class="prd-container" id="prd-container">
+    
+      <!--============== START PRODUK 1 ==============-->
+      <div class="prd-card" data-name="Kapsul_Sari_Ikan_Gabus">
+        <img alt="Kapsul Sari Ikan Gabus" class="prd-img" loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgkP5w7aBL6foaW-sJZDe7fzKO79PR_k7ZIdWxfmWe6IkQSjEZgcwR0iPmB33Oc4WCMNljWglRslyZbNSTRxSXHQugnVqE0HSVR8IOeW_rBdv67u81GwTIxR9PmkyD1Q8y8x6KGObv4N4ZVMWmWrwDps8lLDdIl2H8PE1OxbpVDxeG34hQmcasc9E4N/s640/Sari%20Ikan%20Gabus-zon.webp" />
+        <div class="prd-content">
+          <h3 class="prd-title">Kapsul Sari Ikan Gabus</h3>
+          <p class="prd-desc">Cocok untuk: Pemulihan luka pasca-operasi dan melahirkan, memperbaiki masalah gizi buruk dan meningkatkan stamina.</p>
+          <div class="prd-price">Rp 170.000</div>
+          <button class="prd-btn-cart" onclick="addToCart('Kapsul Sari Ikan Gabus', 170000)"><i class="fa-solid fa-cart-plus"></i> Tambah ke Keranjang</button>
+          <button class="prd-btn-cart" onclick="decreaseQty('Kapsul Sari Ikan Gabus')">-</button>
+          <button class="prd-btn-cart" onclick="removeItem('Kapsul Sari Ikan Gabus')">Remove</button>
+        </div>
+      </div>
+      <!--============== END PRODUK 1 ==============-->
+    
+      <!--============== START PRODUK 2 ==============-->
+      <div class="prd-card" data-name="Arjuna">
+        <img alt="Madu Arjuna" class="prd-img" loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjjz3hEw6NljiWjyLtNJhNcDmka6dfqXuY7iVpoAi_mifd4SVYZVQ6eYU-Y2G8Y1k5JPSiL_DJ_-y1A8SOJj2refpz5d_gG2NrBHo6FnsbTgKWOREpD2bVpmVsJuzoUpbm2KuiavAYxeVDx5vMPZOhvfMHRSXI21jcNgAC3AbtOhY1KOh67OC7cW7u/s640/Madu%20Arjuna.webp" />
+        <div class="prd-content">
+          <h3 class="prd-title">Madu Arjuna (Pria Dewasa)</h3>
+          <p class="prd-desc">Membantu meningkatkan vitalitas dan stamina pria dewasa.</p>
+          <div class="prd-price">Rp 150.000</div>
+          <button class="prd-btn-cart" onclick="addToCart('Madu Arjuna', 150000)"><i class="fa-solid fa-cart-plus"></i> Tambah ke Keranjang</button>
+        </div>
+      </div>
+      <!--============== END PRODUK 2 ==============-->
+      
+      <!--============== START PRODUK 3 ==============-->
+      <div class="prd-card" data-name="KapsulToper">
+        <img alt="Kapsul Toper" class="prd-img" loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWL4PA0lbjadmiOyQ3S0Cb6VixPH598iDmXERRFqicA8wNzM7khfvwCvTB6cL5rMIPa-6tL3sWhtgLPsnxqT-rPePhcX8mkDoi0GXcy7mtUp0UhWG5cPkIrUyT7R30ZLH81Jw4ZRAJK4Rayg8_qFOSvU41S_OL-VwgSzbCfIFG1fmj9k2Uh2ydSux8/s640/Kapsul%20Toper.webp" />
+        <div class="prd-content">
+          <h3 class="prd-title">Kapsul Toper (30 Kapsul)</h3>
+          <p class="prd-desc">Membantu meredakan mual, tonik perut, Gerd dan gangguan lambung lainnya.</p>
+          <div class="prd-price">Rp 200.000</div>
+          <button class="prd-btn-cart" onclick="addToCart('Kapsul Toper', 200000)"><i class="fa-solid fa-cart-plus"></i> Tambah ke Keranjang</button>
+        </div>
+      </div>
+      <!--============== END PRODUK 3 ==============-->
+      
+      <!--============== START PRODUK 4 ==============-->
+      <div class="prd-card" data-name="MaduGinseng">
+        <img alt="Madu Ginseng" class="prd-img" loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjh-KoKLsfE26SZWIMRVkRJbmXlbcnnBs-e75bC4Ncf8ySo1OMXm5KQHaW8pZDW6RVu0_Us6RqyUFU3lq7Y8nn_zqQw3KPr8eBGGJUqYxkyK9ojus4TqW3q6L2hBiq3gPFsGk5Co6_E6VKdoiyZH9_ZNm2138iRwYgPgY0KXvf6QTUov7zBwyLD_kRo/s640/Madu%20Ginseng.webp" />
+        <div class="prd-content">
+          <h3 class="prd-title">Madu Ginseng (330g)</h3>
+          <p class="prd-desc">Membantu meningkatkan antibodi, menjaga stamina tetap prima.</p>
+          <div class="prd-price">Rp 190.000</div>
+          <button class="prd-btn-cart" onclick="addToCart('Madu Ginseng', 190000)"><i class="fa-solid fa-cart-plus"></i> Tambah ke Keranjang</button>
+        </div>
+      </div>
+      <!--============== END PRODUK 4 ==============-->
+
+    </div>
+    
+    <!--TOMBOL CHECKOUT MENGAPUNG-->
+    <a class="prd-btn-checkout" href="#" id="prd-checkout-btn" target="_blank">
+      <i class="fa-solid fa-cart-shopping"></i> Beli via WA <span class="prd-qty" id="prd-cart-count">0</span>
+    </a>
+    </section>
+     <!--SCRIPT JAVASCRIPT-->
+  <script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let totalPrice = 0;
+    
+    // FUNGSI CARI PRODUK
+    function prdSearchFunction() {
+      let input, filter, container, cards, title, i, txtValue;
+      input = document.getElementById('prd-search-box');
+      filter = input.value.toUpperCase();
+      container = document.getElementById('prd-container');
+      cards = container.getElementsByClassName('prd-card');
+    
+      for (i = 0; i < cards.length; i++) {
+        title = cards[i].querySelector(".prd-title");
+        if (title.innerText.toUpperCase().indexOf(filter) > -1 || cards[i].dataset.name.toUpperCase().indexOf(filter) > -1) {
+          cards[i].style.display = "";
+        } else {
+          cards[i].style.display = "none";
+        }
+      }
+    }
+    // FUSNGSI SIMPAN DATA KERANJANG
+    function saveCart() {
+         localStorage.setItem('cart', JSON.stringify(cart)); 
+    }
+      
+    // FUNGSI TAMBAH KE KERANJANG
+    function addToCart(name, price) {
+      const item = cart.find(product => product.name === name)
+      
+      if(item) {
+        item.qty++;
+      } else {
+        cart.push({
+          name: name,
+          price: price,
+          qty: 1,
+        });
+      }  
+      saveCart();
+      updateCartUI(); 
+    }
+    // FUNGSI KURANGI PRODUK
+    function decreaseQty(name) {
+         const item = cart.find(product => product.name === name);
+      
+          if (!item) return;
+      
+          item.qty--;
+      
+          if (item <= 0) {
+              cart = cart.filter(product => product.name !== name);
+        }
+      saveCart();
+      updateCartUI();
+      
+    }
+    // FUNGSI REMOVE PRODUK
+    function removeItem (name) {
+          cart = cart.filter(product => product.name !== name);
+      
+      saveCart();
+      updateCartUI();
+    }
+      
+    // UPDATE TAMPILAN KERANJANG
+    function updateCartUI() {
+      const countEl = document.getElementById('prd-cart-count');
+      const checkoutEl = document.getElementById('prd-checkout-btn');
+      
+      let totalQty = 0;
+      cart.forEach( item => {
+        totalQty += item.qty;
+      });
+      
+      countEl.innerText = totalQty;
+      
+      if(cart.length > 0) {
+        checkoutEl.classList.add('show');
+        // Buat link WA
+        let message = "Halo Massusi, saya mau order:%0A";
+        cart.forEach((item, index) => {
+          message += `${index+1}. ${item.name} - Rp ${item.price.toLocaleString('id-ID')}%0A`;
+        });
+        message += `%0A*Total: Rp ${totalPrice.toLocaleString('id-ID')}*`;
+        
+        // Nomor WA kamu: 085156312344
+        checkoutEl.href = `https://wa.me/6285156312344?text=${message}`;
+      } else {
+        checkoutEl.classList.remove('show');
+      }
+    }
+      
+    updateCartUI();
+    </script>
+</body>
+</html>
