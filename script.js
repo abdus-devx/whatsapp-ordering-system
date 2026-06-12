@@ -20,7 +20,7 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
       }
     }
   }
-  // FUSNGSI SIMPAN DATA KERANJANG
+  // FUNGSI SIMPAN DATA KERANJANG
   function saveCart() {
        localStorage.setItem('cart', JSON.stringify(cart)); 
   }
