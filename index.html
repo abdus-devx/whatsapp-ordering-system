@@ -4,199 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini Shop WA Project</title>
-
-<style>
-    /* ==========================
-     GLOBAL
-  ========================== */
-  
-  .retail-page{
-      font-family:Poppins,Arial,sans-serif;
-      animation:retailFade .8s ease;
-  }
-  
-  @keyframes retailFade{
-      from{
-          opacity:0;
-          transform:translateY(20px);
-      }
-      to{
-          opacity:1;
-          transform:translateY(0);
-      }
-  }
-  /* Container Utama */
-  .prd-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 280px);
-    gap: 25px;
-    padding: 15px 0;
-    justify-content: center;
-
-  }
-  
-  /* Box Produk */
-  .prd-card {
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    overflow: hidden;
-    transition: transform 0.3s ease;
-
-  }
-  .prd-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  /* Gambar Produk */
-  .prd-img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
-  }
-  
-  /* Isi Konten */
-  .prd-content {
-    padding: 20px;
-  }
-  
-  /* Nama Produk */
-  .prd-title {
-    font-size: 18px !important;
-    font-weight: 600;
-    color: #2d3436;
-    margin: 0 0 10px 0;
-  }
-  
-  /* Deskripsi */
-  .prd-desc {
-    font-size: 14px;
-    color: #636e72;
-    margin-bottom: 15px;
-    line-height: 1.5;
-  }
-  
-  /* Harga */
-  .prd-price {
-    font-size: 20px;
-    font-weight: bold;
-    color: #e17055;
-    margin-bottom: 18px;
-  }
-  
-  /* Tombol Tambah Keranjang */
-  .prd-btn-cart {
-    display: inline-block;
-    width: 100%;
-    padding: 10px;
-    background: #059669;
-    color: white !important;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: background 0.3s;
-    box-sizing: border-box;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 8px;
-  }
-  .prd-btn-cart:hover {
-    background: #02571a;
-  }
-  
-  /* Tombol Checkout */
-  .prd-btn-checkout {
-    position: fixed;
-    text-align: center;
-    bottom: 40px;
-    right: 20px;
-    background: #059669;
-    color: #fff !important;
-    padding: 15px 25px;
-    border-radius: 50px;
-    font-weight: 400;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    z-index: 999;
-    display: none; /* Awalnya hilang */
-  }
-    @media (max-width: 786px){
-     .prd-btn-checkout {
-       bottom: 100px;
-       left: 80px;
-       right: 80px;
-      }
-    }
-  .prd-btn-checkout.show {
-    display: block;
-  }
-  .prd-btn-checkout:hover {
-    background: #1da851;
-  }
-  
-  /* STYLE KOLOM PENCARIAN */
-  #prd-search-box {
-    width: 100%;
-    max-width: 600px;
-    padding: 12px 20px;
-    border: 2px solid #e0e0e0;
-    border-radius: 30px;
-    font-size: 15px;
-    margin: 10px auto 20px auto;
-    display: block;
-    outline: none;
-    transition: border-color 0.3s;
-  }
-  #prd-search-box:focus {
-    border-color: #0984e3;
-  }
-  .prd-search-wrapper {
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  
-  /* Badge Jumlah */
-  .prd-qty {
-    background: #D4AF37;
-    color: white;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    margin-left: 8px;
-  }
-  /* ==========================
-     HERO
-  ========================== */
-    .prd-hero {
-       text-align: center;
-       gap: 10px;
-       margin-bottom: 14px;
-       
-    }
-    
-    .prd-hero-title {
-      font-size:30px !important;
-      font-weight:600;
-      color:#02571a;
-      
-      letter-spacing:-0.5px;
-      margin:0; 
-    }
-    .prd-hero-sub {
-      text-align: center;
-      font-size: 15px;
-      margin-top: 0;
-    }
-    
-  </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">  
 </head>
 <body>
-    
   <section class="retail-page">
     <!--HERO TITLE-->
     <div class="prd-hero">
@@ -221,9 +34,11 @@
           <h3 class="prd-title">Kapsul Sari Ikan Gabus</h3>
           <p class="prd-desc">Cocok untuk: Pemulihan luka pasca-operasi dan melahirkan, memperbaiki masalah gizi buruk dan meningkatkan stamina.</p>
           <div class="prd-price">Rp 170.000</div>
-          <button class="prd-btn-cart" onclick="addToCart('Kapsul Sari Ikan Gabus', 170000)"><i class="fa-solid fa-cart-plus"></i> Tambah ke Keranjang</button>
-          <button class="prd-btn-cart" onclick="decreaseQty('Kapsul Sari Ikan Gabus')">-</button>
-          <button class="prd-btn-cart" onclick="removeItem('Kapsul Sari Ikan Gabus')">Remove</button>
+          <div class="prd-btn-group"> 
+          <button class="prd-btn-cart" onclick="addToCart('Kapsul Sari Ikan Gabus', 170000)"><i data-lucide="plus"></i></button>
+            <button class="prd-btn-cart" onclick="decreaseQty('Kapsul Sari Ikan Gabus')"><i data-lucide="minus"></i></button>
+            <button class="prd-btn-cart" onclick="removeItem('Kapsul Sari Ikan Gabus')"><i data-lucide="trash-2"></i></button>
+          </div>
         </div>
       </div>
       <!--============== END PRODUK 1 ==============-->
@@ -235,7 +50,12 @@
           <h3 class="prd-title">Madu Arjuna (Pria Dewasa)</h3>
           <p class="prd-desc">Membantu meningkatkan vitalitas dan stamina pria dewasa.</p>
           <div class="prd-price">Rp 150.000</div>
-          <button class="prd-btn-cart" onclick="addToCart('Madu Arjuna', 150000)"><i class="fa-solid fa-cart-plus"></i> Tambah ke Keranjang</button>
+          
+          <div class="prd-btn-group"> 
+            <button class="prd-btn-cart" onclick="addToCart('Madu Arjuna', 150000)"><i data-lucide="plus"></i></button>
+            <button class="prd-btn-cart" onclick="decreaseQty('Madu Arjuna')"><i data-lucide="minus"></i></button>
+            <button class="prd-btn-cart" onclick="removeItem('Madu Arjuna')"><i data-lucide="trash-2"></i></button>
+          </div>
         </div>
       </div>
       <!--============== END PRODUK 2 ==============-->
@@ -271,101 +91,7 @@
       <i class="fa-solid fa-cart-shopping"></i> Beli via WA <span class="prd-qty" id="prd-cart-count">0</span>
     </a>
     </section>
-     <!--SCRIPT JAVASCRIPT-->
-  <script>
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let totalPrice = 0;
-    
-    // FUNGSI CARI PRODUK
-    function prdSearchFunction() {
-      let input, filter, container, cards, title, i, txtValue;
-      input = document.getElementById('prd-search-box');
-      filter = input.value.toUpperCase();
-      container = document.getElementById('prd-container');
-      cards = container.getElementsByClassName('prd-card');
-    
-      for (i = 0; i < cards.length; i++) {
-        title = cards[i].querySelector(".prd-title");
-        if (title.innerText.toUpperCase().indexOf(filter) > -1 || cards[i].dataset.name.toUpperCase().indexOf(filter) > -1) {
-          cards[i].style.display = "";
-        } else {
-          cards[i].style.display = "none";
-        }
-      }
-    }
-    // FUSNGSI SIMPAN DATA KERANJANG
-    function saveCart() {
-         localStorage.setItem('cart', JSON.stringify(cart)); 
-    }
-      
-    // FUNGSI TAMBAH KE KERANJANG
-    function addToCart(name, price) {
-      const item = cart.find(product => product.name === name)
-      
-      if(item) {
-        item.qty++;
-      } else {
-        cart.push({
-          name: name,
-          price: price,
-          qty: 1,
-        });
-      }  
-      saveCart();
-      updateCartUI(); 
-    }
-    // FUNGSI KURANGI PRODUK
-    function decreaseQty(name) {
-         const item = cart.find(product => product.name === name);
-      
-          if (!item) return;
-      
-          item.qty--;
-      
-          if (item <= 0) {
-              cart = cart.filter(product => product.name !== name);
-        }
-      saveCart();
-      updateCartUI();
-      
-    }
-    // FUNGSI REMOVE PRODUK
-    function removeItem (name) {
-          cart = cart.filter(product => product.name !== name);
-      
-      saveCart();
-      updateCartUI();
-    }
-      
-    // UPDATE TAMPILAN KERANJANG
-    function updateCartUI() {
-      const countEl = document.getElementById('prd-cart-count');
-      const checkoutEl = document.getElementById('prd-checkout-btn');
-      
-      let totalQty = 0;
-      cart.forEach( item => {
-        totalQty += item.qty;
-      });
-      
-      countEl.innerText = totalQty;
-      
-      if(cart.length > 0) {
-        checkoutEl.classList.add('show');
-        // Buat link WA
-        let message = "Halo Massusi, saya mau order:%0A";
-        cart.forEach((item, index) => {
-          message += `${index+1}. ${item.name} - Rp ${item.price.toLocaleString('id-ID')}%0A`;
-        });
-        message += `%0A*Total: Rp ${totalPrice.toLocaleString('id-ID')}*`;
-        
-        // Nomor WA kamu: 085156312344
-        checkoutEl.href = `https://wa.me/6285156312344?text=${message}`;
-      } else {
-        checkoutEl.classList.remove('show');
-      }
-    }
-      
-    updateCartUI();
-    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="script.js"></script>
 </body>
 </html>
