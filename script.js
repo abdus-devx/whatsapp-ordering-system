@@ -1,7 +1,6 @@
 
 lucide.createIcons();
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-  let totalPrice = 0;
   
   // FUNGSI CARI PRODUK
   function prdSearchFunction() {
@@ -64,14 +63,21 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
     updateCartUI();
   }
     
+  function getQty(name) {
+    const item = cart.find(product => product.name === name);
+    return item ? item.qty : 0;
+  } 
+
   // UPDATE TAMPILAN KERANJANG
   function updateCartUI() {
     const countEl = document.getElementById('prd-cart-count');
     const checkoutEl = document.getElementById('prd-checkout-btn');
     
     let totalQty = 0;
+    let totalPrice = 0; 
     cart.forEach( item => {
       totalQty += item.qty;
+      totalPrice += item.qty * item.price;
     });
     
     countEl.innerText = totalQty;
@@ -90,6 +96,51 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
     } else {
       checkoutEl.classList.remove('show');
     }
+    document
+  .querySelectorAll('.qty-control')
+  .forEach(control => {
+
+    const name =
+      control.dataset.product;
+
+    const price =
+      Number(control.dataset.price);
+
+    const qty =
+      getQty(name);
+
+    if(qty > 0){
+
+      control.innerHTML = `
+        <button class="prd-btn-cart"
+          onclick="decreaseQty('${name}')">
+          <i data-lucide="minus"></i>
+        </button>
+
+        <span class="qty-number">
+          ${qty}
+        </span>
+
+        <button class="prd-btn-cart"
+          onclick="addToCart('${name}', ${price})">
+          <i data-lucide="plus"></i>
+        </button>
+      `;
+
+    } else {
+
+      control.innerHTML = `
+        <button class="prd-btn-cart"
+          onclick="addToCart('${name}', ${price})">
+          <i data-lucide="plus"></i>
+        </button>
+      `;
+
+    }
+
+  });
+
+lucide.createIcons();
   }
     
   updateCartUI();
