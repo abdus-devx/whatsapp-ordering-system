@@ -67,6 +67,12 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const item = cart.find(product => product.name === name);
     return item ? item.qty : 0;
   } 
+  
+  function toggleCart(){
+    document
+    .getElementById('cartDrawer')
+    .classList.toggle('open');
+  }
 
   // UPDATE TAMPILAN KERANJANG
   function updateCartUI() {
@@ -84,19 +90,11 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
     
     if(cart.length > 0) {
       checkoutEl.classList.add('show');
-      // Buat link WA
-      let message = "Halo Massusi, saya mau order:%0A";
-      cart.forEach((item, index) => {
-        message += `${index+1}. ${item.name} - Rp ${item.price.toLocaleString('id-ID')}%0A`;
-      });
-      message += `%0A*Total: Rp ${totalPrice.toLocaleString('id-ID')}*`;
-      
-      // Nomor WA kamu: 085156312344
-      checkoutEl.href = `https://wa.me/6285156312344?text=${message}`;
+     
     } else {
       checkoutEl.classList.remove('show');
     }
-    document
+  document
   .querySelectorAll('.qty-control')
   .forEach(control => {
 
@@ -132,7 +130,7 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
       control.innerHTML = `
         <button class="prd-btn-cart"
           onclick="addToCart('${name}', ${price})">
-          <i data-lucide="plus"></i>
+          <i data-lucide="shopping-cart"></i>
         </button>
       `;
 
@@ -141,6 +139,6 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
   });
 
 lucide.createIcons();
-  }
-    
-  updateCartUI();
+  } 
+
+updateCartUI();

@@ -54,10 +54,12 @@
           <div class="prd-price">Rp 150.000</div>
           
           <div class="prd-btn-group"> 
-            <button class="prd-btn-cart" onclick="addToCart('Madu Arjuna', 150000)"><i data-lucide="plus"></i></button>
-            <button class="prd-btn-cart" onclick="decreaseQty('Madu Arjuna')"><i data-lucide="minus"></i></button>
-            <button class="prd-btn-cart" onclick="removeItem('Madu Arjuna')"><i data-lucide="trash-2"></i></button>
-          </div>
+            <div 
+            class="qty-control"
+            data-product="Madu Arjuna"
+            data-price="150000">
+            </div>
+           </div>
         </div>
       </div>
       <!--============== END PRODUK 2 ==============-->
@@ -69,7 +71,13 @@
           <h3 class="prd-title">Kapsul Toper (30 Kapsul)</h3>
           <p class="prd-desc">Membantu meredakan mual, tonik perut, Gerd dan gangguan lambung lainnya.</p>
           <div class="prd-price">Rp 200.000</div>
-          <button class="prd-btn-cart" onclick="addToCart('Kapsul Toper', 200000)"><i class="fa-solid fa-cart-plus"></i> Tambah ke Keranjang</button>
+          <div class="prd-btn-group"> 
+            <div 
+            class="qty-control"
+            data-product="Kapsul Toper"
+            data-price="200000">
+            </div>
+           </div>
         </div>
       </div>
       <!--============== END PRODUK 3 ==============-->
@@ -81,7 +89,13 @@
           <h3 class="prd-title">Madu Ginseng (330g)</h3>
           <p class="prd-desc">Membantu meningkatkan antibodi, menjaga stamina tetap prima.</p>
           <div class="prd-price">Rp 190.000</div>
-          <button class="prd-btn-cart" onclick="addToCart('Madu Ginseng', 190000)"><i class="fa-solid fa-cart-plus"></i> Tambah ke Keranjang</button>
+          <div class="prd-btn-group"> 
+            <div 
+            class="qty-control"
+            data-product="Madu Ginseng"
+            data-price="190000">
+            </div>
+           </div>
         </div>
       </div>
       <!--============== END PRODUK 4 ==============-->
@@ -89,9 +103,20 @@
     </div>
     
     <!--TOMBOL CHECKOUT MENGAPUNG-->
-    <a class="prd-btn-checkout" href="#" id="prd-checkout-btn" target="_blank">
-      <i class="fa-solid fa-cart-shopping"></i> Beli via WA <span class="prd-qty" id="prd-cart-count">0</span>
-    </a>
+    <button class="prd-btn-checkout" onclick="toggleCart()" id="prd-checkout-btn" target="_blank">
+      <i data-lucide="shopping-cart"></i> Lanjut Pesanan<span class="prd-qty" id="prd-cart-count">0</span>
+    </button>
+
+    <div id="cartDrawer" class="cart-drawer">
+      <div class="drawer-header">
+        <h3>Cek Pesananmu dulu!</h3>
+        <button class="x-drawer" onclick="toggleCart()"><i data-lucide="x"></i></button>
+      </div>
+      <div class="drawer-body">
+
+        Drawer berhasil dibuat!
+      </div>
+    </div>
     </section>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="script.js"></script>
