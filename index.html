@@ -113,10 +113,12 @@
         <button class="x-drawer" onclick="toggleCart()"><i data-lucide="x"></i></button>
       </div>
       <div class="drawer-body">
-
-        Drawer berhasil dibuat!
+        <div id="drawer-items"></div>
+        <div id="drawer-total"></div>
+     </div>
+      <div class="drawer-footer">
+          <button id="checkout-btn" onclick="checkout()">Checkout via WhatsApp</button>
       </div>
-    </div>
     </section>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="script.js"></script>

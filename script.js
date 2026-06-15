@@ -142,3 +142,13 @@ lucide.createIcons();
   } 
 
 updateCartUI();
+
+let itemsHtml = '';
+cart.forEach(item => {
+  itemsHtml += `
+  <div class="drawer-items">
+    <span>${item.name} x ${item.qty}</span>
+    <button onclick="removeItem('${item.name}')"><i data-lucide="x"></i></button>
+  </div>
+  `;
+})
