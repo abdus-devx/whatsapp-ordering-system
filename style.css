@@ -251,3 +251,7 @@ a {
  transform: scale(1.5);
  
 }
+.drawer-footer {
+  position: sticky;
+  bottom: 30px;
+}

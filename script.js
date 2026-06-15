@@ -74,6 +74,8 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
     .classList.toggle('open');
   }
 
+
+
   // UPDATE TAMPILAN KERANJANG
   function updateCartUI() {
     const countEl = document.getElementById('prd-cart-count');
@@ -138,17 +140,23 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
   });
 
+let itemsHtml = '';
+let total = 0;
+
+cart.forEach(item => {
+  total += item.qty * item.price;
+  
+  itemsHtml += `
+  <div class="drawer-items">
+    <span>${item.name} x ${item.qty} = Rp ${item.qty * item.price}</span>
+    <button onclick="removeItem('${item.name}')"><i data-lucide="x"></i></button>
+  </div>
+  `;
+});
+
+document.getElementById('drawer-items').innerHTML = itemsHtml;
+document.getElementById('drawer-total').innerHTML = `<strong>Total: Rp ${total}</strong>`;
 lucide.createIcons();
   } 
 
 updateCartUI();
-
-let itemsHtml = '';
-cart.forEach(item => {
-  itemsHtml += `
-  <div class="drawer-items">
-    <span>${item.name} x ${item.qty}</span>
-    <button onclick="removeItem('${item.name}')"><i data-lucide="x"></i></button>
-  </div>
-  `;
-})
