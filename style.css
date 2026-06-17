@@ -240,6 +240,8 @@ a {
 }
 .drawer-body{
   padding: 20px;
+  height: 100%;
+  max-height: 500px;
 }
 .x-drawer {
   border: none;
@@ -252,6 +254,19 @@ a {
  
 }
 .drawer-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: sticky;
   bottom: 30px;
+  border-top: 1px solid #eee;
+}
+.checkout-btn {
+ padding: 15px;
+ border-radius: 20px;
+ border: none;
+ background-color: #0F766E;
+ color: #E2E8F0;
+ margin-top: 30px;
+ align-items: flex-start;
 }
