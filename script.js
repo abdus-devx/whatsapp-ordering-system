@@ -148,14 +148,15 @@ cart.forEach(item => {
   
   itemsHtml += `
   <div class="drawer-items">
-    <span>${item.name} x ${item.qty} = Rp ${item.qty * item.price}</span>
-    <button onclick="removeItem('${item.name}')"><i data-lucide="x"></i></button>
+    <div>${item.name} x ${item.qty}</div>
+    <span>Rp ${(item.qty * item.price).toLocaleString('id-ID')}</span>
+    <button class="trash-drawer" onclick="removeItem('${item.name}')"><i data-lucide="trash-2"></i></button>
   </div>
   `;
 });
 
 document.getElementById('drawer-items').innerHTML = itemsHtml;
-document.getElementById('drawer-total').innerHTML = `<strong>Total: Rp ${total}</strong>`;
+document.getElementById('drawer-total').innerHTML = `<strong>Total: Rp ${total.toLocaleString('id-ID')}</strong>`;
 lucide.createIcons();
   } 
 
