@@ -161,3 +161,24 @@ lucide.createIcons();
   } 
 
 updateCartUI();
+
+function checkout() {
+  let message= `Permisi Admin, tolong siapkan pesanan saya:
+  `;
+  let total= 0;
+
+  cart.forEach(item => {
+    total += item.qty * item.price;
+    message +=`
+    ${item.name} x ${item.qty}
+    Rp ${(item.qty * item.price).toLocaleString('id-ID')}
+    `;
+  });
+    message += `
+    Total: Rp ${total.toLocaleString('id-ID')}`;
+    
+    const phone = '6285156312344';
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+    window.open(url, '_blank');
+}
