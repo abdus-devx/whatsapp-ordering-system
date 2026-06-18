@@ -66,7 +66,7 @@ a {
 
 /* Nama Produk */
 .prd-title {
-  font-size: 18px !important;
+  font-size: 18px;
   font-weight: 600;
   color: #2d3436;
   margin: 0 0 10px 0;
@@ -138,20 +138,7 @@ a {
   z-index: 999;
   display: none; /* Awalnya hilang */
 }
-  @media (max-width: 786px){
-   .prd-btn-checkout {
-     bottom: 100px;
-     left: 80px;
-     right: 80px;
-    }
-    .retail-page {
-      width: 100%;
-    }
-    .prd-btn-checkout {
-      bottom: 10px;
-      padding: 15px 0;
-    }
-  }
+
 .prd-btn-checkout.show {
   display: block;
 }
@@ -196,7 +183,23 @@ a {
   font-weight:600;
   margin-left: 8px;
 }
-
+ @media (max-width: 786px){
+   .prd-btn-checkout {
+     bottom: 100px;
+     left: 80px;
+     right: 80px;
+    }
+    .retail-page {
+      width: 100%;
+    }
+    .prd-btn-checkout {
+      bottom: 10px;
+      padding: 15px 0;
+    }
+    #prd-search-box {
+      width: 90%;
+    }
+  }
 /* ==========================
    HERO
 ========================== */
