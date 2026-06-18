@@ -1,6 +1,9 @@
     /* ==========================
      GLOBAL
   ========================== */
+  * {
+    box-sizing: border-box;
+  }
 body{
  font-family:'Poppins',Arial,sans-serif;
 }
@@ -141,6 +144,9 @@ a {
      left: 80px;
      right: 80px;
     }
+    .retail-page {
+      width: 100%;
+    }
   }
 .prd-btn-checkout.show {
   display: block;
@@ -169,6 +175,7 @@ a {
 .prd-search-wrapper {
   text-align: center;
   margin-bottom: 15px;
+  
 }
 
 /* Badge Jumlah */
