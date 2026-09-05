@@ -1,127 +1,559 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mini Shop WA Project</title>
-    <link rel="stylesheet" href="./Assets/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./Assets/css/style.css" />
+    <link rel="stylesheet" href="./Assets/css/category.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://unpkg.com/lucide@latest" defer></script>
-    <script src="./Assets/js/script.js" defer></script> 
-</head>
-<body>
-  <section class="retail-page">
-    <!--HERO TITLE-->
-    <div class="prd-hero">
+    <script src="./Assets/js/script.js" defer></script>
+    <script src="./Assets/js/category.js" defer></script>
+  </head>
+  <body>
+    <section class="retail-page">
+      <!-- =====================================================
+     TOP BAR
+===================================================== -->
+
+      <div class="shop-topbar">
+        <strong>🚚 Gratis Ongkir</strong>&nbsp; untuk pesanan tertentu
+      </div>
+
+      <!-- =====================================================
+     HEADER
+===================================================== -->
+
+      <header class="shop-header">
+        <nav class="shop-nav">
+          <a href="#" class="shop-logo">
+            <span class="shop-logo-icon">
+              <i data-lucide="leaf"></i>
+            </span>
+
+            <span class="shop-logo-text">
+              <strong>MASSUSI</strong>
+              <small>STORE</small>
+            </span>
+          </a>
+
+          <div class="shop-menu">
+            <a href="#" class="active">HOME</a>
+
+            <a href="#produk">PRODUK</a>
+
+            <a href="#kategori">KATEGORI</a>
+
+            <a href="#tentang">TENTANG</a>
+
+            <a href="#promo">PROMO</a>
+          </div>
+
+          <div class="shop-actions">
+            <button class="shop-action">
+              <i data-lucide="search"></i>
+            </button>
+
+            <button class="shop-action">
+              <i data-lucide="user-round"></i>
+            </button>
+
+            <button class="shop-action shop-mobile-menu" onclick="toggleCart()">
+              <i data-lucide="menu"></i>
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      <!-- =====================================================
+     HERO
+===================================================== -->
+
+      <section class="shop-hero">
+        <div class="shop-hero-inner">
+          <div class="shop-hero-content">
+            <p class="shop-hero-label">NATURALLY HEALTHY</p>
+
+            <h1 class="shop-hero-title">
+              Herbal pilihan untuk hidup yang lebih sehat.
+            </h1>
+
+            <p class="shop-hero-desc">
+              Temukan berbagai produk herbal berkualitas yang dipilih untuk
+              membantu menunjang kesehatan dan kebugaran Anda setiap hari.
+            </p>
+
+            <div class="shop-hero-buttons">
+              <a href="#produk" class="shop-primary-btn">
+                BELANJA SEKARANG
+                <i data-lucide="arrow-right"></i>
+              </a>
+
+              <a href="#produk" class="shop-video-btn">
+                <span class="shop-video-icon">
+                  <i data-lucide="play"></i>
+                </span>
+
+                LIHAT PRODUK
+              </a>
+            </div>
+          </div>
+
+          <div class="shop-hero-visual">
+            <!--
+        GANTI URL GAMBAR INI DENGAN FOTO PRODUK /
+        FOTO HERO YANG KAMU PUNYA
+      -->
+
+            <img
+              class="shop-hero-image"
+              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgkP5w7aBL6foaW-sJZDe7fzKO79PR_k7ZIdWxfmWe6IkQSjEZgcwR0iPmB33Oc4WCMNljWglRslyZbNSTRxSXHQugnVqE0HSVR8IOeW_rBdv67u81GwTIxR9PmkyD1Q8y8x6KGObv4N4ZVMWmWrwDps8lLDdIl2H8PE1OxbpVDxeG34hQmcasc9E4N/s640/Sari%20Ikan%20Gabus-zon.webp"
+              alt="Produk Herbal"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+     TRUST / BENEFITS
+===================================================== -->
+
+      <section class="shop-benefits">
+        <div class="shop-benefit">
+          <div class="shop-benefit-icon">
+            <i data-lucide="leaf"></i>
+          </div>
+
+          <div>
+            <strong>BAHAN PILIHAN</strong>
+            <span>Dipilih dengan baik</span>
+          </div>
+        </div>
+
+        <div class="shop-benefit">
+          <div class="shop-benefit-icon">
+            <i data-lucide="shield-check"></i>
+          </div>
+
+          <div>
+            <strong>BERKUALITAS</strong>
+            <span>Produk terpercaya</span>
+          </div>
+        </div>
+
+        <div class="shop-benefit">
+          <div class="shop-benefit-icon">
+            <i data-lucide="truck"></i>
+          </div>
+
+          <div>
+            <strong>PENGIRIMAN AMAN</strong>
+            <span>Dikemas dengan baik</span>
+          </div>
+        </div>
+
+        <div class="shop-benefit">
+          <div class="shop-benefit-icon">
+            <i data-lucide="message-circle"></i>
+          </div>
+
+          <div>
+            <strong>ORDER VIA WA</strong>
+            <span>Mudah & cepat</span>
+          </div>
+        </div>
+      </section>
+
+      <!--HERO TITLE-->
+      <div class="prd-hero">
         <h2 class="prd-hero-title" id="produk">Produk Herbal Pilihan</h2>
-    </div>
-    
-    <p class="prd-hero-sub">
-        Koleksi produk herbal berkualitas yang siap dipesan kapan saja. Tambahkan produk ke keranjang dan kirim pesanan langsung melalui WhatsApp dengan format otomatis.
-    </p>
-    
-    <!--KOLOM PENCARIAN-->
-    <div class="prd-search-wrapper">
-      <input id="prd-search-box" onkeyup="prdSearchFunction()" placeholder="🔍︎ Cari produk disini... " type="text" />
-    </div>
-    
-    <div class="prd-container" id="prd-container">
-    
-      <!--============== START PRODUK 1 ==============-->
-      <div class="prd-card" data-name="Kapsul_Sari_Ikan_Gabus">
-        <img alt="Kapsul Sari Ikan Gabus" class="prd-img" loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgkP5w7aBL6foaW-sJZDe7fzKO79PR_k7ZIdWxfmWe6IkQSjEZgcwR0iPmB33Oc4WCMNljWglRslyZbNSTRxSXHQugnVqE0HSVR8IOeW_rBdv67u81GwTIxR9PmkyD1Q8y8x6KGObv4N4ZVMWmWrwDps8lLDdIl2H8PE1OxbpVDxeG34hQmcasc9E4N/s640/Sari%20Ikan%20Gabus-zon.webp" />
-        <div class="prd-content">
-          <h3 class="prd-title">Kapsul Sari Ikan Gabus</h3>
-          <p class="prd-desc">Cocok untuk: Pemulihan luka pasca-operasi dan melahirkan, memperbaiki masalah gizi buruk dan meningkatkan stamina.</p>
-          <div class="prd-price">Rp 170.000</div>
-          <div class="prd-btn-group"> 
-           <div 
-           class="qty-control"
-           data-product="Kapsul Sari Ikan Gabus"
-           data-price="170000">
-           </div>
+      </div>
+
+      <p class="prd-hero-sub">
+        Koleksi produk herbal berkualitas yang siap dipesan kapan saja.
+        Tambahkan produk ke keranjang dan kirim pesanan langsung melalui
+        WhatsApp dengan format otomatis.
+      </p>
+      <!-- =====================================================
+     SHOP BY CATEGORY
+     PREFIX: sbc-
+===================================================== -->
+
+      <section class="sbc-section" id="sbc-kategori">
+        <div class="sbc-heading">
+          <span class="sbc-line"></span>
+
+          <h2 class="sbc-title">SHOP BY CATEGORY</h2>
+
+          <span class="sbc-line"></span>
+        </div>
+
+        <div class="sbc-list">
+          <!-- SEMUA -->
+          <button
+            type="button"
+            class="sbc-item sbc-active"
+            data-sbc-category="all"
+          >
+            <span class="sbc-icon">
+              <i data-lucide="sparkles"></i>
+            </span>
+
+            <strong>ALL PRODUCTS</strong>
+
+            <small>Explore</small>
+          </button>
+
+          <!-- KAPSUL -->
+          <button type="button" class="sbc-item" data-sbc-category="kapsul">
+            <span class="sbc-icon">
+              <i data-lucide="pill"></i>
+            </span>
+
+            <strong>KAPSUL</strong>
+
+            <small>Explore</small>
+          </button>
+
+          <!-- MADU -->
+          <button type="button" class="sbc-item" data-sbc-category="madu">
+            <span class="sbc-icon">
+              <i data-lucide="droplets"></i>
+            </span>
+
+            <strong>MADU</strong>
+
+            <small>Explore</small>
+          </button>
+
+          <!-- HERBAL -->
+          <button type="button" class="sbc-item" data-sbc-category="herbal">
+            <span class="sbc-icon">
+              <i data-lucide="leaf"></i>
+            </span>
+
+            <strong>HERBAL</strong>
+
+            <small>Explore</small>
+          </button>
+
+          <!-- KESEHATAN -->
+          <button type="button" class="sbc-item" data-sbc-category="kesehatan">
+            <span class="sbc-icon">
+              <i data-lucide="heart-pulse"></i>
+            </span>
+
+            <strong>KESEHATAN</strong>
+
+            <small>Explore</small>
+          </button>
+        </div>
+      </section>
+
+      <!--KOLOM PENCARIAN-->
+      <div class="prd-search-wrapper">
+        <input
+          id="prd-search-box"
+          onkeyup="prdSearchFunction()"
+          placeholder="🔍︎ Cari produk disini... "
+          type="text"
+        />
+      </div>
+
+      <div class="prd-container" id="prd-container">
+        <!--============== START PRODUK 1 ==============-->
+        <div
+          class="prd-card"
+          data-name="Kapsul_Sari_Ikan_Gabus"
+          data-sbc-category="kapsul"
+        >
+          <img
+            alt="Kapsul Sari Ikan Gabus"
+            class="prd-img"
+            loading="lazy"
+            src="./Assets/images/sig_PASCAOPERASI.avif"
+          />
+          <div class="prd-content">
+            <h3 class="prd-title">Kapsul Sari Ikan Gabus</h3>
+            <p class="prd-desc">
+              Cocok untuk: Pemulihan luka pasca-operasi dan melahirkan,
+              memperbaiki masalah gizi buruk dan meningkatkan stamina.
+            </p>
+            <div class="prd-price">Rp 170.000</div>
+            <div class="prd-btn-group">
+              <div
+                class="qty-control"
+                data-product="Kapsul Sari Ikan Gabus"
+                data-price="170000"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <!--============== END PRODUK 1 ==============-->
+
+        <!--============== START PRODUK 2 ==============-->
+        <div class="prd-card" data-name="Arjuna" data-sbc-category="madu">
+          <img
+            alt="Madu Arjuna"
+            class="prd-img"
+            loading="lazy"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjjz3hEw6NljiWjyLtNJhNcDmka6dfqXuY7iVpoAi_mifd4SVYZVQ6eYU-Y2G8Y1k5JPSiL_DJ_-y1A8SOJj2refpz5d_gG2NrBHo6FnsbTgKWOREpD2bVpmVsJuzoUpbm2KuiavAYxeVDx5vMPZOhvfMHRSXI21jcNgAC3AbtOhY1KOh67OC7cW7u/s640/Madu%20Arjuna.webp"
+          />
+          <div class="prd-content">
+            <h3 class="prd-title">Madu Arjuna (Pria Dewasa)</h3>
+            <p class="prd-desc">
+              Membantu meningkatkan vitalitas dan stamina pria dewasa.
+            </p>
+            <div class="prd-price">Rp 150.000</div>
+
+            <div class="prd-btn-group">
+              <div
+                class="qty-control"
+                data-product="Madu Arjuna"
+                data-price="150000"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <!--============== END PRODUK 2 ==============-->
+
+        <!--============== START PRODUK 3 ==============-->
+        <div
+          class="prd-card"
+          data-name="Kapsul-Toper"
+          data-sbc-category="kapsul"
+        >
+          <img
+            alt="Kapsul Toper"
+            class="prd-img"
+            loading="lazy"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWL4PA0lbjadmiOyQ3S0Cb6VixPH598iDmXERRFqicA8wNzM7khfvwCvTB6cL5rMIPa-6tL3sWhtgLPsnxqT-rPePhcX8mkDoi0GXcy7mtUp0UhWG5cPkIrUyT7R30ZLH81Jw4ZRAJK4Rayg8_qFOSvU41S_OL-VwgSzbCfIFG1fmj9k2Uh2ydSux8/s640/Kapsul%20Toper.webp"
+          />
+          <div class="prd-content">
+            <h3 class="prd-title">Kapsul Toper (30 Kapsul)</h3>
+            <p class="prd-desc">
+              Membantu meredakan mual, tonik perut, Gerd dan gangguan lambung
+              lainnya.
+            </p>
+            <div class="prd-price">Rp 200.000</div>
+            <div class="prd-btn-group">
+              <div
+                class="qty-control"
+                data-product="Kapsul Toper"
+                data-price="200000"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <!--============== END PRODUK 3 ==============-->
+
+        <!--============== START PRODUK 4 ==============-->
+        <div class="prd-card" data-name="MaduGinseng" data-sbc-category="madu">
+          <img
+            alt="Madu Ginseng"
+            class="prd-img"
+            loading="lazy"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjh-KoKLsfE26SZWIMRVkRJbmXlbcnnBs-e75bC4Ncf8ySo1OMXm5KQHaW8pZDW6RVu0_Us6RqyUFU3lq7Y8nn_zqQw3KPr8eBGGJUqYxkyK9ojus4TqW3q6L2hBiq3gPFsGk5Co6_E6VKdoiyZH9_ZNm2138iRwYgPgY0KXvf6QTUov7zBwyLD_kRo/s640/Madu%20Ginseng.webp"
+          />
+          <div class="prd-content">
+            <h3 class="prd-title">Madu Ginseng (330g)</h3>
+            <p class="prd-desc">
+              Membantu meningkatkan antibodi, menjaga stamina tetap prima.
+            </p>
+            <div class="prd-price">Rp 190.000</div>
+            <div class="prd-btn-group">
+              <div
+                class="qty-control"
+                data-product="Madu Ginseng"
+                data-price="190000"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <!--============== END PRODUK 4 ==============-->
+      </div>
+
+      <!--TOMBOL CHECKOUT MENGAPUNG-->
+      <button
+        class="prd-btn-checkout"
+        onclick="toggleCart()"
+        id="prd-checkout-btn"
+        target="_blank"
+      >
+        <i data-lucide="shopping-cart"></i> Lanjut Pesanan<span
+          class="prd-qty"
+          id="prd-cart-count"
+          >0</span
+        >
+      </button>
+
+      <div id="cartDrawer" class="cart-drawer">
+        <div class="drawer-header">
+          <h3>Cek Pesananmu dulu!</h3>
+          <button class="x-drawer" onclick="toggleCart()">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="drawer-body">
+          <div id="drawer-items"></div>
+        </div>
+        <div id="drawer-total" class="drawer-summary"></div>
+        <div class="drawer-footer">
+          <button class="checkout-btn" id="checkout-btn" onclick="checkout()">
+            <span>Order Via WA <i data-lucide="arrow-up-right"></i></span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- =====================================================
+     FOOTER SERVICE BAR
+     PREFIX: sft-
+===================================================== -->
+
+    <footer class="sft-footer">
+      <div class="sft-service-bar">
+        <!-- FREE SHIPPING -->
+        <div class="sft-service-item">
+          <div class="sft-service-icon">
+            <i data-lucide="truck"></i>
+          </div>
+
+          <div class="sft-service-content">
+            <strong>FREE SHIPPING</strong>
+            <span>On orders over $50</span>
+          </div>
+        </div>
+
+        <!-- SECURE PAYMENT -->
+        <div class="sft-service-item">
+          <div class="sft-service-icon">
+            <i data-lucide="shield-check"></i>
+          </div>
+
+          <div class="sft-service-content">
+            <strong>SECURE PAYMENT</strong>
+            <span>100% safe & secure</span>
+          </div>
+        </div>
+
+        <!-- EASY RETURNS -->
+        <div class="sft-service-item">
+          <div class="sft-service-icon">
+            <i data-lucide="refresh-cw"></i>
+          </div>
+
+          <div class="sft-service-content">
+            <strong>EASY RETURNS</strong>
+            <span>30 days return policy</span>
+          </div>
+        </div>
+
+        <!-- CUSTOMER SUPPORT -->
+        <div class="sft-service-item">
+          <div class="sft-service-icon">
+            <i data-lucide="headphones"></i>
+          </div>
+
+          <div class="sft-service-content">
+            <strong>CUSTOMER SUPPORT</strong>
+            <span>We're here to help</span>
           </div>
         </div>
       </div>
-      <!--============== END PRODUK 1 ==============-->
-    
-      <!--============== START PRODUK 2 ==============-->
-      <div class="prd-card" data-name="Arjuna">
-        <img alt="Madu Arjuna" class="prd-img" loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjjz3hEw6NljiWjyLtNJhNcDmka6dfqXuY7iVpoAi_mifd4SVYZVQ6eYU-Y2G8Y1k5JPSiL_DJ_-y1A8SOJj2refpz5d_gG2NrBHo6FnsbTgKWOREpD2bVpmVsJuzoUpbm2KuiavAYxeVDx5vMPZOhvfMHRSXI21jcNgAC3AbtOhY1KOh67OC7cW7u/s640/Madu%20Arjuna.webp" />
-        <div class="prd-content">
-          <h3 class="prd-title">Madu Arjuna (Pria Dewasa)</h3>
-          <p class="prd-desc">Membantu meningkatkan vitalitas dan stamina pria dewasa.</p>
-          <div class="prd-price">Rp 150.000</div>
-          
-          <div class="prd-btn-group"> 
-            <div 
-            class="qty-control"
-            data-product="Madu Arjuna"
-            data-price="150000">
-            </div>
-           </div>
-        </div>
-      </div>
-      <!--============== END PRODUK 2 ==============-->
-      
-      <!--============== START PRODUK 3 ==============-->
-      <div class="prd-card" data-name="Kapsul-Toper">
-        <img alt="Kapsul Toper" class="prd-img" loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWL4PA0lbjadmiOyQ3S0Cb6VixPH598iDmXERRFqicA8wNzM7khfvwCvTB6cL5rMIPa-6tL3sWhtgLPsnxqT-rPePhcX8mkDoi0GXcy7mtUp0UhWG5cPkIrUyT7R30ZLH81Jw4ZRAJK4Rayg8_qFOSvU41S_OL-VwgSzbCfIFG1fmj9k2Uh2ydSux8/s640/Kapsul%20Toper.webp" />
-        <div class="prd-content">
-          <h3 class="prd-title">Kapsul Toper (30 Kapsul)</h3>
-          <p class="prd-desc">Membantu meredakan mual, tonik perut, Gerd dan gangguan lambung lainnya.</p>
-          <div class="prd-price">Rp 200.000</div>
-          <div class="prd-btn-group"> 
-            <div 
-            class="qty-control"
-            data-product="Kapsul Toper"
-            data-price="200000">
-            </div>
-           </div>
-        </div>
-      </div>
-      <!--============== END PRODUK 3 ==============-->
-      
-      <!--============== START PRODUK 4 ==============-->
-      <div class="prd-card" data-name="MaduGinseng">
-        <img alt="Madu Ginseng" class="prd-img" loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjh-KoKLsfE26SZWIMRVkRJbmXlbcnnBs-e75bC4Ncf8ySo1OMXm5KQHaW8pZDW6RVu0_Us6RqyUFU3lq7Y8nn_zqQw3KPr8eBGGJUqYxkyK9ojus4TqW3q6L2hBiq3gPFsGk5Co6_E6VKdoiyZH9_ZNm2138iRwYgPgY0KXvf6QTUov7zBwyLD_kRo/s640/Madu%20Ginseng.webp" />
-        <div class="prd-content">
-          <h3 class="prd-title">Madu Ginseng (330g)</h3>
-          <p class="prd-desc">Membantu meningkatkan antibodi, menjaga stamina tetap prima.</p>
-          <div class="prd-price">Rp 190.000</div>
-          <div class="prd-btn-group"> 
-            <div 
-            class="qty-control"
-            data-product="Madu Ginseng"
-            data-price="190000">
-            </div>
-           </div>
-        </div>
-      </div>
-      <!--============== END PRODUK 4 ==============-->
 
-    </div>
-    
-    <!--TOMBOL CHECKOUT MENGAPUNG-->
-    <button class="prd-btn-checkout" onclick="toggleCart()" id="prd-checkout-btn" target="_blank">
-      <i data-lucide="shopping-cart"></i> Lanjut Pesanan<span class="prd-qty" id="prd-cart-count">0</span>
-    </button>
+      <!-- =================================================
+       MAIN FOOTER
+  ================================================= -->
 
-    <div id="cartDrawer" class="cart-drawer">
-      <div class="drawer-header">
-        <h3>Cek Pesananmu dulu!</h3>
-        <button class="x-drawer" onclick="toggleCart()"><i data-lucide="x"></i></button>
+      <div class="sft-main">
+        <div class="sft-brand">
+          <div class="sft-brand-logo">
+            <span class="sft-brand-icon">
+              <i data-lucide="leaf"></i>
+            </span>
+
+            <div>
+              <strong>Massusi</strong>
+              <small>Store</small>
+            </div>
+          </div>
+
+          <p>
+            Produk herbal pilihan untuk membantu menunjang kesehatan dan
+            kebugaran keluarga.
+          </p>
+
+          <div class="sft-social">
+            <a href="#" aria-label="Instagram">
+              <i data-lucide="instagram"></i>
+            </a>
+
+            <a href="#" aria-label="Facebook">
+              <i data-lucide="facebook"></i>
+            </a>
+
+            <a href="#" aria-label="WhatsApp">
+              <i data-lucide="message-circle"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="sft-column">
+          <h3>SHOP</h3>
+
+          <a href="#produk">Semua Produk</a>
+          <a href="#kategori">Kategori</a>
+          <a href="#promo">Promo</a>
+          <a href="#produk">Produk Terbaru</a>
+        </div>
+
+        <div class="sft-column">
+          <h3>INFORMATION</h3>
+
+          <a href="#tentang">Tentang Kami</a>
+          <a href="#">Cara Pemesanan</a>
+          <a href="#">Pengiriman</a>
+          <a href="#">FAQ</a>
+        </div>
+
+        <div class="sft-column">
+          <h3>CONTACT</h3>
+
+          <p>
+            <i data-lucide="phone"></i>
+            <span>+62 812-3456-7890</span>
+          </p>
+
+          <p>
+            <i data-lucide="mail"></i>
+            <span>info@herbalive.com</span>
+          </p>
+
+          <p>
+            <i data-lucide="map-pin"></i>
+            <span>Indonesia</span>
+          </p>
+        </div>
       </div>
-      <div class="drawer-body">
-        <div id="drawer-items"></div>
-     </div>
-      <div id="drawer-total" class="drawer-summary"></div>
-      <div class="drawer-footer">
-          <button class="checkout-btn" id="checkout-btn" onclick="checkout()"><span>Order Via WA <i data-lucide="arrow-up-right"></i></span></button>
+
+      <!-- =================================================
+       COPYRIGHT
+  ================================================= -->
+
+      <div class="sft-bottom">
+        <span> © 2026 Massusi Store. All rights reserved. </span>
+
+        <div class="sft-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+        </div>
       </div>
-    </div>
-    </section>
-</body>
+    </footer>
+  </body>
 </html>
