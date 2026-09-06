@@ -327,15 +327,29 @@ input {
 .shop-hero-image {
   position: relative;
   z-index: 2;
-
   width: min(570px, 100%);
   max-height: 450px;
-
   object-fit: cover;
   object-position: center top;
-
-  border-radius: 250px 250px 0 0;
+  border-radius: 20px 200px 0 0;
   display: block;
+
+  transition:
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.6s ease,
+    filter 0.6s ease;
+
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.1);
+}
+
+.shop-hero-image:hover {
+  transform: translateY(-10px) scale(1.03);
+
+  filter: brightness(1.04) contrast(1.02) saturate(1.08);
+
+  box-shadow:
+    0 35px 70px rgba(0, 0, 0, 0.16);
 }
 
 
