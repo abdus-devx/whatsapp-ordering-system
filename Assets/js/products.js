@@ -46,4 +46,15 @@ const products = [
     bestseller: false,
     promo: false,
   },
+
+  {
+  id: 5,
+  name: "Produk Test",
+  category: "herbal",
+  price: 125000,
+  image: "./Assets/images/ginseng_madu.avif",
+  description: "Ini adalah produk untuk menguji dynamic rendering.",
+  bestseller: false,
+  promo: false,
+  },
 ];
