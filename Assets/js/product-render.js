@@ -39,14 +39,83 @@ function createProductCard(product) {
   `;
 }
 
+const PRODUCTS_PER_PAGE = 12;
+let currentPage = 1;
+
 function renderProducts(productList) {
   const container = document.getElementById("prd-container");
 
   if (!container) return;
 
-  container.innerHTML = productList
+  const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+  const endIndex = startIndex + PRODUCTS_PER_PAGE;
+
+  const productsToShow = productList.slice(startIndex, endIndex);
+
+  container.innerHTML = productsToShow
     .map(createProductCard)
     .join("");
 }
 
+
+
+function renderPagination(productList) {
+  const pagination = document.getElementById("prd-pagination");
+
+  if (!pagination) return;
+
+  const totalPages = Math.ceil(
+    productList.length / PRODUCTS_PER_PAGE
+  );
+
+  if (totalPages <= 1) {
+    pagination.innerHTML = "";
+    return;
+  }
+
+  pagination.innerHTML = `
+    <button
+      type="button"
+      class="prd-page-btn"
+      ${currentPage === 1 ? "disabled" : ""}
+      onclick="changePage(${currentPage - 1})"
+    >
+      ‹
+    </button>
+
+    ${Array.from({ length: totalPages }, (_, index) => {
+      const page = index + 1;
+
+      return `
+        <button
+          type="button"
+          class="prd-page-btn ${
+            page === currentPage ? "active" : ""
+          }"
+          onclick="changePage(${page})"
+        >
+          ${page}
+        </button>
+      `;
+    }).join("")}
+
+    <button
+      type="button"
+      class="prd-page-btn"
+      ${currentPage === totalPages ? "disabled" : ""}
+      onclick="changePage(${currentPage + 1})"
+    >
+      ›
+    </button>
+  `;
+}
+
+function changePage(page) {
+  currentPage = page;
+
+  renderProducts(products);
+  renderPagination(products);
+}
+
 renderProducts(products);
+renderPagination(products);
