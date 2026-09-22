@@ -18,12 +18,16 @@ function createProductCard(product) {
       ${product.bestseller ? '<span class="prd-bestseller">★ BEST SELLER</span>' : ""}
       ${product.promo ? `
           <span class="prd-promo-badge">
-          PROMO • HEMAT ${calculateDiscount(
-            product.oldPrice,
-            product.price
-          )}%
+          ⚡ PROMO • HEMAT
+            <span
+              class="prd-discount"
+              data-discount="${calculateDiscount(
+              product.oldPrice,
+              product.price
+              )}"
+            >0%</span>
           </span>
-        `
+          `
         : "" }
 
       <img
@@ -144,5 +148,47 @@ function changePage(page) {
   renderPagination(products);
 }
 
+function animateDiscounts() {
+  const discounts = document.querySelectorAll(
+    ".prd-discount"
+  );
+
+  discounts.forEach((element) => {
+    const target = Number(
+      element.dataset.discount
+    );
+
+    let current = 0;
+
+    function countUp() {
+      current++;
+
+      element.textContent = `${current}%`;
+
+      if (current < target) {
+        setTimeout(countUp, 70);
+      } else {
+        element.classList.add("discount-highlight");
+
+        setTimeout(() => {
+          element.classList.remove(
+            "discount-highlight"
+          );
+        }, 500);
+
+        setTimeout(() => {
+          current = 0;
+          element.textContent = "0%";
+          countUp();
+        }, 3500);
+      }
+    }
+
+    countUp();
+  });
+}
+
+
 renderProducts(products);
 renderPagination(products);
+animateDiscounts();

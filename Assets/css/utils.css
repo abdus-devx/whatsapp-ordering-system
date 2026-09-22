@@ -64,6 +64,7 @@
   color: #fff;
 
   pointer-events: none;
+  overflow: hidden;
 }
 
 .prd-old-price {
@@ -79,4 +80,28 @@
 
   font-size: 18px;
   font-weight: 700;
+}
+
+
+.prd-discount {
+  display: inline-block;
+  font-weight: 700;
+}
+
+.prd-discount.discount-highlight {
+  animation: discountHighlight 0.5s ease-out;
+}
+
+@keyframes discountHighlight {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
