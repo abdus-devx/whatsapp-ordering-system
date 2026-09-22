@@ -9,6 +9,9 @@ function createProductCard(product) {
       data-name="${product.name}"
       data-sbc-category="${product.category}"
     >
+      ${product.bestseller ? '<span class="prd-bestseller">★ BEST SELLER</span>' : ""}
+
+
       <img
         alt="${product.name}"
         class="prd-img"
