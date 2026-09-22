@@ -46,3 +46,37 @@
     left: 140%;
   }
 }
+
+.prd-promo-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+
+  padding: 5px 10px;
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+
+  background: #004f3a;
+  color: #fff;
+
+  pointer-events: none;
+}
+
+.prd-old-price {
+  display: block;
+
+  font-size: 13px;
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+.prd-promo-price {
+  display: block;
+
+  font-size: 18px;
+  font-weight: 700;
+}

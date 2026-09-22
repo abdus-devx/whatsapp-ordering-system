@@ -2,6 +2,12 @@ function formatPrice(price) {
   return new Intl.NumberFormat("id-ID").format(price);
 }
 
+function calculateDiscount(oldPrice, price) {
+  return Math.round(
+    ((oldPrice - price) / oldPrice) * 100
+  );
+}
+
 function createProductCard(product) {
   return `
     <div
@@ -10,7 +16,15 @@ function createProductCard(product) {
       data-sbc-category="${product.category}"
     >
       ${product.bestseller ? '<span class="prd-bestseller">★ BEST SELLER</span>' : ""}
-
+      ${product.promo ? `
+          <span class="prd-promo-badge">
+          PROMO • HEMAT ${calculateDiscount(
+            product.oldPrice,
+            product.price
+          )}%
+          </span>
+        `
+        : "" }
 
       <img
         alt="${product.name}"
@@ -27,7 +41,21 @@ function createProductCard(product) {
         </p>
 
         <div class="prd-price">
+        ${
+          product.promo
+            ? `
+          <span class="prd-old-price">
+          Rp ${formatPrice(product.oldPrice)}
+          </span>
+
+          <span class="prd-promo-price">
           Rp ${formatPrice(product.price)}
+          </span>
+          `
+          : `
+            Rp ${formatPrice(product.price)}
+          `
+        }
         </div>
 
         <div class="prd-btn-group">
@@ -51,7 +79,7 @@ function renderProducts(productList) {
   if (!container) return;
 
   productList = [...productList].sort(
-  (a, b) => Number(b.bestseller) - Number(a.bestseller)
+    (a, b) => Number(b.bestseller) - Number(a.bestseller),
   );
 
   const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
@@ -59,21 +87,15 @@ function renderProducts(productList) {
 
   const productsToShow = productList.slice(startIndex, endIndex);
 
-  container.innerHTML = productsToShow
-    .map(createProductCard)
-    .join("");
+  container.innerHTML = productsToShow.map(createProductCard).join("");
 }
-
-
 
 function renderPagination(productList) {
   const pagination = document.getElementById("prd-pagination");
 
   if (!pagination) return;
 
-  const totalPages = Math.ceil(
-    productList.length / PRODUCTS_PER_PAGE
-  );
+  const totalPages = Math.ceil(productList.length / PRODUCTS_PER_PAGE);
 
   if (totalPages <= 1) {
     pagination.innerHTML = "";
@@ -96,9 +118,7 @@ function renderPagination(productList) {
       return `
         <button
           type="button"
-          class="prd-page-btn ${
-            page === currentPage ? "active" : ""
-          }"
+          class="prd-page-btn ${page === currentPage ? "active" : ""}"
           onclick="changePage(${page})"
         >
           ${page}

@@ -15,12 +15,13 @@ const products = [
     id: 2,
     name: "Madu Arjuna (Pria Dewasa)",
     category: "madu",
+    oldPrice: 179000,
     price: 150000,
     image: "./Assets/images/arjuna_madu.avif",
     description:
       "Membantu meningkatkan vitalitas dan stamina pria dewasa.",
     bestseller: false,
-    promo: false,
+    promo: true,
   },
 
   {
