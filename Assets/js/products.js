@@ -7,7 +7,7 @@ const products = [
     image: "./Assets/images/sig_PASCAOPERASI.avif",
     description:
       "Cocok untuk: Pemulihan luka pasca-operasi dan melahirkan, memperbaiki masalah gizi buruk dan meningkatkan stamina.",
-    bestseller: false,
+    bestseller: true,
     promo: false,
   },
 
@@ -69,12 +69,12 @@ const products = [
   },
   {
   id: 7,
-  name: "Produk Test",
+  name: "Produk Test Best Seller",
   category: "herbal",
   price: 125000,
   image: "./Assets/images/ginseng_madu.avif",
   description: "Ini adalah produk untuk menguji dynamic rendering.",
-  bestseller: false,
+  bestseller: true,
   promo: false,
   },
   {

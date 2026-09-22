@@ -47,6 +47,10 @@ function renderProducts(productList) {
 
   if (!container) return;
 
+  productList = [...productList].sort(
+  (a, b) => Number(b.bestseller) - Number(a.bestseller)
+  );
+
   const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
   const endIndex = startIndex + PRODUCTS_PER_PAGE;
 
