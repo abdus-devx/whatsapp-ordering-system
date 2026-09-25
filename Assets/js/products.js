@@ -20,7 +20,7 @@ const products = [
     image: "./Assets/images/arjuna_madu.avif",
     description:
       "Membantu meningkatkan vitalitas dan stamina pria dewasa.",
-    bestseller: false,
+    bestseller: true,
     promo: true,
   },
 

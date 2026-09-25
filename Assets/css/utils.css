@@ -49,22 +49,35 @@
 
 .prd-promo-badge {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  bottom: 62px;
+  right: 12px;
   z-index: 2;
 
-  padding: 5px 10px;
-  border-radius: 999px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-  font-size: 11px;
+  min-width: 62px;
+  padding: 6px 9px;
+
+  border-radius: 10px;
+
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  line-height: 1.2;
+  letter-spacing: 0.4px;
 
-  background: #004f3a;
+  background: #015735;
   color: #fff;
 
   pointer-events: none;
-  overflow: hidden;
+}
+
+.prd-promo-label {
+  font-size: 10px;
+  width: 100%;
+  text-align: left;
 }
 
 .prd-old-price {
@@ -81,10 +94,14 @@
   font-size: 18px;
   font-weight: 700;
 }
-
-
+.prd-discount-wrap {
+  display: flex;
+}
 .prd-discount {
   display: inline-block;
+  margin-top: 2px;
+
+  font-size: 13px;
   font-weight: 700;
 }
 

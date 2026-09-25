@@ -16,19 +16,23 @@ function createProductCard(product) {
       data-sbc-category="${product.category}"
     >
       ${product.bestseller ? '<span class="prd-bestseller">★ BEST SELLER</span>' : ""}
-      ${product.promo ? `
-          <span class="prd-promo-badge">
-          ⚡ PROMO • HEMAT
-            <span
-              class="prd-discount"
-              data-discount="${calculateDiscount(
-              product.oldPrice,
-              product.price
-              )}"
-            >0%</span>
-          </span>
-          `
-        : "" }
+      ${product.promo   
+                  ? `
+                      <span class="prd-promo-badge">
+                        <span class="prd-promo-label">⚡ PROMO</span>
+                        <div class="prd-discount-wrap>
+                        <span class="prd-promo-label">HEMAT</span>
+                        <span
+                          class="prd-discount"
+                          data-discount="${calculateDiscount(
+                          product.oldPrice,
+                          product.price
+                          )}"
+                        > 0%</span>
+                        </div>
+                      </span>
+                    `: ""
+        }
 
       <img
         alt="${product.name}"
