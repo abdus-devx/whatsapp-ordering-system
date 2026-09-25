@@ -1,0 +1,107 @@
+/* ==============================
+   INFORMATION MODAL
+============================== */
+
+.sft-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+}
+
+.sft-modal.active {
+  display: flex;
+}
+
+.sft-modal-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+}
+
+.sft-modal-box {
+  position: relative;
+  z-index: 1;
+
+  width: min(500px, 100%);
+  max-height: 80vh;
+
+  padding: 30px;
+
+  background: #fff;
+  border-radius: 16px;
+
+  overflow-y: auto;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+
+  animation: sftModalIn 0.25s ease-out;
+}
+
+.sft-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: transparent;
+  cursor: pointer;
+}
+
+.sft-modal-close:hover {
+  background: #f2f2f2;
+}
+
+.sft-modal-box h2 {
+  margin: 0 35px 20px 0;
+}
+
+#sft-modal-content {
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+@keyframes sftModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.sft-info-link {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: left;
+  font: inherit;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.67);
+  margin-bottom: 11px;
+  cursor: pointer;
+}
+
+.sft-info-link:hover {
+  opacity: 0.7;
+}

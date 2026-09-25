@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./Assets/css/style.css" />
     <link rel="stylesheet" href="./Assets/css/category.css" />
     <link rel="stylesheet" href="./Assets/css/utils.css" />
+    <link rel="stylesheet" href="./Assets/css/popup.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,7 +19,6 @@
     <script src="./Assets/js/product-render.js" defer></script>
     <script src="./Assets/js/script.js" defer></script>
     <script src="./Assets/js/category.js" defer></script>
-    
   </head>
   <body>
     <section class="retail-page">
@@ -272,7 +272,7 @@
 
       <div class="prd-container" id="prd-container"></div>
       <div class="prd-pagination" id="prd-pagination"></div>
-      
+
       <!--TOMBOL CHECKOUT MENGAPUNG-->
       <button
         class="prd-btn-checkout"
@@ -410,10 +410,18 @@
         <div class="sft-column">
           <h3>INFORMATION</h3>
 
-          <a href="#tentang">Tentang Kami</a>
-          <a href="#">Cara Pemesanan</a>
-          <a href="#">Pengiriman</a>
-          <a href="#">FAQ</a>
+          <button type="button" class="sft-info-link" data-info="tentang">
+            Tentang Kami
+          </button>
+          <button type="button" class="sft-info-link" data-info="pemesanan">
+            Cara Pemesanan
+          </button>
+          <button type="button" class="sft-info-link" data-info="pengiriman">
+            Pengiriman
+          </button>
+          <button type="button" class="sft-info-link" data-info="faq">
+            FAQ
+          </button>
         </div>
 
         <div class="sft-column">
@@ -449,5 +457,24 @@
         </div>
       </div>
     </footer>
+    <!-- INFORMATION MODAL -->
+    <div class="sft-modal" id="sft-info-modal">
+      <div class="sft-modal-overlay"></div>
+
+      <div class="sft-modal-box">
+        <button
+          type="button"
+          class="sft-modal-close"
+          id="sft-modal-close"
+          aria-label="Tutup"
+        >
+          <i data-lucide="x"></i>
+        </button>
+
+        <h2 id="sft-modal-title"></h2>
+
+        <div id="sft-modal-content"></div>
+      </div>
+    </div>
   </body>
 </html>

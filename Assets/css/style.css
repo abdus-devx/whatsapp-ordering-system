@@ -52,7 +52,6 @@ input {
   margin: auto;
 }
 
-
 /* =========================================================
    TOP PROMO BAR
 ========================================================= */
@@ -71,7 +70,6 @@ input {
 .shop-topbar strong {
   font-weight: 600;
 }
-
 
 /* =========================================================
    HEADER
@@ -193,14 +191,17 @@ input {
   display: none;
 }
 
-
 /* =========================================================
    HERO
 ========================================================= */
 
 .shop-hero {
   background:
-    radial-gradient(circle at 75% 30%, rgba(255,255,255,.35), transparent 30%),
+    radial-gradient(
+      circle at 75% 30%,
+      rgba(255, 255, 255, 0.35),
+      transparent 30%
+    ),
     linear-gradient(110deg, #dcefea, #b6e4dd 55%, #dcefea);
 
   min-height: 450px;
@@ -311,7 +312,7 @@ input {
   right: 10px;
   bottom: -180px;
   border-radius: 50%;
-  background: rgba(255,255,255,.23);
+  background: rgba(255, 255, 255, 0.23);
 }
 
 .shop-hero-image {
@@ -328,17 +329,14 @@ input {
     box-shadow 0.6s ease,
     filter 0.6s ease;
 
-  box-shadow:
-    0 18px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
 }
 
 .shop-hero-image:hover {
   transform: translateY(-10px) scale(1.03);
   filter: brightness(1.04) contrast(1.02) saturate(1.08);
-  box-shadow:
-    0 35px 70px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.16);
 }
-
 
 /* =========================================================
    BENEFITS / TRUST BAR
@@ -349,9 +347,9 @@ input {
   z-index: 10;
   width: min(1100px, calc(100% - 40px));
   margin: -28px auto 0;
-  background: rgba(255,255,255,.95);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 18px;
-  box-shadow: 0 10px 35px rgba(31, 79, 72, .10);
+  box-shadow: 0 10px 35px rgba(31, 79, 72, 0.1);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
@@ -397,7 +395,6 @@ input {
   color: #78908c;
 }
 
-
 /* =========================================================
    HERO TITLE EXISTING
 ========================================================= */
@@ -424,7 +421,6 @@ input {
   line-height: 1.7;
   color: #718783;
 }
-
 
 /* =========================================================
    SEARCH
@@ -455,9 +451,8 @@ input {
 
 #prd-search-box:focus {
   border-color: #76b8af;
-  box-shadow: 0 0 0 4px rgba(15,118,110,.07);
+  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.07);
 }
-
 
 /* =========================================================
    PRODUCT CONTAINER
@@ -473,7 +468,6 @@ input {
   justify-content: center;
 }
 
-
 /* =========================================================
    PRODUCT CARD
 ========================================================= */
@@ -483,10 +477,10 @@ input {
   border: 1px solid #e6efed;
   border-radius: 13px;
   overflow: hidden;
-  box-shadow: 0 5px 18px rgba(30, 75, 69, .06);
+  box-shadow: 0 5px 18px rgba(30, 75, 69, 0.06);
   transition:
-    transform .3s ease,
-    box-shadow .3s ease;
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 
   display: flex;
   flex-direction: column;
@@ -494,9 +488,8 @@ input {
 
 .prd-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(30, 75, 69, .12);
+  box-shadow: 0 14px 30px rgba(30, 75, 69, 0.12);
 }
-
 
 /* =========================================================
    PRODUCT IMAGE
@@ -508,13 +501,12 @@ input {
   object-fit: cover;
   display: block;
   background: #eef7f4;
-  transition: transform .4s ease;
+  transition: transform 0.4s ease;
 }
 
 .prd-card:hover .prd-img {
   transform: scale(1.025);
 }
-
 
 /* =========================================================
    PRODUCT CONTENT
@@ -550,7 +542,6 @@ input {
   margin-bottom: 13px;
 }
 
-
 /* =========================================================
    QUANTITY CONTROL
 ========================================================= */
@@ -583,7 +574,7 @@ input {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .prd-btn-cart:hover {
@@ -596,7 +587,6 @@ input {
   width: 17px;
   height: 17px;
 }
-
 
 /* =========================================================
    FLOATING CHECKOUT
@@ -616,10 +606,10 @@ input {
   border-radius: 40px;
   font-size: 12px;
   font-weight: 600;
-  box-shadow: 0 8px 25px rgba(15,118,110,.30);
+  box-shadow: 0 8px 25px rgba(15, 118, 110, 0.3);
   cursor: pointer;
   z-index: 999;
-  transition: .25s ease;
+  transition: 0.25s ease;
 }
 
 .prd-btn-checkout.show {
@@ -649,7 +639,6 @@ input {
   font-weight: 700;
 }
 
-
 /* =========================================================
    PROMO BANNER
 ========================================================= */
@@ -661,7 +650,11 @@ input {
   border-radius: 18px;
   overflow: hidden;
   background:
-    radial-gradient(circle at 15% 80%, rgba(255,255,255,.13), transparent 25%),
+    radial-gradient(
+      circle at 15% 80%,
+      rgba(255, 255, 255, 0.13),
+      transparent 25%
+    ),
     linear-gradient(105deg, #075e57, #117d74);
 
   color: #fff;
@@ -679,7 +672,7 @@ input {
   position: absolute;
   left: -50px;
   top: -70px;
-  border: 1px solid rgba(255,255,255,.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 50%;
 }
 
@@ -692,7 +685,7 @@ input {
   font-size: 9px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  opacity: .75;
+  opacity: 0.75;
 }
 
 .shop-promo-title {
@@ -706,7 +699,7 @@ input {
 .shop-promo-text {
   margin: 0;
   font-size: 11px;
-  opacity: .85;
+  opacity: 0.85;
 }
 
 .shop-promo-btn {
@@ -718,13 +711,12 @@ input {
   border-radius: 30px;
   font-size: 11px;
   font-weight: 600;
-  transition: .25s ease;
+  transition: 0.25s ease;
 }
 
 .shop-promo-btn:hover {
   transform: translateY(-2px);
 }
-
 
 /* =========================================================
    CART DRAWER
@@ -738,8 +730,8 @@ input {
   max-width: 90vw;
   height: 100vh;
   background: #fff;
-  box-shadow: -15px 0 40px rgba(0,0,0,.12);
-  transition: right .3s ease;
+  box-shadow: -15px 0 40px rgba(0, 0, 0, 0.12);
+  transition: right 0.3s ease;
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -776,7 +768,7 @@ input {
   align-items: center;
   justify-content: center;
 
-  transition: .25s ease;
+  transition: 0.25s ease;
 }
 
 .x-drawer:hover {
@@ -808,7 +800,7 @@ input {
   background: transparent;
   color: #78908c;
   cursor: pointer;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .trash-drawer:hover {
@@ -853,7 +845,7 @@ input {
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform .3s ease;
+  transition: transform 0.3s ease;
 }
 
 .checkout-btn::before {
@@ -866,7 +858,7 @@ input {
 
   background: conic-gradient(
     transparent,
-    rgba(218, 255, 100, .8),
+    rgba(218, 255, 100, 0.8),
     transparent 30%
   );
 
@@ -899,13 +891,11 @@ input {
   }
 }
 
-
 /* =========================================================
    RESPONSIVE TABLET
 ========================================================= */
 
 @media (max-width: 1000px) {
-
   .shop-menu {
     gap: 15px;
   }
@@ -917,7 +907,6 @@ input {
   .shop-hero-inner {
     grid-template-columns: 1fr 1fr;
   }
-
 }
 
 /*
@@ -955,7 +944,6 @@ Pagination
 ========================================================= */
 
 @media (max-width: 786px) {
-
   .shop-topbar {
     font-size: 10px;
     min-height: 32px;
@@ -990,7 +978,6 @@ Pagination
   .shop-mobile-menu {
     display: flex;
   }
-
 
   /* HERO */
 
@@ -1036,7 +1023,6 @@ Pagination
     max-height: 330px;
   }
 
-
   /* BENEFITS */
 
   .shop-benefits {
@@ -1055,10 +1041,9 @@ Pagination
     border-right: 0;
   }
 
-  .shop-benefit:nth-child(-n+2) {
+  .shop-benefit:nth-child(-n + 2) {
     border-bottom: 1px solid #e6efed;
   }
-
 
   /* PRODUCTS */
 
@@ -1115,7 +1100,6 @@ Pagination
     height: 34px;
   }
 
-
   /* PROMO */
 
   .shop-promo {
@@ -1131,7 +1115,6 @@ Pagination
   .shop-promo-title {
     font-size: 25px;
   }
-
 
   /* CHECKOUT */
 
@@ -1152,13 +1135,11 @@ Pagination
   }
 }
 
-
 /* =========================================================
    SMALL MOBILE
 ========================================================= */
 
 @media (max-width: 430px) {
-
   .shop-hero-title {
     font-size: 37px;
   }
@@ -1212,7 +1193,6 @@ Pagination
   color: #fff;
 }
 
-
 /* =========================================================
    SERVICE BAR
 ========================================================= */
@@ -1234,7 +1214,6 @@ Pagination
   overflow: hidden;
 }
 
-
 .sft-service-item {
   min-height: 82px;
 
@@ -1248,11 +1227,9 @@ Pagination
   border-right: 1px solid #dcebe7;
 }
 
-
 .sft-service-item:last-child {
   border-right: none;
 }
-
 
 /* ICON */
 
@@ -1269,14 +1246,12 @@ Pagination
   color: #28766d;
 }
 
-
 .sft-service-icon .lucide {
   width: 27px;
   height: 27px;
 
   stroke-width: 1.5;
 }
-
 
 /* TEXT */
 
@@ -1285,17 +1260,15 @@ Pagination
   flex-direction: column;
 }
 
-
 .sft-service-content strong {
   font-size: 10px;
 
   font-weight: 700;
 
-  letter-spacing: .3px;
+  letter-spacing: 0.3px;
 
   color: #234b46;
 }
-
 
 .sft-service-content span {
   margin-top: 3px;
@@ -1304,7 +1277,6 @@ Pagination
 
   color: #7c928e;
 }
-
 
 /* =========================================================
    MAIN FOOTER
@@ -1328,7 +1300,6 @@ Pagination
   gap: 60px;
 }
 
-
 /* =========================================================
    BRAND
 ========================================================= */
@@ -1340,14 +1311,13 @@ Pagination
   gap: 11px;
 }
 
-
 .sft-brand-icon {
   width: 43px;
   height: 43px;
 
   border-radius: 50%;
 
-  background: rgba(255,255,255,.12);
+  background: rgba(255, 255, 255, 0.12);
 
   display: flex;
   align-items: center;
@@ -1356,12 +1326,10 @@ Pagination
   color: #d7f4ec;
 }
 
-
 .sft-brand-icon .lucide {
   width: 23px;
   height: 23px;
 }
-
 
 .sft-brand-logo strong {
   display: block;
@@ -1375,7 +1343,6 @@ Pagination
   color: #fff;
 }
 
-
 .sft-brand-logo small {
   display: block;
 
@@ -1385,9 +1352,8 @@ Pagination
 
   letter-spacing: 3px;
 
-  color: rgba(255,255,255,.65);
+  color: rgba(255, 255, 255, 0.65);
 }
-
 
 .sft-brand > p {
   max-width: 310px;
@@ -1398,9 +1364,8 @@ Pagination
 
   line-height: 1.8;
 
-  color: rgba(255,255,255,.68);
+  color: rgba(255, 255, 255, 0.68);
 }
-
 
 /* =========================================================
    SOCIAL
@@ -1414,12 +1379,11 @@ Pagination
   gap: 9px;
 }
 
-
 .sft-social a {
   width: 32px;
   height: 32px;
 
-  border: 1px solid rgba(255,255,255,.25);
+  border: 1px solid rgba(255, 255, 255, 0.25);
 
   border-radius: 50%;
 
@@ -1427,11 +1391,10 @@ Pagination
   align-items: center;
   justify-content: center;
 
-  color: rgba(255,255,255,.8);
+  color: rgba(255, 255, 255, 0.8);
 
-  transition: .25s ease;
+  transition: 0.25s ease;
 }
-
 
 .sft-social a:hover {
   background: #fff;
@@ -1441,12 +1404,10 @@ Pagination
   transform: translateY(-3px);
 }
 
-
 .sft-social .lucide {
   width: 15px;
   height: 15px;
 }
-
 
 /* =========================================================
    FOOTER COLUMNS
@@ -1460,7 +1421,6 @@ Pagination
   align-items: flex-start;
 }
 
-
 .sft-column h3 {
   margin: 3px 0 20px;
 
@@ -1473,17 +1433,15 @@ Pagination
   color: #fff;
 }
 
-
 .sft-column > a {
   margin-bottom: 11px;
 
   font-size: 12px;
 
-  color: rgba(255,255,255,.67);
+  color: rgba(255, 255, 255, 0.67);
 
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
-
 
 .sft-column > a:hover {
   color: #fff;
@@ -1491,12 +1449,10 @@ Pagination
   transform: translateX(3px);
 }
 
-
 /* CONTACT */
 
 .sft-column > p {
   display: flex;
-
   align-items: center;
 
   gap: 9px;
@@ -1505,9 +1461,8 @@ Pagination
 
   font-size: 12px;
 
-  color: rgba(255,255,255,.67);
+  color: rgba(255, 255, 255, 0.67);
 }
-
 
 .sft-column > p .lucide {
   width: 15px;
@@ -1515,7 +1470,6 @@ Pagination
 
   color: #b7e5da;
 }
-
 
 /* =========================================================
    COPYRIGHT
@@ -1528,7 +1482,7 @@ Pagination
 
   padding: 18px 0;
 
-  border-top: 1px solid rgba(255,255,255,.13);
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
 
   display: flex;
 
@@ -1537,9 +1491,8 @@ Pagination
 
   font-size: 9px;
 
-  color: rgba(255,255,255,.52);
+  color: rgba(255, 255, 255, 0.52);
 }
-
 
 .sft-bottom-links {
   display: flex;
@@ -1547,25 +1500,21 @@ Pagination
   gap: 20px;
 }
 
-
 .sft-bottom-links a {
-  color: rgba(255,255,255,.52);
+  color: rgba(255, 255, 255, 0.52);
 
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
-
 
 .sft-bottom-links a:hover {
   color: #fff;
 }
-
 
 /* =========================================================
    TABLET
 ========================================================= */
 
 @media (max-width: 900px) {
-
   .sft-service-bar {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1574,10 +1523,9 @@ Pagination
     border-right: none;
   }
 
-  .sft-service-item:nth-child(-n+2) {
+  .sft-service-item:nth-child(-n + 2) {
     border-bottom: 1px solid #dcebe7;
   }
-
 
   .sft-main {
     grid-template-columns: 1.5fr 1fr 1fr;
@@ -1588,16 +1536,13 @@ Pagination
   .sft-brand {
     grid-column: span 3;
   }
-
 }
-
 
 /* =========================================================
    MOBILE
 ========================================================= */
 
 @media (max-width: 786px) {
-
   .sft-service-bar {
     width: calc(100% - 25px);
 
@@ -1605,7 +1550,6 @@ Pagination
 
     border-radius: 13px;
   }
-
 
   .sft-service-item {
     min-height: 70px;
@@ -1615,28 +1559,23 @@ Pagination
     gap: 8px;
   }
 
-
   .sft-service-icon {
     width: 30px;
     height: 30px;
   }
-
 
   .sft-service-icon .lucide {
     width: 21px;
     height: 21px;
   }
 
-
   .sft-service-content strong {
     font-size: 8px;
   }
 
-
   .sft-service-content span {
     font-size: 7px;
   }
-
 
   /* MAIN */
 
@@ -1650,16 +1589,13 @@ Pagination
     gap: 35px 25px;
   }
 
-
   .sft-brand {
     grid-column: span 2;
   }
 
-
   .sft-brand > p {
     font-size: 12px;
   }
-
 
   .sft-column h3 {
     font-size: 10px;
@@ -1667,18 +1603,15 @@ Pagination
     margin-bottom: 15px;
   }
 
-
   .sft-column > a {
     font-size: 9px;
 
     margin-bottom: 9px;
   }
 
-
   .sft-column > p {
     font-size: 9px;
   }
-
 
   /* BOTTOM */
 
@@ -1694,20 +1627,16 @@ Pagination
     line-height: 1.6;
   }
 
-
   .sft-bottom-links {
     gap: 15px;
   }
-
 }
-
 
 /* =========================================================
    SMALL MOBILE
 ========================================================= */
 
 @media (max-width: 430px) {
-
   .sft-service-item {
     padding: 11px 9px;
   }
@@ -1723,5 +1652,4 @@ Pagination
   .sft-service-content span {
     font-size: 6.5px;
   }
-
 }
