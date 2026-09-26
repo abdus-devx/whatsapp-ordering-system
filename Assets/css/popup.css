@@ -105,3 +105,26 @@
 .sft-info-link:hover {
   opacity: 0.7;
 }
+
+.sft-faq-item {
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.sft-faq-item:last-child {
+  border-bottom: none;
+}
+
+.sft-faq-item strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sft-faq-item p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #666;
+}

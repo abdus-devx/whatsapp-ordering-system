@@ -204,9 +204,29 @@ document.addEventListener("DOMContentLoaded", () => {
     faq: {
       title: "FAQ",
       content: `
-        <p>Untuk pertanyaan mengenai produk, pemesanan,
-        dan pengiriman, silakan hubungi kami melalui WhatsApp.</p>
-      `,
+    <div class="sft-faq-item">
+      <strong>Bagaimana cara memesan?</strong>
+      <p>
+        Pilih produk yang ingin dipesan, tentukan jumlahnya,
+        lalu lanjutkan pesanan melalui WhatsApp.
+      </p>
+    </div>
+
+    <div class="sft-faq-item">
+      <strong>Apakah bisa memesan melalui WhatsApp?</strong>
+      <p>
+        Ya. Pesanan dapat dikonfirmasi dan diproses melalui WhatsApp.
+      </p>
+    </div>
+
+    <div class="sft-faq-item">
+      <strong>Bagaimana proses pengirimannya?</strong>
+      <p>
+        Pesanan diproses setelah konfirmasi dan kemudian
+        dikirim ke alamat yang diberikan.
+      </p>
+    </div>
+  `,
     },
   };
 
