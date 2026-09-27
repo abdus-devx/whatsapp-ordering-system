@@ -1132,7 +1132,7 @@ Pagination
 
   .cart-drawer {
     width: 100%;
-    max-width: 100%;
+    max-width: 100vh;
     right: -100%;
   }
 }
