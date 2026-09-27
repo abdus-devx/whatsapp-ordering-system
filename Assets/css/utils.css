@@ -156,3 +156,39 @@
   opacity: 1;
   visibility: visible;
 }
+
+/* ==============================
+   MOBILE - PRODUCT BADGES
+============================== */
+
+@media (max-width: 768px) {
+  .prd-bestseller {
+    top: 8px;
+    right: 8px;
+
+    padding: 4px 7px;
+    font-size: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  .prd-promo-badge {
+    bottom: 175px;
+    right: 2px;
+
+    min-width: 50px;
+    padding: 5px 7px;
+
+    border-radius: 8px;
+
+    font-size: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  .prd-promo-label {
+    font-size: 8px;
+  }
+
+  .prd-discount {
+    font-size: 10px;
+  }
+}
