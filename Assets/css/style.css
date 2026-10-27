@@ -103,7 +103,7 @@ input {
   min-width: 180px;
 }
 
-.shop-logo-icon {
+.shop-logo-icon img {
   width: 42px;
   height: 42px;
   border-radius: 50%;
@@ -1317,7 +1317,7 @@ Pagination
   gap: 11px;
 }
 
-.sft-brand-icon {
+.sft-brand-icon img {
   width: 43px;
   height: 43px;
 
@@ -1330,11 +1330,6 @@ Pagination
   justify-content: center;
 
   color: #d7f4ec;
-}
-
-.sft-brand-icon .lucide {
-  width: 23px;
-  height: 23px;
 }
 
 .sft-brand-logo strong {
