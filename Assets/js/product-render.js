@@ -3,9 +3,16 @@ function formatPrice(price) {
 }
 
 function calculateDiscount(oldPrice, price) {
-  return Math.round(
-    ((oldPrice - price) / oldPrice) * 100
-  );
+  return Math.round(((oldPrice - price) / oldPrice) * 100);
+}
+
+function createProductSlug(product) {
+  return (product.slug || product.name)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 }
 
 function createProductCard(product) {
@@ -16,8 +23,9 @@ function createProductCard(product) {
       data-sbc-category="${product.category}"
     >
       ${product.bestseller ? '<span class="prd-bestseller">★ BEST SELLER</span>' : ""}
-      ${product.promo   
-                  ? `
+      ${
+        product.promo
+          ? `
                       <span class="prd-promo-badge">
                         <span class="prd-promo-label">⚡ PROMO</span>
                         <div class="prd-discount-wrap>
@@ -25,24 +33,33 @@ function createProductCard(product) {
                         <span
                           class="prd-discount"
                           data-discount="${calculateDiscount(
-                          product.oldPrice,
-                          product.price
+                            product.oldPrice,
+                            product.price,
                           )}"
                         > 0%</span>
                         </div>
                       </span>
-                    `: ""
-        }
-
+                    `
+          : ""
+      }
+      <a
+        href="/produk/${createProductSlug(product)}/"
+        aria-label="Lihat detail ${product.name}"
+      >
       <img
         alt="${product.name}"
         class="prd-img"
         loading="lazy"
         src="${product.image}"
       />
+      </a>
 
       <div class="prd-content">
-        <h3 class="prd-title">${product.name}</h3>
+        <h3 class="prd-title">
+          <a href="/produk/${createProductSlug(product)}/">
+            ${product.name}
+          </a>
+        </h3>
 
         <p class="prd-desc">
           ${product.description}
@@ -60,7 +77,7 @@ function createProductCard(product) {
           Rp ${formatPrice(product.price)}
           </span>
           `
-          : `
+            : `
             Rp ${formatPrice(product.price)}
           `
         }
@@ -153,14 +170,10 @@ function changePage(page) {
 }
 
 function animateDiscounts() {
-  const discounts = document.querySelectorAll(
-    ".prd-discount"
-  );
+  const discounts = document.querySelectorAll(".prd-discount");
 
   discounts.forEach((element) => {
-    const target = Number(
-      element.dataset.discount
-    );
+    const target = Number(element.dataset.discount);
 
     let current = 0;
 
@@ -175,9 +188,7 @@ function animateDiscounts() {
         element.classList.add("discount-highlight");
 
         setTimeout(() => {
-          element.classList.remove(
-            "discount-highlight"
-          );
+          element.classList.remove("discount-highlight");
         }, 500);
 
         setTimeout(() => {
@@ -191,7 +202,6 @@ function animateDiscounts() {
     countUp();
   });
 }
-
 
 renderProducts(products);
 renderPagination(products);
