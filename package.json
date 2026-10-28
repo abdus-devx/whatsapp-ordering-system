@@ -1,0 +1,20 @@
+{
+  "name": "whatsapp-ordering-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "generate:products": "node scripts/generate-products.js",
+    "build": "node scripts/generate-products.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdus-devx/whatsapp-ordering-system.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/abdus-devx/whatsapp-ordering-system/issues"
+  },
+  "homepage": "https://github.com/abdus-devx/whatsapp-ordering-system#readme"
+}
