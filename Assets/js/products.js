@@ -5,6 +5,12 @@ const products = [
     category: "kapsul",
     price: 170000,
     image: "./Assets/images/sig1.png",
+    images: [
+      "./Assets/images/sig1.png",
+      "./Assets/images/sig1-detail-1.png",
+      "./Assets/images/sig1-detail-2.png",
+      "./Assets/images/sig1-kemasan.png",
+    ],
     description:
       "Cocok untuk: Pemulihan luka pasca-operasi dan melahirkan, memperbaiki masalah gizi buruk dan meningkatkan stamina.",
     bestseller: true,

@@ -77,47 +77,43 @@ function toggleCart() {
 function updateCartUI() {
   const countEl = document.getElementById("prd-cart-count");
   const checkoutEl = document.getElementById("prd-checkout-btn");
+  const itemsEl = document.getElementById("drawer-items");
+  const totalEl = document.getElementById("drawer-total");
 
-  let totalQty = 0;
-  let totalPrice = 0;
-  cart.forEach((item) => {
-    totalQty += item.qty;
-    totalPrice += item.qty * item.price;
-  });
+  const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+  const totalPrice = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
 
-  countEl.innerText = totalQty;
-
-  if (cart.length > 0) {
-    checkoutEl.classList.add("show");
-  } else {
-    checkoutEl.classList.remove("show");
+  if (countEl) {
+    countEl.innerText = totalQty;
   }
+
+  if (checkoutEl) {
+    checkoutEl.classList.toggle("show", cart.length > 0);
+  }
+
   document.querySelectorAll(".qty-control").forEach((control) => {
     const name = control.dataset.product;
-
     const price = Number(control.dataset.price);
-
     const qty = getQty(name);
 
     if (qty > 0) {
       control.innerHTML = `
-        <button class="prd-btn-cart"
+        <button type="button" class="prd-btn-cart"
+          aria-label="Kurangi ${name}"
           onclick="decreaseQty('${name}')">
           <i data-lucide="minus"></i>
         </button>
-
-        <span class="qty-number">
-          ${qty}
-        </span>
-
-        <button class="prd-btn-cart"
+        <span class="qty-number">${qty}</span>
+        <button type="button" class="prd-btn-cart"
+          aria-label="Tambah ${name}"
           onclick="addToCart('${name}', ${price})">
           <i data-lucide="plus"></i>
         </button>
       `;
     } else {
       control.innerHTML = `
-        <button class="prd-btn-cart"
+        <button type="button" class="prd-btn-cart"
+          aria-label="Tambah ${name} ke keranjang"
           onclick="addToCart('${name}', ${price})">
           <i data-lucide="shopping-cart"></i>
         </button>
@@ -125,25 +121,73 @@ function updateCartUI() {
     }
   });
 
-  let itemsHtml = "";
-  let total = 0;
+  if (itemsEl) {
+    if (cart.length === 0) {
+      itemsEl.innerHTML = `
+        <div class="cart-empty">
+          <i data-lucide="shopping-basket"></i>
+          <p>Keranjang masih kosong.</p>
+          <span>Yuk, pilih produk yang kamu inginkan.</span>
+        </div>
+      `;
+    } else {
+      itemsEl.innerHTML = cart
+        .map((item) => {
+          const subtotal = item.qty * item.price;
 
-  cart.forEach((item) => {
-    total += item.qty * item.price;
+          return `
+          <div class="drawer-items">
+            <div class="drawer-item-info">
+              <strong class="drawer-item-name">${item.name}</strong>
+              <span class="drawer-item-price">
+                Rp ${item.price.toLocaleString("id-ID")}
+              </span>
+              <strong class="drawer-item-subtotal">
+                Rp ${subtotal.toLocaleString("id-ID")}
+              </strong>
+            </div>
 
-    itemsHtml += `
-  <div class="drawer-items">
-    <div>${item.name} x ${item.qty}</div>
-    <span>Rp ${(item.qty * item.price).toLocaleString("id-ID")}</span>
-    <button class="trash-drawer" onclick="removeItem('${item.name}')"><i data-lucide="trash-2"></i></button>
-  </div>
-  `;
-  });
+            <div class="drawer-item-actions">
+              <div class="qty-control drawer-qty-control"
+                data-product="${item.name}"
+                data-price="${item.price}">
+                <button type="button" class="prd-btn-cart"
+                  aria-label="Kurangi ${item.name}"
+                  onclick="decreaseQty('${item.name}')">
+                  <i data-lucide="minus"></i>
+                </button>
+                <span class="qty-number">${item.qty}</span>
+                <button type="button" class="prd-btn-cart"
+                  aria-label="Tambah ${item.name}"
+                  onclick="addToCart('${item.name}', ${item.price})">
+                  <i data-lucide="plus"></i>
+                </button>
+              </div>
 
-  document.getElementById("drawer-items").innerHTML = itemsHtml;
-  document.getElementById("drawer-total").innerHTML =
-    `<strong>Total: Rp ${total.toLocaleString("id-ID")}</strong>`;
-  lucide.createIcons();
+              <button type="button" class="trash-drawer"
+                aria-label="Hapus ${item.name}"
+                onclick="removeItem('${item.name}')">
+                <i data-lucide="trash-2"></i>
+                <span>Hapus</span>
+              </button>
+            </div>
+          </div>
+        `;
+        })
+        .join("");
+    }
+  }
+
+  if (totalEl) {
+    totalEl.innerHTML = `
+      <span>Total belanja</span>
+      <strong>Rp ${totalPrice.toLocaleString("id-ID")}</strong>
+    `;
+  }
+
+  if (typeof lucide !== "undefined") {
+    lucide.createIcons();
+  }
 }
 
 updateCartUI();
@@ -175,6 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const infoLinks = document.querySelectorAll(".sft-info-link");
   const modal = document.getElementById("sft-info-modal");
   const closeButton = document.getElementById("sft-modal-close");
+  if (!modal || !closeButton) return;
 
   const infoData = {
     tentang: {
