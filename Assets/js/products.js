@@ -25,8 +25,12 @@ const products = [
       overview: `🐟 Kapsul Sari Ikan Gabus (Ekstrak Albumin Tinggi) 
         
         Kapsul Sari Ikan Gabus adalah suplemen kesehatan herbal alami yang diekstrak dari murni Ikan Gabus / Kutuk (Channa striata) pilihan berkualitas tinggi. Kaya akan kandungan Protein Albumin, Asam Amino, serta Nutrisi Esensial yang diproses secara higienis dan modern sehingga tidak berbau amis.`,
-      benefits: [],
-      composition: "",
+      benefits: [
+        "🩸 Mempercepat Penyembuhan Luka: Efektif mengeringkan luka jahitan pasca operasi (secara sesar/caesar, dll), luka bakar, hingga luka akibat diabetes",
+        "🧬 Kaya Protein Albumin: Membantu memenuhi kebutuhan protein serum albumin di dalam darah",
+        "🛡️ Meningkatkan Daya Tahan Tubuh: Menjaga kekebalan tubuh agar tidak mudah sakit dan mempercepat masa pemulihan dari sakit.",
+      ],
+      composition: "Ekstrak Ikan Gabus 5x lebih kuat dari ekstrak biasa",
       usage: "",
       packaging: "60 kapsul",
       legality: {
