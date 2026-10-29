@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Madu Arjuna (Pria Dewasa) | Toko Massusi</title>
-  <meta name="description" content="Membantu meningkatkan vitalitas dan stamina pria dewasa.">
+  <meta name="description" content="Madu Arjuna merupakan produk madu herbal untuk pria dewasa. Informasi mengenai karakteristik, komposisi, dan aturan pakai perlu mengacu pada keterangan resmi produk.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://store.massusi.net/produk/madu-arjuna-pria-dewasa/">
 
   <meta property="og:type" content="product">
   <meta property="og:title" content="Madu Arjuna (Pria Dewasa) | Toko Massusi">
-  <meta property="og:description" content="Membantu meningkatkan vitalitas dan stamina pria dewasa.">
+  <meta property="og:description" content="Madu Arjuna merupakan produk madu herbal untuk pria dewasa. Informasi mengenai karakteristik, komposisi, dan aturan pakai perlu mengacu pada keterangan resmi produk.">
   <meta property="og:url" content="https://store.massusi.net/produk/madu-arjuna-pria-dewasa/">
   <meta property="og:image" content="https://store.massusi.net/Assets/images/sig3.png">
 
@@ -19,8 +19,9 @@
   <link rel="stylesheet" href="/Assets/css/utils.css">
   <link rel="stylesheet" href="/Assets/css/cart.css">
   <link rel="stylesheet" href="/Assets/css/product-detail.css">
+  <link rel="stylesheet" href="/Assets/css/product-detail-mobile.css">
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Madu Arjuna (Pria Dewasa)","description":"Membantu meningkatkan vitalitas dan stamina pria dewasa.","image":"https://store.massusi.net/Assets/images/sig3.png","category":"madu","offers":{"@type":"Offer","url":"https://store.massusi.net/produk/madu-arjuna-pria-dewasa/","priceCurrency":"IDR","price":150000,"availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Madu Arjuna (Pria Dewasa)","description":"Madu Arjuna merupakan produk madu herbal untuk pria dewasa. Informasi mengenai karakteristik, komposisi, dan aturan pakai perlu mengacu pada keterangan resmi produk.","image":"https://store.massusi.net/Assets/images/sig3.png","category":"madu","offers":{"@type":"Offer","url":"https://store.massusi.net/produk/madu-arjuna-pria-dewasa/","priceCurrency":"IDR","price":150000,"availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition"}}</script>
   <script src="https://unpkg.com/lucide@latest" defer></script>
   <script src="/Assets/js/script.js" defer></script>
 </head>
@@ -36,10 +37,23 @@
       <div class="product-gallery">
         <img
           class="product-image"
+          id="product-main-image"
           src="/Assets/images/sig3.png"
           alt="Madu Arjuna (Pria Dewasa)"
           fetchpriority="high"
         >
+
+        
+                <button
+                  type="button"
+                  class="product-thumbnail active"
+                  data-image="/Assets/images/sig3.png"
+                  aria-label="Lihat foto 1 Madu Arjuna (Pria Dewasa)"
+                  aria-pressed="true"
+                >
+                <img src="/Assets/images/sig3.png" alt="Madu Arjuna (Pria Dewasa) - Foto 1" loading="lazy">
+                </button>
+              
       </div>
 
       <div class="product-detail-content">
@@ -51,7 +65,7 @@
           <p class="product-old-price">Rp 179.000</p>
         </div>
 
-        <p class="product-description">Membantu meningkatkan vitalitas dan stamina pria dewasa.</p>
+        <p class="product-description">Madu Arjuna merupakan produk madu herbal untuk pria dewasa. Informasi mengenai karakteristik, komposisi, dan aturan pakai perlu mengacu pada keterangan resmi produk.</p>
 
         <div class="product-purchase">
           <div class="product-quantity">
@@ -105,10 +119,21 @@
           </button>
         </div>
 
-        <div class="product-info">
-          <h2>Informasi Produk</h2>
-          <p>Silakan periksa label kemasan untuk informasi komposisi, aturan pakai, dan penyimpanan produk.</p>
-        </div>
+        
+      <div class="product-info">
+        <h2>Informasi Produk</h2>
+
+        <p>Madu Arjuna adalah produk madu herbal yang ditujukan untuk pria dewasa.</p>
+
+        
+
+        
+        
+        
+        
+        
+      </div>
+    
       </div>
     </section>
   </main>
@@ -141,6 +166,24 @@
       const plusButton = document.getElementById("product-qty-plus");
       const addButton = document.getElementById("product-add-to-cart");
       const productDetail = document.querySelector(".product-detail");
+      const mainImage = document.getElementById("product-main-image");
+      const thumbnails = document.querySelectorAll(".product-thumbnail");
+
+      thumbnails.forEach((thumbnail) => {
+      thumbnail.addEventListener("click", () => {
+      if (!mainImage) return;
+
+      mainImage.src = thumbnail.dataset.image;
+
+      thumbnails.forEach((item) => {
+        item.classList.remove("active");
+        item.setAttribute("aria-pressed", "false");
+      });
+
+      thumbnail.classList.add("active");
+      thumbnail.setAttribute("aria-pressed", "true");
+      });
+    });
 
       if (!quantityInput || !minusButton || !plusButton || !addButton || !productDetail) {
         return;

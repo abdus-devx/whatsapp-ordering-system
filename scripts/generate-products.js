@@ -76,6 +76,17 @@ function createProductPage(product) {
   const name = escapeHtml(product.name);
   const category = escapeHtml(product.category || "Produk Massusi");
   const description = escapeHtml(product.description || "");
+  const detail = product.detail || {};
+  const overview = escapeHtml(detail.overview || "");
+  const benefits = Array.isArray(detail.benefits)
+    ? detail.benefits.filter(Boolean).map(escapeHtml)
+    : [];
+  const composition = escapeHtml(detail.composition || "");
+  const usage = escapeHtml(detail.usage || "");
+  const packaging = escapeHtml(detail.packaging || "");
+  const legality = detail.legality || {};
+  const bpom = escapeHtml(legality.bpom || "");
+  const halal = escapeHtml(legality.halal || "");
   const image = getImagePath(product.image);
   const price = Number(product.price);
 
@@ -128,6 +139,7 @@ function createProductPage(product) {
   <link rel="stylesheet" href="/Assets/css/utils.css">
   <link rel="stylesheet" href="/Assets/css/cart.css">
   <link rel="stylesheet" href="/Assets/css/product-detail.css">
+  <link rel="stylesheet" href="/Assets/css/product-detail-mobile.css">
 
   <script type="application/ld+json">${productJsonLd}</script>
   <script src="https://unpkg.com/lucide@latest" defer></script>
@@ -145,10 +157,30 @@ function createProductPage(product) {
       <div class="product-gallery">
         <img
           class="product-image"
+          id="product-main-image"
           src="${image}"
           alt="${name}"
           fetchpriority="high"
         >
+
+        ${(Array.isArray(product.images) ? product.images : [product.image])
+          .filter(Boolean)
+          .map((galleryImage, index) => {
+            const imagePath = getImagePath(galleryImage);
+
+            return `
+                <button
+                  type="button"
+                  class="product-thumbnail ${index === 0 ? "active" : ""}"
+                  data-image="${imagePath}"
+                  aria-label="Lihat foto ${index + 1} ${name}"
+                  aria-pressed="${index === 0}"
+                >
+                <img src="${imagePath}" alt="${name} - Foto ${index + 1}" loading="lazy">
+                </button>
+              `;
+          })
+          .join("")}
       </div>
 
       <div class="product-detail-content">
@@ -214,10 +246,47 @@ function createProductPage(product) {
           </button>
         </div>
 
-        <div class="product-info">
-          <h2>Informasi Produk</h2>
-          <p>Silakan periksa label kemasan untuk informasi komposisi, aturan pakai, dan penyimpanan produk.</p>
-        </div>
+        ${
+          overview ||
+          benefits.length ||
+          composition ||
+          usage ||
+          packaging ||
+          bpom ||
+          halal
+            ? `
+      <div class="product-info">
+        <h2>Informasi Produk</h2>
+
+        ${
+          overview
+            ? overview
+                .split(/\n\s*\n/)
+                .map((paragraph) => `<p>${paragraph.trim()}</p>`)
+                .join("")
+            : ""
+        }
+
+        ${
+          benefits.length
+            ? `
+              <h3>Manfaat</h3>
+              <ul>
+                ${benefits.map((benefit) => `<li>${benefit}</li>`).join("")}
+              </ul>
+            `
+            : ""
+        }
+
+        ${composition ? `<h3>Komposisi</h3><p>${composition}</p>` : ""}
+        ${usage ? `<h3>Aturan Pakai</h3><p>${usage}</p>` : ""}
+        ${packaging ? `<h3>Kemasan</h3><p>${packaging}</p>` : ""}
+        ${bpom ? `<p><strong>Nomor BPOM:</strong> ${bpom}</p>` : ""}
+        ${halal ? `<p><strong>Informasi Halal:</strong> ${halal}</p>` : ""}
+      </div>
+    `
+            : ""
+        }
       </div>
     </section>
   </main>
@@ -250,6 +319,24 @@ function createProductPage(product) {
       const plusButton = document.getElementById("product-qty-plus");
       const addButton = document.getElementById("product-add-to-cart");
       const productDetail = document.querySelector(".product-detail");
+      const mainImage = document.getElementById("product-main-image");
+      const thumbnails = document.querySelectorAll(".product-thumbnail");
+
+      thumbnails.forEach((thumbnail) => {
+      thumbnail.addEventListener("click", () => {
+      if (!mainImage) return;
+
+      mainImage.src = thumbnail.dataset.image;
+
+      thumbnails.forEach((item) => {
+        item.classList.remove("active");
+        item.setAttribute("aria-pressed", "false");
+      });
+
+      thumbnail.classList.add("active");
+      thumbnail.setAttribute("aria-pressed", "true");
+      });
+    });
 
       if (!quantityInput || !minusButton || !plusButton || !addButton || !productDetail) {
         return;

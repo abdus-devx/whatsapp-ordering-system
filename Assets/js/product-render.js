@@ -62,7 +62,7 @@ function createProductCard(product) {
         </h3>
 
         <p class="prd-desc">
-          ${product.description}
+            ${product.shortDescription || product.description}
         </p>
 
         <div class="prd-price">

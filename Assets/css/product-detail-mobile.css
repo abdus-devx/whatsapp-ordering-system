@@ -1,0 +1,80 @@
+/*====================
+Blok 1 — Mobile Product Detail: mengatur layout halaman detail pada layar HP.
+======================*/
+
+@media (max-width: 768px) {
+  .product-detail {
+    width: calc(100% - 32px);
+    margin: 24px auto 48px;
+  }
+
+  .product-breadcrumb {
+    gap: 7px;
+    margin-bottom: 20px;
+    font-size: 11px;
+  }
+
+  .product-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .product-gallery {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .product-image {
+    height: min(78vw, 340px);
+  }
+
+  .product-thumbnail {
+    padding: 4px;
+    border-radius: 10px;
+  }
+
+  .product-title {
+    font-size: 24px;
+    line-height: 1.4;
+  }
+
+  .product-price {
+    font-size: 23px;
+  }
+
+  .product-description {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .product-info {
+    margin-top: 24px;
+    padding-top: 20px;
+    font-size: 12px;
+  }
+}
+
+/*====================
+Blok 2 — Small Mobile: merapikan detail produk pada layar HP kecil.
+======================*/
+
+@media (max-width: 380px) {
+  .product-detail {
+    width: calc(100% - 24px);
+  }
+
+  .product-gallery {
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .product-image {
+    height: 260px;
+  }
+
+  .product-title {
+    font-size: 21px;
+  }
+}

@@ -47,16 +47,16 @@ Blok 3 — Product Layout: mengatur kolom galeri dan informasi produk.
 }
 
 /*====================
-Blok 4 — Product Gallery: mengatur wadah dan gambar utama produk.
+Blok 4 — Product Gallery: mengatur foto utama dan thumbnail produk.
 ======================*/
 
 .product-gallery {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+  gap: 14px;
   min-width: 0;
-  min-height: 500px;
-  padding: 36px;
+  padding: 24px;
   border: 1px solid #e8eee9;
   border-radius: 24px;
   background: linear-gradient(145deg, #fafcf9 0%, #f2f6f1 100%);
@@ -64,9 +64,50 @@ Blok 4 — Product Gallery: mengatur wadah dan gambar utama produk.
 
 .product-image {
   display: block;
+  grid-column: 1 / -1;
   width: 100%;
   height: 420px;
   object-fit: contain;
+}
+
+.product-thumbnail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  aspect-ratio: 1;
+  padding: 6px;
+  overflow: hidden;
+  border: 1px solid #e1e9e2;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.product-thumbnail:hover {
+  border-color: #8abda0;
+}
+
+.product-thumbnail.active {
+  border-color: #08784f;
+  background: #f0f8f2;
+  box-shadow: 0 0 0 1px #08784f;
+}
+
+.product-thumbnail img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.product-thumbnail:focus-visible {
+  outline: 2px solid #08784f;
+  outline-offset: 3px;
 }
 
 /*====================
@@ -308,4 +349,31 @@ Blok 7 — Product Additional Information: mengatur informasi pendukung produk.
 
 .product-info p {
   margin: 0;
+}
+
+.product-info h3 {
+  margin: 20px 0 8px;
+  color: #26372d;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.product-info ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.product-info li {
+  margin-bottom: 6px;
+  padding-left: 4px;
+}
+
+.product-info li::marker {
+  color: #16845b;
+}
+
+.product-info strong {
+  color: #35483b;
+  font-weight: 600;
 }

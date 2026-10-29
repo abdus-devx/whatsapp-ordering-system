@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/Assets/css/utils.css">
   <link rel="stylesheet" href="/Assets/css/cart.css">
   <link rel="stylesheet" href="/Assets/css/product-detail.css">
+  <link rel="stylesheet" href="/Assets/css/product-detail-mobile.css">
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Kapsul Sari Ikan Gabus","description":"Cocok untuk: Pemulihan luka pasca-operasi dan melahirkan, memperbaiki masalah gizi buruk dan meningkatkan stamina.","image":"https://store.massusi.net/Assets/images/sig1.png","category":"kapsul","offers":{"@type":"Offer","url":"https://store.massusi.net/produk/kapsul-sari-ikan-gabus/","priceCurrency":"IDR","price":170000,"availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition"}}</script>
   <script src="https://unpkg.com/lucide@latest" defer></script>
@@ -36,10 +37,53 @@
       <div class="product-gallery">
         <img
           class="product-image"
+          id="product-main-image"
           src="/Assets/images/sig1.png"
           alt="Kapsul Sari Ikan Gabus"
           fetchpriority="high"
         >
+
+        
+                <button
+                  type="button"
+                  class="product-thumbnail active"
+                  data-image="/Assets/images/sig1.png"
+                  aria-label="Lihat foto 1 Kapsul Sari Ikan Gabus"
+                  aria-pressed="true"
+                >
+                <img src="/Assets/images/sig1.png" alt="Kapsul Sari Ikan Gabus - Foto 1" loading="lazy">
+                </button>
+              
+                <button
+                  type="button"
+                  class="product-thumbnail "
+                  data-image="/Assets/images/sig1-detail-1.png"
+                  aria-label="Lihat foto 2 Kapsul Sari Ikan Gabus"
+                  aria-pressed="false"
+                >
+                <img src="/Assets/images/sig1-detail-1.png" alt="Kapsul Sari Ikan Gabus - Foto 2" loading="lazy">
+                </button>
+              
+                <button
+                  type="button"
+                  class="product-thumbnail "
+                  data-image="/Assets/images/sig1-detail-2.png"
+                  aria-label="Lihat foto 3 Kapsul Sari Ikan Gabus"
+                  aria-pressed="false"
+                >
+                <img src="/Assets/images/sig1-detail-2.png" alt="Kapsul Sari Ikan Gabus - Foto 3" loading="lazy">
+                </button>
+              
+                <button
+                  type="button"
+                  class="product-thumbnail "
+                  data-image="/Assets/images/sig1-kemasan.png"
+                  aria-label="Lihat foto 4 Kapsul Sari Ikan Gabus"
+                  aria-pressed="false"
+                >
+                <img src="/Assets/images/sig1-kemasan.png" alt="Kapsul Sari Ikan Gabus - Foto 4" loading="lazy">
+                </button>
+              
       </div>
 
       <div class="product-detail-content">
@@ -105,10 +149,21 @@
           </button>
         </div>
 
-        <div class="product-info">
-          <h2>Informasi Produk</h2>
-          <p>Silakan periksa label kemasan untuk informasi komposisi, aturan pakai, dan penyimpanan produk.</p>
-        </div>
+        
+      <div class="product-info">
+        <h2>Informasi Produk</h2>
+
+        <p>🐟 Kapsul Sari Ikan Gabus (Ekstrak Albumin Tinggi)</p><p>Kapsul Sari Ikan Gabus adalah suplemen kesehatan herbal alami yang diekstrak dari murni Ikan Gabus / Kutuk (Channa striata) pilihan berkualitas tinggi. Kaya akan kandungan Protein Albumin, Asam Amino, serta Nutrisi Esensial yang diproses secara higienis dan modern sehingga tidak berbau amis.</p>
+
+        
+
+        
+        
+        <h3>Kemasan</h3><p>60 kapsul</p>
+        <p><strong>Nomor BPOM:</strong> TR243003241</p>
+        
+      </div>
+    
       </div>
     </section>
   </main>
@@ -141,6 +196,24 @@
       const plusButton = document.getElementById("product-qty-plus");
       const addButton = document.getElementById("product-add-to-cart");
       const productDetail = document.querySelector(".product-detail");
+      const mainImage = document.getElementById("product-main-image");
+      const thumbnails = document.querySelectorAll(".product-thumbnail");
+
+      thumbnails.forEach((thumbnail) => {
+      thumbnail.addEventListener("click", () => {
+      if (!mainImage) return;
+
+      mainImage.src = thumbnail.dataset.image;
+
+      thumbnails.forEach((item) => {
+        item.classList.remove("active");
+        item.setAttribute("aria-pressed", "false");
+      });
+
+      thumbnail.classList.add("active");
+      thumbnail.setAttribute("aria-pressed", "true");
+      });
+    });
 
       if (!quantityInput || !minusButton || !plusButton || !addButton || !productDetail) {
         return;
