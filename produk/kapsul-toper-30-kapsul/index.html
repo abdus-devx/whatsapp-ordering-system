@@ -121,21 +121,34 @@
 
         
       <div class="product-info">
-        <h2>Informasi Produk</h2>
+        <button
+        type="button"
+        class="product-info-toggle"
+        aria-expanded="true"
+        aria-controls="product-info-content"
+        >
+        <span>Informasi Produk</span>
+        <i data-lucide="chevron-up"></i>
+        </button>
 
-        <p>Kapsul Toper merupakan produk herbal dalam bentuk kapsul dengan kemasan isi 30 kapsul.</p>
+        <div class="product-info-content" id="product-info-content">
 
-        
+          <p>Kapsul Toper merupakan produk herbal dalam bentuk kapsul dengan kemasan isi 30 kapsul.</p>
 
-        
-        
-        <h3>Kemasan</h3><p>30 kapsul</p>
-        
-        
+          
+
+          
+          
+          <h3>Kemasan</h3><p>30 kapsul</p>
+          
+          
+        </div>
       </div>
     
       </div>
-    </section>
+        </section>
+
+    
   </main>
 
   <div id="cartDrawer" class="cart-drawer">
@@ -161,6 +174,31 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      const infoToggle = document.querySelector(".product-info-toggle");
+      const infoContent = document.querySelector(".product-info-content");
+
+      if (infoToggle && infoContent) {
+      infoToggle.addEventListener("click", () => {
+      const isExpanded =
+      infoToggle.getAttribute("aria-expanded") === "true";
+
+      infoToggle.setAttribute("aria-expanded", String(!isExpanded));
+      infoContent.hidden = isExpanded;
+
+      const icon = infoToggle.querySelector("[data-lucide]");
+
+        if (icon) {
+          icon.setAttribute(
+            "data-lucide",
+            isExpanded ? "chevron-down" : "chevron-up"
+          );
+
+        if (window.lucide) {
+          window.lucide.createIcons();
+          }
+        }
+        });
+      }
       const quantityInput = document.getElementById("product-qty");
       const minusButton = document.getElementById("product-qty-minus");
       const plusButton = document.getElementById("product-qty-plus");

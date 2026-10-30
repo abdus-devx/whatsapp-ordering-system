@@ -92,7 +92,7 @@
 
         <div class="product-price-wrap">
           <p class="product-price">Rp 170.000</p>
-          
+          <p class="product-old-price">Rp 199.000</p>
         </div>
 
         <p class="product-description">Cocok untuk: Pemulihan luka pasca-operasi dan melahirkan, memperbaiki masalah gizi buruk dan meningkatkan stamina.</p>
@@ -151,26 +151,66 @@
 
         
       <div class="product-info">
-        <h2>Informasi Produk</h2>
+        <button
+        type="button"
+        class="product-info-toggle"
+        aria-expanded="true"
+        aria-controls="product-info-content"
+        >
+        <span>Informasi Produk</span>
+        <i data-lucide="chevron-up"></i>
+        </button>
 
-        <p>🐟 Kapsul Sari Ikan Gabus (Ekstrak Albumin Tinggi)</p><p>Kapsul Sari Ikan Gabus adalah suplemen kesehatan herbal alami yang diekstrak dari murni Ikan Gabus / Kutuk (Channa striata) pilihan berkualitas tinggi. Kaya akan kandungan Protein Albumin, Asam Amino, serta Nutrisi Esensial yang diproses secara higienis dan modern sehingga tidak berbau amis.</p>
+        <div class="product-info-content" id="product-info-content">
 
-        
+          <p>🐟 Kapsul Sari Ikan Gabus (Ekstrak Albumin Tinggi)</p><p>Kapsul Sari Ikan Gabus adalah suplemen kesehatan herbal alami yang diekstrak dari murni Ikan Gabus / Kutuk (Channa striata) pilihan berkualitas tinggi. Kaya akan kandungan Protein Albumin, Asam Amino, serta Nutrisi Esensial yang diproses secara higienis dan modern sehingga tidak berbau amis.</p>
+
+          
               <h3>Manfaat</h3>
               <ul>
                 <li>🩸 Mempercepat Penyembuhan Luka: Efektif mengeringkan luka jahitan pasca operasi (secara sesar/caesar, dll), luka bakar, hingga luka akibat diabetes</li><li>🧬 Kaya Protein Albumin: Membantu memenuhi kebutuhan protein serum albumin di dalam darah</li><li>🛡️ Meningkatkan Daya Tahan Tubuh: Menjaga kekebalan tubuh agar tidak mudah sakit dan mempercepat masa pemulihan dari sakit.</li>
               </ul>
             
 
-        <h3>Komposisi</h3><p>Ekstrak Ikan Gabus 5x lebih kuat dari ekstrak biasa</p>
-        
-        <h3>Kemasan</h3><p>60 kapsul</p>
-        <p><strong>Nomor BPOM:</strong> TR243003241</p>
-        
+          <h3>Komposisi</h3><p>Ekstrak Ikan Gabus 5x lebih kuat dari ekstrak biasa</p>
+          <h3>Aturan Pakai</h3><p>Diminum 2 kali sehari, masing-masing 1-2 kapsul, diminum saat perut kosong</p>
+          <h3>Kemasan</h3><p>60 kapsul</p>
+          <p><strong>Nomor BPOM:</strong> TR243003241</p>
+          
+        </div>
       </div>
     
       </div>
-    </section>
+        </section>
+
+    
+      <section class="product-highlights">
+        <h2>Keunggulan Produk</h2>
+        <div class="product-highlights-grid">
+          
+            <div class="product-highlight-item">
+              <i data-lucide="check-circle-2"></i>
+              <span>Menggunakan ekstrak ikan gabus pilihan</span>
+            </div>
+          
+            <div class="product-highlight-item">
+              <i data-lucide="check-circle-2"></i>
+              <span>Kandungan albumin dan asam amino</span>
+            </div>
+          
+            <div class="product-highlight-item">
+              <i data-lucide="check-circle-2"></i>
+              <span>Diproses secara higienis</span>
+            </div>
+          
+            <div class="product-highlight-item">
+              <i data-lucide="check-circle-2"></i>
+              <span>Praktis dalam bentuk kapsul</span>
+            </div>
+          
+        </div>
+      </section>
+      
   </main>
 
   <div id="cartDrawer" class="cart-drawer">
@@ -196,6 +236,31 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      const infoToggle = document.querySelector(".product-info-toggle");
+      const infoContent = document.querySelector(".product-info-content");
+
+      if (infoToggle && infoContent) {
+      infoToggle.addEventListener("click", () => {
+      const isExpanded =
+      infoToggle.getAttribute("aria-expanded") === "true";
+
+      infoToggle.setAttribute("aria-expanded", String(!isExpanded));
+      infoContent.hidden = isExpanded;
+
+      const icon = infoToggle.querySelector("[data-lucide]");
+
+        if (icon) {
+          icon.setAttribute(
+            "data-lucide",
+            isExpanded ? "chevron-down" : "chevron-up"
+          );
+
+        if (window.lucide) {
+          window.lucide.createIcons();
+          }
+        }
+        });
+      }
       const quantityInput = document.getElementById("product-qty");
       const minusButton = document.getElementById("product-qty-minus");
       const plusButton = document.getElementById("product-qty-plus");

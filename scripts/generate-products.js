@@ -81,6 +81,9 @@ function createProductPage(product) {
   const benefits = Array.isArray(detail.benefits)
     ? detail.benefits.filter(Boolean).map(escapeHtml)
     : [];
+  const highlights = Array.isArray(detail.highlights)
+    ? detail.highlights.filter(Boolean).map(escapeHtml)
+    : [];
   const composition = escapeHtml(detail.composition || "");
   const usage = escapeHtml(detail.usage || "");
   const packaging = escapeHtml(detail.packaging || "");
@@ -256,39 +259,72 @@ function createProductPage(product) {
           halal
             ? `
       <div class="product-info">
-        <h2>Informasi Produk</h2>
+        <button
+        type="button"
+        class="product-info-toggle"
+        aria-expanded="true"
+        aria-controls="product-info-content"
+        >
+        <span>Informasi Produk</span>
+        <i data-lucide="chevron-up"></i>
+        </button>
 
-        ${
-          overview
-            ? overview
-                .split(/\n\s*\n/)
-                .map((paragraph) => `<p>${paragraph.trim()}</p>`)
-                .join("")
-            : ""
-        }
+        <div class="product-info-content" id="product-info-content">
 
-        ${
-          benefits.length
-            ? `
+          ${
+            overview
+              ? overview
+                  .split(/\n\s*\n/)
+                  .map((paragraph) => `<p>${paragraph.trim()}</p>`)
+                  .join("")
+              : ""
+          }
+
+          ${
+            benefits.length
+              ? `
               <h3>Manfaat</h3>
               <ul>
                 ${benefits.map((benefit) => `<li>${benefit}</li>`).join("")}
               </ul>
             `
-            : ""
-        }
+              : ""
+          }
 
-        ${composition ? `<h3>Komposisi</h3><p>${composition}</p>` : ""}
-        ${usage ? `<h3>Aturan Pakai</h3><p>${usage}</p>` : ""}
-        ${packaging ? `<h3>Kemasan</h3><p>${packaging}</p>` : ""}
-        ${bpom ? `<p><strong>Nomor BPOM:</strong> ${bpom}</p>` : ""}
-        ${halal ? `<p><strong>Informasi Halal:</strong> ${halal}</p>` : ""}
+          ${composition ? `<h3>Komposisi</h3><p>${composition}</p>` : ""}
+          ${usage ? `<h3>Aturan Pakai</h3><p>${usage}</p>` : ""}
+          ${packaging ? `<h3>Kemasan</h3><p>${packaging}</p>` : ""}
+          ${bpom ? `<p><strong>Nomor BPOM:</strong> ${bpom}</p>` : ""}
+          ${halal ? `<p><strong>Informasi Halal:</strong> ${halal}</p>` : ""}
+        </div>
       </div>
     `
             : ""
         }
       </div>
-    </section>
+        </section>
+
+    ${
+      highlights.length
+        ? `
+      <section class="product-highlights">
+        <h2>Keunggulan Produk</h2>
+        <div class="product-highlights-grid">
+          ${highlights
+            .map(
+              (item) => `
+            <div class="product-highlight-item">
+              <i data-lucide="check-circle-2"></i>
+              <span>${item}</span>
+            </div>
+          `,
+            )
+            .join("")}
+        </div>
+      </section>
+      `
+        : ""
+    }
   </main>
 
   <div id="cartDrawer" class="cart-drawer">
@@ -314,6 +350,31 @@ function createProductPage(product) {
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      const infoToggle = document.querySelector(".product-info-toggle");
+      const infoContent = document.querySelector(".product-info-content");
+
+      if (infoToggle && infoContent) {
+      infoToggle.addEventListener("click", () => {
+      const isExpanded =
+      infoToggle.getAttribute("aria-expanded") === "true";
+
+      infoToggle.setAttribute("aria-expanded", String(!isExpanded));
+      infoContent.hidden = isExpanded;
+
+      const icon = infoToggle.querySelector("[data-lucide]");
+
+        if (icon) {
+          icon.setAttribute(
+            "data-lucide",
+            isExpanded ? "chevron-down" : "chevron-up"
+          );
+
+        if (window.lucide) {
+          window.lucide.createIcons();
+          }
+        }
+        });
+      }
       const quantityInput = document.getElementById("product-qty");
       const minusButton = document.getElementById("product-qty-minus");
       const plusButton = document.getElementById("product-qty-plus");

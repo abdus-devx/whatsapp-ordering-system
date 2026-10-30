@@ -4,6 +4,7 @@ const products = [
     slug: "kapsul-sari-ikan-gabus",
     name: "Kapsul Sari Ikan Gabus",
     category: "kapsul",
+    oldPrice: 199000,
     price: 170000,
 
     // Foto katalog dan galeri detail
@@ -25,13 +26,22 @@ const products = [
       overview: `🐟 Kapsul Sari Ikan Gabus (Ekstrak Albumin Tinggi) 
         
         Kapsul Sari Ikan Gabus adalah suplemen kesehatan herbal alami yang diekstrak dari murni Ikan Gabus / Kutuk (Channa striata) pilihan berkualitas tinggi. Kaya akan kandungan Protein Albumin, Asam Amino, serta Nutrisi Esensial yang diproses secara higienis dan modern sehingga tidak berbau amis.`,
+
+      highlights: [
+        "Menggunakan ekstrak ikan gabus pilihan",
+        "Kandungan albumin dan asam amino",
+        "Diproses secara higienis",
+        "Praktis dalam bentuk kapsul",
+      ],
+
       benefits: [
         "🩸 Mempercepat Penyembuhan Luka: Efektif mengeringkan luka jahitan pasca operasi (secara sesar/caesar, dll), luka bakar, hingga luka akibat diabetes",
         "🧬 Kaya Protein Albumin: Membantu memenuhi kebutuhan protein serum albumin di dalam darah",
         "🛡️ Meningkatkan Daya Tahan Tubuh: Menjaga kekebalan tubuh agar tidak mudah sakit dan mempercepat masa pemulihan dari sakit.",
       ],
       composition: "Ekstrak Ikan Gabus 5x lebih kuat dari ekstrak biasa",
-      usage: "",
+      usage:
+        "Diminum 2 kali sehari, masing-masing 1-2 kapsul, diminum saat perut kosong",
       packaging: "60 kapsul",
       legality: {
         bpom: "TR243003241",
