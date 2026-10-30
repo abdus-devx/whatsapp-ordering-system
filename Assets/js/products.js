@@ -47,6 +47,38 @@ const products = [
         bpom: "TR243003241",
         halal: "",
       },
+
+      reviews: [
+        {
+          name: "Bpk Alan",
+          message:
+            "Produk diterima dengan baik. Kemasannya rapi dan sesuai pesanan.",
+          date: "Oktober 2026",
+          rating: 5,
+          image: "",
+        },
+        {
+          name: "si Fulan",
+          message: "Pelayanan baik dan proses pemesanan cukup mudah.",
+          date: "Oktober 2026",
+          rating: 5,
+          image: "",
+        },
+        {
+          name: "Bu Fulan",
+          message: "Produk dikemas dengan baik dan sampai dengan aman.",
+          date: "Oktober 2026",
+          rating: 5,
+          image: "",
+        },
+        {
+          name: "Bu Fulan 2",
+          message: "Produk dikemas dengan baik dan sampai dengan aman.",
+          date: "September 2026",
+          rating: 4,
+          image: "./Assets/images/sig1.png",
+        },
+      ],
     },
 
     bestseller: true,

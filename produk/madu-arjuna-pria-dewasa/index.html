@@ -149,6 +149,10 @@
         </section>
 
     
+
+
+
+
   </main>
 
   <div id="cartDrawer" class="cart-drawer">
@@ -172,6 +176,18 @@
     </div>
   </div>
 
+
+  <div class="review-lightbox" id="review-lightbox" aria-hidden="true">
+    <button
+      type="button"
+      class="review-lightbox-close"
+      aria-label="Tutup foto"
+    >
+      <i data-lucide="x"></i>
+    </button>
+
+    <img class="review-lightbox-image" src="" alt="Foto ulasan diperbesar">
+  </div>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const infoToggle = document.querySelector(".product-info-toggle");
@@ -199,6 +215,93 @@
         }
         });
       }
+      
+
+const reviewTrack = document.querySelector("#product-reviews-track");
+const reviewPrev = document.querySelector("[data-review-prev]");
+const reviewNext = document.querySelector("[data-review-next]");
+
+if (reviewTrack && reviewPrev && reviewNext) {
+  const updateReviewButtons = () => {
+    const maxScroll = reviewTrack.scrollWidth - reviewTrack.clientWidth;
+
+    reviewPrev.disabled = reviewTrack.scrollLeft <= 2;
+    reviewNext.disabled = reviewTrack.scrollLeft >= maxScroll - 2;
+  };
+
+  const scrollReview = (direction) => {
+    const review = reviewTrack.querySelector(".product-review-item");
+    if (!review) return;
+
+    const styles = window.getComputedStyle(reviewTrack);
+    const gap = parseFloat(styles.columnGap) || 0;
+    const distance = review.offsetWidth + gap;
+
+    reviewTrack.scrollBy({
+      left: direction * distance,
+      behavior: "smooth"
+    });
+  };
+
+  reviewPrev.addEventListener("click", () => scrollReview(-1));
+  reviewNext.addEventListener("click", () => scrollReview(1));
+
+  reviewTrack.addEventListener("scroll", updateReviewButtons, {
+    passive: true
+  });
+
+  window.addEventListener("resize", updateReviewButtons);
+
+  updateReviewButtons();
+}
+
+// Review Image Lightbox
+const reviewLightbox = document.querySelector("#review-lightbox");
+const lightboxImage = reviewLightbox?.querySelector(".review-lightbox-image");
+const lightboxClose = reviewLightbox?.querySelector(".review-lightbox-close");
+
+if (reviewLightbox && lightboxImage && lightboxClose) {
+  const closeLightbox = () => {
+    reviewLightbox.classList.remove("active");
+    reviewLightbox.setAttribute("aria-hidden", "true");
+    lightboxImage.src = "";
+    document.body.style.overflow = "";
+  };
+
+  document.querySelectorAll("[data-review-image]").forEach((image) => {
+    const openLightbox = () => {
+      lightboxImage.src = image.src;
+      lightboxImage.alt = image.alt;
+      reviewLightbox.classList.add("active");
+      reviewLightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    };
+
+    image.addEventListener("click", openLightbox);
+
+    image.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openLightbox();
+      }
+    });
+  });
+
+  lightboxClose.addEventListener("click", closeLightbox);
+
+  reviewLightbox.addEventListener("click", (event) => {
+    if (event.target === reviewLightbox) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && reviewLightbox.classList.contains("active")) {
+      closeLightbox();
+    }
+  });
+}
+  
       const quantityInput = document.getElementById("product-qty");
       const minusButton = document.getElementById("product-qty-minus");
       const plusButton = document.getElementById("product-qty-plus");
@@ -270,5 +373,6 @@
       });
     });
   </script>
+
 </body>
 </html>

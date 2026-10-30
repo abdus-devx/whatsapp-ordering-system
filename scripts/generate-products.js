@@ -77,12 +77,32 @@ function createProductPage(product) {
   const category = escapeHtml(product.category || "Produk Massusi");
   const description = escapeHtml(product.description || "");
   const detail = product.detail || {};
+  const reviews = Array.isArray(detail.reviews)
+    ? detail.reviews
+        .filter((review) => review && review.name && review.message)
+        .map((review) => ({
+          name: escapeHtml(review.name),
+          message: escapeHtml(review.message),
+          date: escapeHtml(review.date || ""),
+          rating:
+            Number(review.rating) >= 1 && Number(review.rating) <= 5
+              ? Math.round(Number(review.rating))
+              : 0,
+          image: review.image
+            ? escapeHtml(
+                review.image.startsWith("./")
+                  ? `../../${review.image.slice(2)}`
+                  : review.image,
+              )
+            : "",
+        }))
+    : [];
   const overview = escapeHtml(detail.overview || "");
   const benefits = Array.isArray(detail.benefits)
     ? detail.benefits.filter(Boolean).map(escapeHtml)
     : [];
   const highlights = Array.isArray(detail.highlights)
-    ? detail.highlights.filter(Boolean).map(escapeHtml)
+    ? detail.highlights.filter(Boolean).slice(0, 3).map(escapeHtml)
     : [];
   const composition = escapeHtml(detail.composition || "");
   const usage = escapeHtml(detail.usage || "");
@@ -308,7 +328,7 @@ function createProductPage(product) {
       highlights.length
         ? `
       <section class="product-highlights">
-        <h2>Keunggulan Produk</h2>
+        <h2>Mengapa Memilih ${escapeHtml(product.name)}?</h2>
         <div class="product-highlights-grid">
           ${highlights
             .map(
@@ -325,6 +345,72 @@ function createProductPage(product) {
       `
         : ""
     }
+
+
+${
+  reviews.length
+    ? `
+  <section class="product-reviews">
+    <div class="product-reviews-header">
+      <div>
+        <span class="product-reviews-eyebrow">CUSTOMER REVIEWS</span>
+        <h2>Apa Kata Mereka?</h2>
+      </div>
+
+      <div class="product-reviews-controls">
+        <button type="button" class="review-nav-btn" data-review-prev aria-label="Ulasan sebelumnya">
+          <i data-lucide="arrow-left"></i>
+        </button>
+        <button type="button" class="review-nav-btn" data-review-next aria-label="Ulasan berikutnya">
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="product-reviews-track" id="product-reviews-track">
+      ${reviews
+        .map(
+          (review) => `
+        <article class="product-review-item">
+          ${
+            review.rating
+              ? `<div class="product-review-rating">
+                  ${Array.from({ length: review.rating }, () => '<i data-lucide="star"></i>').join("")}
+                </div>`
+              : ""
+          }
+
+          <p class="product-review-message">${review.message}</p>
+
+          ${
+            review.image
+              ? `<img
+  class="product-review-image"
+  src="${review.image}"
+  alt="Foto ulasan ${review.name}"
+  loading="lazy"
+  data-review-image
+  tabindex="0"
+  role="button"
+  aria-label="Perbesar foto ulasan"
+/>`
+              : ""
+          }
+
+          <div class="product-review-author">
+            <strong>${review.name}</strong>
+            ${review.date ? `<span>${review.date}</span>` : ""}
+          </div>
+        </article>
+      `,
+        )
+        .join("")}
+    </div>
+  </section>
+  `
+    : ""
+}
+
   </main>
 
   <div id="cartDrawer" class="cart-drawer">
@@ -348,6 +434,18 @@ function createProductPage(product) {
     </div>
   </div>
 
+
+  <div class="review-lightbox" id="review-lightbox" aria-hidden="true">
+    <button
+      type="button"
+      class="review-lightbox-close"
+      aria-label="Tutup foto"
+    >
+      <i data-lucide="x"></i>
+    </button>
+
+    <img class="review-lightbox-image" src="" alt="Foto ulasan diperbesar">
+  </div>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const infoToggle = document.querySelector(".product-info-toggle");
@@ -375,6 +473,93 @@ function createProductPage(product) {
         }
         });
       }
+      
+
+const reviewTrack = document.querySelector("#product-reviews-track");
+const reviewPrev = document.querySelector("[data-review-prev]");
+const reviewNext = document.querySelector("[data-review-next]");
+
+if (reviewTrack && reviewPrev && reviewNext) {
+  const updateReviewButtons = () => {
+    const maxScroll = reviewTrack.scrollWidth - reviewTrack.clientWidth;
+
+    reviewPrev.disabled = reviewTrack.scrollLeft <= 2;
+    reviewNext.disabled = reviewTrack.scrollLeft >= maxScroll - 2;
+  };
+
+  const scrollReview = (direction) => {
+    const review = reviewTrack.querySelector(".product-review-item");
+    if (!review) return;
+
+    const styles = window.getComputedStyle(reviewTrack);
+    const gap = parseFloat(styles.columnGap) || 0;
+    const distance = review.offsetWidth + gap;
+
+    reviewTrack.scrollBy({
+      left: direction * distance,
+      behavior: "smooth"
+    });
+  };
+
+  reviewPrev.addEventListener("click", () => scrollReview(-1));
+  reviewNext.addEventListener("click", () => scrollReview(1));
+
+  reviewTrack.addEventListener("scroll", updateReviewButtons, {
+    passive: true
+  });
+
+  window.addEventListener("resize", updateReviewButtons);
+
+  updateReviewButtons();
+}
+
+// Review Image Lightbox
+const reviewLightbox = document.querySelector("#review-lightbox");
+const lightboxImage = reviewLightbox?.querySelector(".review-lightbox-image");
+const lightboxClose = reviewLightbox?.querySelector(".review-lightbox-close");
+
+if (reviewLightbox && lightboxImage && lightboxClose) {
+  const closeLightbox = () => {
+    reviewLightbox.classList.remove("active");
+    reviewLightbox.setAttribute("aria-hidden", "true");
+    lightboxImage.src = "";
+    document.body.style.overflow = "";
+  };
+
+  document.querySelectorAll("[data-review-image]").forEach((image) => {
+    const openLightbox = () => {
+      lightboxImage.src = image.src;
+      lightboxImage.alt = image.alt;
+      reviewLightbox.classList.add("active");
+      reviewLightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    };
+
+    image.addEventListener("click", openLightbox);
+
+    image.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openLightbox();
+      }
+    });
+  });
+
+  lightboxClose.addEventListener("click", closeLightbox);
+
+  reviewLightbox.addEventListener("click", (event) => {
+    if (event.target === reviewLightbox) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && reviewLightbox.classList.contains("active")) {
+      closeLightbox();
+    }
+  });
+}
+  
       const quantityInput = document.getElementById("product-qty");
       const minusButton = document.getElementById("product-qty-minus");
       const plusButton = document.getElementById("product-qty-plus");
@@ -446,6 +631,7 @@ function createProductPage(product) {
       });
     });
   </script>
+
 </body>
 </html>`,
   };

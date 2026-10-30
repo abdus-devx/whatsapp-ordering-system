@@ -185,7 +185,7 @@
 
     
       <section class="product-highlights">
-        <h2>Keunggulan Produk</h2>
+        <h2>Mengapa Memilih Kapsul Sari Ikan Gabus?</h2>
         <div class="product-highlights-grid">
           
             <div class="product-highlight-item">
@@ -203,14 +203,104 @@
               <span>Diproses secara higienis</span>
             </div>
           
-            <div class="product-highlight-item">
-              <i data-lucide="check-circle-2"></i>
-              <span>Praktis dalam bentuk kapsul</span>
-            </div>
-          
         </div>
       </section>
       
+
+
+
+  <section class="product-reviews">
+    <div class="product-reviews-header">
+      <div>
+        <span class="product-reviews-eyebrow">CUSTOMER REVIEWS</span>
+        <h2>Apa Kata Mereka?</h2>
+      </div>
+
+      <div class="product-reviews-controls">
+        <button type="button" class="review-nav-btn" data-review-prev aria-label="Ulasan sebelumnya">
+          <i data-lucide="arrow-left"></i>
+        </button>
+        <button type="button" class="review-nav-btn" data-review-next aria-label="Ulasan berikutnya">
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="product-reviews-track" id="product-reviews-track">
+      
+        <article class="product-review-item">
+          <div class="product-review-rating">
+                  <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+                </div>
+
+          <p class="product-review-message">Produk diterima dengan baik. Kemasannya rapi dan sesuai pesanan.</p>
+
+          
+
+          <div class="product-review-author">
+            <strong>Bpk Alan</strong>
+            <span>Oktober 2026</span>
+          </div>
+        </article>
+      
+        <article class="product-review-item">
+          <div class="product-review-rating">
+                  <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+                </div>
+
+          <p class="product-review-message">Pelayanan baik dan proses pemesanan cukup mudah.</p>
+
+          
+
+          <div class="product-review-author">
+            <strong>si Fulan</strong>
+            <span>Oktober 2026</span>
+          </div>
+        </article>
+      
+        <article class="product-review-item">
+          <div class="product-review-rating">
+                  <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+                </div>
+
+          <p class="product-review-message">Produk dikemas dengan baik dan sampai dengan aman.</p>
+
+          
+
+          <div class="product-review-author">
+            <strong>Bu Fulan</strong>
+            <span>Oktober 2026</span>
+          </div>
+        </article>
+      
+        <article class="product-review-item">
+          <div class="product-review-rating">
+                  <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+                </div>
+
+          <p class="product-review-message">Produk dikemas dengan baik dan sampai dengan aman.</p>
+
+          <img
+  class="product-review-image"
+  src="../../Assets/images/sig1.png"
+  alt="Foto ulasan Bu Fulan 2"
+  loading="lazy"
+  data-review-image
+  tabindex="0"
+  role="button"
+  aria-label="Perbesar foto ulasan"
+/>
+
+          <div class="product-review-author">
+            <strong>Bu Fulan 2</strong>
+            <span>September 2026</span>
+          </div>
+        </article>
+      
+    </div>
+  </section>
+  
+
   </main>
 
   <div id="cartDrawer" class="cart-drawer">
@@ -234,6 +324,18 @@
     </div>
   </div>
 
+
+  <div class="review-lightbox" id="review-lightbox" aria-hidden="true">
+    <button
+      type="button"
+      class="review-lightbox-close"
+      aria-label="Tutup foto"
+    >
+      <i data-lucide="x"></i>
+    </button>
+
+    <img class="review-lightbox-image" src="" alt="Foto ulasan diperbesar">
+  </div>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const infoToggle = document.querySelector(".product-info-toggle");
@@ -261,6 +363,93 @@
         }
         });
       }
+      
+
+const reviewTrack = document.querySelector("#product-reviews-track");
+const reviewPrev = document.querySelector("[data-review-prev]");
+const reviewNext = document.querySelector("[data-review-next]");
+
+if (reviewTrack && reviewPrev && reviewNext) {
+  const updateReviewButtons = () => {
+    const maxScroll = reviewTrack.scrollWidth - reviewTrack.clientWidth;
+
+    reviewPrev.disabled = reviewTrack.scrollLeft <= 2;
+    reviewNext.disabled = reviewTrack.scrollLeft >= maxScroll - 2;
+  };
+
+  const scrollReview = (direction) => {
+    const review = reviewTrack.querySelector(".product-review-item");
+    if (!review) return;
+
+    const styles = window.getComputedStyle(reviewTrack);
+    const gap = parseFloat(styles.columnGap) || 0;
+    const distance = review.offsetWidth + gap;
+
+    reviewTrack.scrollBy({
+      left: direction * distance,
+      behavior: "smooth"
+    });
+  };
+
+  reviewPrev.addEventListener("click", () => scrollReview(-1));
+  reviewNext.addEventListener("click", () => scrollReview(1));
+
+  reviewTrack.addEventListener("scroll", updateReviewButtons, {
+    passive: true
+  });
+
+  window.addEventListener("resize", updateReviewButtons);
+
+  updateReviewButtons();
+}
+
+// Review Image Lightbox
+const reviewLightbox = document.querySelector("#review-lightbox");
+const lightboxImage = reviewLightbox?.querySelector(".review-lightbox-image");
+const lightboxClose = reviewLightbox?.querySelector(".review-lightbox-close");
+
+if (reviewLightbox && lightboxImage && lightboxClose) {
+  const closeLightbox = () => {
+    reviewLightbox.classList.remove("active");
+    reviewLightbox.setAttribute("aria-hidden", "true");
+    lightboxImage.src = "";
+    document.body.style.overflow = "";
+  };
+
+  document.querySelectorAll("[data-review-image]").forEach((image) => {
+    const openLightbox = () => {
+      lightboxImage.src = image.src;
+      lightboxImage.alt = image.alt;
+      reviewLightbox.classList.add("active");
+      reviewLightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    };
+
+    image.addEventListener("click", openLightbox);
+
+    image.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openLightbox();
+      }
+    });
+  });
+
+  lightboxClose.addEventListener("click", closeLightbox);
+
+  reviewLightbox.addEventListener("click", (event) => {
+    if (event.target === reviewLightbox) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && reviewLightbox.classList.contains("active")) {
+      closeLightbox();
+    }
+  });
+}
+  
       const quantityInput = document.getElementById("product-qty");
       const minusButton = document.getElementById("product-qty-minus");
       const plusButton = document.getElementById("product-qty-plus");
@@ -332,5 +521,6 @@
       });
     });
   </script>
+
 </body>
 </html>
