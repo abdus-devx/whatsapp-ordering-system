@@ -75,7 +75,9 @@ function toggleCart() {
 
 // UPDATE TAMPILAN KERANJANG
 function updateCartUI() {
-  const countEl = document.getElementById("prd-cart-count");
+  const countEls = document.querySelectorAll(
+    "#prd-cart-count, #prd-cart-count-floating",
+  );
   const checkoutEl = document.getElementById("prd-checkout-btn");
   const itemsEl = document.getElementById("drawer-items");
   const totalEl = document.getElementById("drawer-total");
@@ -83,9 +85,9 @@ function updateCartUI() {
   const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
   const totalPrice = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
 
-  if (countEl) {
-    countEl.innerText = totalQty;
-  }
+  countEls.forEach((el) => {
+    el.innerText = totalQty;
+  });
 
   if (checkoutEl) {
     checkoutEl.classList.toggle("show", cart.length > 0);
