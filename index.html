@@ -91,9 +91,9 @@
 
       <header class="shop-header">
         <nav class="shop-nav">
-          <a href="#" class="shop-logo">
+          <a href="/" class="shop-logo">
             <span class="shop-logo-icon">
-              <img src="./Assets/images/MassLogo.avif" alt="shop-logo-icon" />
+              <img src="./Assets/images/MassLogo.avif" alt="Massusi Store" />
             </span>
 
             <span class="shop-logo-text">
@@ -102,29 +102,33 @@
             </span>
           </a>
 
-          <div class="shop-menu">
-            <a href="#" class="active">HOME</a>
-
-            <a href="#produk">PRODUK</a>
-
-            <a href="#kategori">KATEGORI</a>
-
-            <a href="#tentang">TENTANG</a>
-
-            <a href="#promo">PROMO</a>
+          <div class="prd-search-wrapper">
+            <input
+              id="prd-search-box"
+              onkeyup="prdSearchFunction()"
+              placeholder="Cari produk herbal..."
+              type="text"
+            />
           </div>
 
           <div class="shop-actions">
-            <button class="shop-action">
-              <i data-lucide="search"></i>
+            <button
+              class="shop-action"
+              type="button"
+              aria-label="Keranjang"
+              onclick="toggleCart()"
+            >
+              <i data-lucide="shopping-cart"></i>
+              <span id="prd-cart-count">0</span>
             </button>
 
-            <button class="shop-action">
+            <button
+              class="shop-action"
+              type="button"
+              aria-label="Akun"
+              onclick="showAlert('Fitur akun segera hadir!')"
+            >
               <i data-lucide="user-round"></i>
-            </button>
-
-            <button class="shop-action shop-mobile-menu" onclick="toggleCart()">
-              <i data-lucide="menu"></i>
             </button>
           </div>
         </nav>
@@ -314,16 +318,6 @@
           </button>
         </div>
       </section>
-
-      <!--KOLOM PENCARIAN-->
-      <div class="prd-search-wrapper">
-        <input
-          id="prd-search-box"
-          onkeyup="prdSearchFunction()"
-          placeholder="🔍︎ Cari produk disini... "
-          type="text"
-        />
-      </div>
 
       <div class="prd-container" id="prd-container"></div>
       <div class="prd-pagination" id="prd-pagination"></div>
