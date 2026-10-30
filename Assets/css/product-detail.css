@@ -692,7 +692,9 @@ Blok 10 — Product Customer Reviews
   cursor: not-allowed;
 }
 
-/* Blok 11 — Review Image Lightbox */
+/*===========================
+ Blok 11 — Review Image Lightbox 
+=============================*/
 
 .review-lightbox {
   position: fixed;
@@ -753,4 +755,83 @@ Blok 10 — Product Customer Reviews
 .review-lightbox-close .lucide {
   width: 22px;
   height: 22px;
+}
+
+/* Blok 12 — Product FAQ */
+
+.product-faq {
+  margin-top: 42px;
+  padding-top: 30px;
+  border-top: 1px solid #e8ede9;
+}
+
+.product-faq-header {
+  margin-bottom: 20px;
+}
+
+.product-faq-header > span {
+  display: block;
+  margin-bottom: 6px;
+  color: #16845b;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.product-faq-header h2 {
+  margin: 0;
+  color: #26372d;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.product-faq-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #e9efea;
+}
+
+.product-faq-item {
+  border-bottom: 1px solid #e9efea;
+}
+
+.product-faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 19px 4px;
+  border: 0;
+  background: transparent;
+  color: #344b3e;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.product-faq-question .lucide {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: #16845b;
+  transition: transform 0.2s ease;
+}
+
+.product-faq-question[aria-expanded="true"] .lucide {
+  transform: rotate(45deg);
+}
+
+.product-faq-answer {
+  padding: 0 36px 18px 4px;
+}
+
+.product-faq-answer p {
+  margin: 0;
+  color: #68766d;
+  font-size: 13px;
+  line-height: 1.8;
 }

@@ -153,6 +153,59 @@
 
 
 
+
+  <section class="product-faq">
+    <div class="product-faq-header">
+      <span>PRODUCT INFORMATION</span>
+      <h2>Pertanyaan yang Sering Diajukan</h2>
+    </div>
+
+    <div class="product-faq-list">
+      
+        <div class="product-faq-item">
+          <button
+            type="button"
+            class="product-faq-question"
+            aria-expanded="false"
+            aria-controls="product-faq-answer-0"
+          >
+            <span>Bagaimana cara memesan produk?</span>
+            <i data-lucide="plus"></i>
+          </button>
+
+          <div
+            class="product-faq-answer"
+            id="product-faq-answer-0"
+            hidden
+          >
+            <p>Pilih produk yang diinginkan, tambahkan ke keranjang, lalu lanjutkan pesanan melalui WhatsApp.</p>
+          </div>
+        </div>
+      
+        <div class="product-faq-item">
+          <button
+            type="button"
+            class="product-faq-question"
+            aria-expanded="false"
+            aria-controls="product-faq-answer-1"
+          >
+            <span>Bagaimana cara mengetahui ongkos kirim?</span>
+            <i data-lucide="plus"></i>
+          </button>
+
+          <div
+            class="product-faq-answer"
+            id="product-faq-answer-1"
+            hidden
+          >
+            <p>Informasi ongkos kirim akan dikonfirmasi melalui WhatsApp berdasarkan alamat tujuan.</p>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+  
+
   </main>
 
   <div id="cartDrawer" class="cart-drawer">
@@ -301,7 +354,23 @@ if (reviewLightbox && lightboxImage && lightboxClose) {
     }
   });
 }
-  
+
+// Product FAQ Accordion
+document.querySelectorAll(".product-faq-question").forEach((button) => {
+  button.addEventListener("click", () => {
+    const isExpanded = button.getAttribute("aria-expanded") === "true";
+    const answerId = button.getAttribute("aria-controls");
+    const answer = document.getElementById(answerId);
+
+    button.setAttribute("aria-expanded", String(!isExpanded));
+
+    if (answer) {
+      answer.hidden = isExpanded;
+    }
+  });
+});
+
+
       const quantityInput = document.getElementById("product-qty");
       const minusButton = document.getElementById("product-qty-minus");
       const plusButton = document.getElementById("product-qty-plus");

@@ -1,3 +1,15 @@
+const globalFaq = [
+  {
+    question: "Bagaimana cara memesan produk?",
+    answer:
+      "Pilih produk yang diinginkan, tambahkan ke keranjang, lalu lanjutkan pesanan melalui WhatsApp.",
+  },
+  {
+    question: "Bagaimana cara mengetahui ongkos kirim?",
+    answer:
+      "Informasi ongkos kirim akan dikonfirmasi melalui WhatsApp berdasarkan alamat tujuan.",
+  },
+];
 const products = [
   {
     id: 1,
@@ -77,6 +89,13 @@ const products = [
           date: "September 2026",
           rating: 4,
           image: "./Assets/images/sig1.png",
+        },
+      ],
+
+      faq: [
+        {
+          question: "Bagaimana aturan konsumsi produk ini?",
+          answer: "Sesuaikan dengan aturan pakai yang tertera pada kemasan.",
         },
       ],
     },

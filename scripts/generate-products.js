@@ -9,9 +9,15 @@ const outputDir = path.join(rootDir, "produk");
 const source = fs.readFileSync(productsFile, "utf8");
 const sandbox = {};
 
-vm.runInNewContext(`${source}\nglobalThis.__products = products;`, sandbox);
+vm.runInNewContext(
+  `${source}
+  globalThis.__products = products;
+  globalThis.__globalFaq = globalFaq;`,
+  sandbox,
+);
 
 const products = sandbox.__products;
+const globalFaq = sandbox.__globalFaq;
 
 if (!Array.isArray(products) || products.length === 0) {
   throw new Error("Data produk tidak ditemukan.");
@@ -77,6 +83,15 @@ function createProductPage(product) {
   const category = escapeHtml(product.category || "Produk Massusi");
   const description = escapeHtml(product.description || "");
   const detail = product.detail || {};
+  const productFaq = Array.isArray(detail.faq) ? detail.faq : [];
+
+  const faqItems = [...productFaq, ...globalFaq]
+    .filter((item) => item && item.question && item.answer)
+    .slice(0, 3)
+    .map((item) => ({
+      question: escapeHtml(item.question),
+      answer: escapeHtml(item.answer),
+    }));
   const reviews = Array.isArray(detail.reviews)
     ? detail.reviews
         .filter((review) => review && review.name && review.message)
@@ -411,6 +426,47 @@ ${
     : ""
 }
 
+${
+  faqItems.length
+    ? `
+  <section class="product-faq">
+    <div class="product-faq-header">
+      <span>PRODUCT INFORMATION</span>
+      <h2>Pertanyaan yang Sering Diajukan</h2>
+    </div>
+
+    <div class="product-faq-list">
+      ${faqItems
+        .map(
+          (item, index) => `
+        <div class="product-faq-item">
+          <button
+            type="button"
+            class="product-faq-question"
+            aria-expanded="false"
+            aria-controls="product-faq-answer-${index}"
+          >
+            <span>${item.question}</span>
+            <i data-lucide="plus"></i>
+          </button>
+
+          <div
+            class="product-faq-answer"
+            id="product-faq-answer-${index}"
+            hidden
+          >
+            <p>${item.answer}</p>
+          </div>
+        </div>
+      `,
+        )
+        .join("")}
+    </div>
+  </section>
+  `
+    : ""
+}
+
   </main>
 
   <div id="cartDrawer" class="cart-drawer">
@@ -559,7 +615,23 @@ if (reviewLightbox && lightboxImage && lightboxClose) {
     }
   });
 }
-  
+
+// Product FAQ Accordion
+document.querySelectorAll(".product-faq-question").forEach((button) => {
+  button.addEventListener("click", () => {
+    const isExpanded = button.getAttribute("aria-expanded") === "true";
+    const answerId = button.getAttribute("aria-controls");
+    const answer = document.getElementById(answerId);
+
+    button.setAttribute("aria-expanded", String(!isExpanded));
+
+    if (answer) {
+      answer.hidden = isExpanded;
+    }
+  });
+});
+
+
       const quantityInput = document.getElementById("product-qty");
       const minusButton = document.getElementById("product-qty-minus");
       const plusButton = document.getElementById("product-qty-plus");
