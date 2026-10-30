@@ -835,3 +835,104 @@ Blok 10 — Product Customer Reviews
   font-size: 13px;
   line-height: 1.8;
 }
+
+/*===================== 
+Blok 13 — Product Recommendations
+=======================*/
+
+.product-recommendations {
+  margin-top: 42px;
+  padding-top: 30px;
+  border-top: 1px solid #e8ede9;
+}
+
+.product-recommendations-header {
+  margin-bottom: 22px;
+}
+
+.product-recommendations-header span {
+  display: block;
+  margin-bottom: 6px;
+  color: #16845b;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.product-recommendations-header h2 {
+  margin: 0;
+  color: #26372d;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.product-recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.recommendation-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #e9efea;
+  border-radius: 14px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.recommendation-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(30, 65, 45, 0.08);
+}
+
+.recommendation-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  padding: 16px;
+  background: #f8faf8;
+}
+
+.recommendation-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.recommendation-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 15px;
+}
+
+.recommendation-info h3 {
+  margin: 0 0 7px;
+  color: #344b3e;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.recommendation-info p {
+  margin: 0 0 14px;
+  color: #7b887f;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.recommendation-info strong {
+  margin-top: auto;
+  color: #16845b;
+  font-size: 14px;
+  font-weight: 700;
+}

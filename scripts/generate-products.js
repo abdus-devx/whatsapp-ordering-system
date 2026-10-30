@@ -83,6 +83,10 @@ function createProductPage(product) {
   const category = escapeHtml(product.category || "Produk Massusi");
   const description = escapeHtml(product.description || "");
   const detail = product.detail || {};
+  const recommendedProducts = products
+    .filter((item) => item.id !== product.id)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 4);
   const productFaq = Array.isArray(detail.faq) ? detail.faq : [];
 
   const faqItems = [...productFaq, ...globalFaq]
@@ -458,6 +462,48 @@ ${
             <p>${item.answer}</p>
           </div>
         </div>
+      `,
+        )
+        .join("")}
+    </div>
+  </section>
+  `
+    : ""
+}
+
+${
+  recommendedProducts.length
+    ? `
+  <section class="product-recommendations">
+    <div class="product-recommendations-header">
+      <div>
+        <span>YOU MAY ALSO LIKE</span>
+        <h2>Produk Rekomendasi</h2>
+      </div>
+    </div>
+
+    <div class="product-recommendations-grid">
+      ${recommendedProducts
+        .map(
+          (item) => `
+        <a
+          href="../${slugify(item.slug || item.name)}/"
+          class="recommendation-card"
+        >
+          <div class="recommendation-image">
+            <img
+              src="../../${escapeHtml(item.image.replace(/^\.\/?/, ""))}"
+              alt="${escapeHtml(item.name)}"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="recommendation-info">
+            <h3>${escapeHtml(item.name)}</h3>
+            <p>${escapeHtml(item.shortDescription || "")}</p>
+            <strong>Rp${Number(item.price).toLocaleString("id-ID")}</strong>
+          </div>
+        </a>
       `,
         )
         .join("")}
