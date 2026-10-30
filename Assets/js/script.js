@@ -3,17 +3,29 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // FUNGSI CARI PRODUK
 function prdSearchFunction() {
-  let input, filter, container, cards, title, i, txtValue;
-  input = document.getElementById("prd-search-box");
-  filter = input.value.toUpperCase();
-  container = document.getElementById("prd-container");
-  cards = container.getElementsByClassName("prd-card");
+  const input = document.getElementById("prd-search-box");
+  const container = document.getElementById("prd-container");
 
-  for (i = 0; i < cards.length; i++) {
-    title = cards[i].querySelector(".prd-title");
+  if (!input) return;
+
+  const keyword = input.value.trim();
+
+  // Jika berada di halaman detail, arahkan pencarian ke katalog
+  if (!container) {
+    window.location.href = `/?search=${encodeURIComponent(keyword)}`;
+    return;
+  }
+
+  const filter = keyword.toUpperCase();
+  const cards = container.getElementsByClassName("prd-card");
+
+  for (let i = 0; i < cards.length; i++) {
+    const title = cards[i].querySelector(".prd-title");
+    const name = cards[i].dataset.name || "";
+
     if (
-      title.innerText.toUpperCase().indexOf(filter) > -1 ||
-      cards[i].dataset.name.toUpperCase().indexOf(filter) > -1
+      (title?.innerText || "").toUpperCase().includes(filter) ||
+      name.toUpperCase().includes(filter)
     ) {
       cards[i].style.display = "";
     } else {
@@ -21,6 +33,7 @@ function prdSearchFunction() {
     }
   }
 }
+
 // FUNGSI SIMPAN DATA KERANJANG
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -192,6 +205,22 @@ function updateCartUI() {
   }
 }
 
+// BACA PARAMETER SEARCH DARI URL
+function initProductSearch() {
+  const params = new URLSearchParams(window.location.search);
+  const keyword = params.get("search");
+
+  if (keyword === null) return;
+
+  const input = document.getElementById("prd-search-box");
+
+  if (!input) return;
+
+  input.value = keyword;
+  prdSearchFunction();
+}
+
+initProductSearch();
 updateCartUI();
 
 function checkout() {
