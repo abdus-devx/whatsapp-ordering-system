@@ -26,6 +26,50 @@
   <script src="/Assets/js/script.js" defer></script>
 </head>
 <body>
+
+  <header class="shop-header">
+    <nav class="shop-nav">
+      <a href="/" class="shop-logo">
+        <span class="shop-logo-icon">
+          <img src="/Assets/images/MassLogo.avif" alt="Massusi Store">
+        </span>
+        <span class="shop-logo-text">
+          <strong>MASSUSI</strong>
+          <small>STORE</small>
+        </span>
+      </a>
+
+      <div class="prd-search-wrapper">
+        <input
+          id="prd-search-box"
+          type="search"
+          placeholder="Cari produk herbal..."
+          onkeydown="if(event.key === 'Enter') prdSearchFunction()"
+        >
+      </div>
+
+      <div class="shop-actions">
+        <button
+          class="shop-action"
+          type="button"
+          aria-label="Keranjang"
+          onclick="toggleCart()"
+        >
+          <i data-lucide="shopping-cart"></i>
+          <span id="prd-cart-count">0</span>
+        </button>
+
+        <button
+          class="shop-action"
+          type="button"
+          aria-label="Akun"
+          onclick="showAlert('Fitur akun segera hadir!')"
+        >
+          <i data-lucide="user-round"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
   <main class="product-detail" data-product-name="Kapsul Toper (30 Kapsul)" data-product-price="200000">
     <nav class="product-breadcrumb" aria-label="Breadcrumb">
       <a href="/">Beranda</a>

@@ -26,6 +26,50 @@
   <script src="/Assets/js/script.js" defer></script>
 </head>
 <body>
+
+  <header class="shop-header">
+    <nav class="shop-nav">
+      <a href="/" class="shop-logo">
+        <span class="shop-logo-icon">
+          <img src="/Assets/images/MassLogo.avif" alt="Massusi Store">
+        </span>
+        <span class="shop-logo-text">
+          <strong>MASSUSI</strong>
+          <small>STORE</small>
+        </span>
+      </a>
+
+      <div class="prd-search-wrapper">
+        <input
+          id="prd-search-box"
+          type="search"
+          placeholder="Cari produk herbal..."
+          onkeydown="if(event.key === 'Enter') prdSearchFunction()"
+        >
+      </div>
+
+      <div class="shop-actions">
+        <button
+          class="shop-action"
+          type="button"
+          aria-label="Keranjang"
+          onclick="toggleCart()"
+        >
+          <i data-lucide="shopping-cart"></i>
+          <span id="prd-cart-count">0</span>
+        </button>
+
+        <button
+          class="shop-action"
+          type="button"
+          aria-label="Akun"
+          onclick="showAlert('Fitur akun segera hadir!')"
+        >
+          <i data-lucide="user-round"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
   <main class="product-detail" data-product-name="Madu Ginseng (330g)" data-product-price="190000">
     <nav class="product-breadcrumb" aria-label="Breadcrumb">
       <a href="/">Beranda</a>
@@ -218,21 +262,21 @@
     <div class="product-recommendations-grid">
       
         <a
-          href="../kapsul-sari-ikan-gabus/"
+          href="../kapsul-toper-30-kapsul/"
           class="recommendation-card"
         >
           <div class="recommendation-image">
             <img
-              src="../../Assets/images/sig1.png"
-              alt="Kapsul Sari Ikan Gabus"
+              src="../../Assets/images/sig2.png"
+              alt="Kapsul Toper (30 Kapsul)"
               loading="lazy"
             />
           </div>
 
           <div class="recommendation-info">
-            <h3>Kapsul Sari Ikan Gabus</h3>
-            <p>Ekstrak ikan gabus dalam bentuk kapsul yang praktis.</p>
-            <strong>Rp170.000</strong>
+            <h3>Kapsul Toper (30 Kapsul)</h3>
+            <p>Produk herbal dalam bentuk kapsul dengan kemasan isi 30 kapsul.</p>
+            <strong>Rp200.000</strong>
           </div>
         </a>
       
@@ -256,21 +300,21 @@
         </a>
       
         <a
-          href="../kapsul-toper-30-kapsul/"
+          href="../kapsul-sari-ikan-gabus/"
           class="recommendation-card"
         >
           <div class="recommendation-image">
             <img
-              src="../../Assets/images/sig2.png"
-              alt="Kapsul Toper (30 Kapsul)"
+              src="../../Assets/images/sig1.png"
+              alt="Kapsul Sari Ikan Gabus"
               loading="lazy"
             />
           </div>
 
           <div class="recommendation-info">
-            <h3>Kapsul Toper (30 Kapsul)</h3>
-            <p>Produk herbal dalam bentuk kapsul dengan kemasan isi 30 kapsul.</p>
-            <strong>Rp200.000</strong>
+            <h3>Kapsul Sari Ikan Gabus</h3>
+            <p>Ekstrak ikan gabus dalam bentuk kapsul yang praktis.</p>
+            <strong>Rp170.000</strong>
           </div>
         </a>
       
