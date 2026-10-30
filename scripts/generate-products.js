@@ -793,7 +793,10 @@ document.querySelectorAll(".product-faq-question").forEach((button) => {
       });
     });
   </script>
-
+<div id="shop-toast" class="shop-toast">
+  <i data-lucide="info"></i>
+  <span id="shop-toast-message"></span>
+</div>
 </body>
 </html>`,
   };

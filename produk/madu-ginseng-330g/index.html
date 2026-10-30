@@ -72,7 +72,7 @@
   </header>
   <main class="product-detail" data-product-name="Madu Ginseng (330g)" data-product-price="190000">
     <nav class="product-breadcrumb" aria-label="Breadcrumb">
-      <a href="/">Beranda</a>
+      <a href="/">Home</a>
       <span aria-hidden="true">/</span>
       <span>Madu Ginseng (330g)</span>
     </nav>
@@ -262,6 +262,25 @@
     <div class="product-recommendations-grid">
       
         <a
+          href="../kapsul-sari-ikan-gabus/"
+          class="recommendation-card"
+        >
+          <div class="recommendation-image">
+            <img
+              src="../../Assets/images/sig1.png"
+              alt="Kapsul Sari Ikan Gabus"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="recommendation-info">
+            <h3>Kapsul Sari Ikan Gabus</h3>
+            <p>Ekstrak ikan gabus dalam bentuk kapsul yang praktis.</p>
+            <strong>Rp170.000</strong>
+          </div>
+        </a>
+      
+        <a
           href="../kapsul-toper-30-kapsul/"
           class="recommendation-card"
         >
@@ -296,25 +315,6 @@
             <h3>Madu Arjuna (Pria Dewasa)</h3>
             <p>Madu herbal untuk pria dewasa dengan fokus pada vitalitas dan stamina.</p>
             <strong>Rp150.000</strong>
-          </div>
-        </a>
-      
-        <a
-          href="../kapsul-sari-ikan-gabus/"
-          class="recommendation-card"
-        >
-          <div class="recommendation-image">
-            <img
-              src="../../Assets/images/sig1.png"
-              alt="Kapsul Sari Ikan Gabus"
-              loading="lazy"
-            />
-          </div>
-
-          <div class="recommendation-info">
-            <h3>Kapsul Sari Ikan Gabus</h3>
-            <p>Ekstrak ikan gabus dalam bentuk kapsul yang praktis.</p>
-            <strong>Rp170.000</strong>
           </div>
         </a>
       
@@ -558,6 +558,9 @@ document.querySelectorAll(".product-faq-question").forEach((button) => {
       });
     });
   </script>
-
+<div id="shop-toast" class="shop-toast">
+  <i data-lucide="info"></i>
+  <span id="shop-toast-message"></span>
+</div>
 </body>
 </html>
