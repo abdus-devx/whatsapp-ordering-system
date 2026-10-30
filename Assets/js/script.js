@@ -306,3 +306,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// TOAST NOTIFICATION
+let toastTimer;
+
+function showAlert(message) {
+  const toast = document.getElementById("shop-toast");
+  const toastMessage = document.getElementById("shop-toast-message");
+
+  if (!toast || !toastMessage) return;
+
+  toastMessage.textContent = message;
+
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
