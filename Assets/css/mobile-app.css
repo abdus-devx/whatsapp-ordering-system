@@ -17,7 +17,7 @@
 
   .retail-page {
     width: 100%;
-    overflow: hidden;
+
     padding-bottom: 78px;
   }
 
@@ -30,6 +30,15 @@
   }
 
   /* HEADER*/
+  .shop-header::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #fff;
+  }
   .shop-nav {
     gap: 10px;
     margin: auto 10px;
