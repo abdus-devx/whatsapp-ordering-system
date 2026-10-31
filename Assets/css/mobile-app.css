@@ -29,19 +29,25 @@
     display: none;
   }
 
+  /* HEADER*/
   .shop-nav {
-    display: flex;
+    margin: auto 10px;
   }
   .shop-logo-text {
     display: none;
   }
+
+  .shop-actions {
+    gap: 4px;
+    margin: 0 20px 0 210px;
+    justify-content: flex-end;
+  }
+
   .shop-action {
     width: 33px;
     height: 33px;
   }
-  .shop-actions {
-    gap: 4px;
-  }
+
   .shop-action .lucide {
     width: 13px;
     height: 13px;
