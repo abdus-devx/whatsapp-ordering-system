@@ -67,6 +67,8 @@
     <link rel="stylesheet" href="./Assets/css/popup.css" />
     <link rel="stylesheet" href="./Assets/css/cart.css" />
     <link rel="stylesheet" href="./Assets/css/product-detail.css" />
+    <link rel="stylesheet" href="./Assets/css/mobile-app.css" />
+    <link rel="stylesheet" href="./Assets/css/product-detail-mobile.css" />
 
     <!-- JavaScript -->
     <script src="https://unpkg.com/lucide@latest" defer></script>
@@ -318,7 +320,15 @@
           </button>
         </div>
       </section>
-
+      <!-- MOBILE PROMO BANNER -->
+      <section class="mobile-promo">
+        <a href="#produk">
+          <img
+            src="./Assets/images/banner-mobile.avif"
+            alt="Promo produk herbal Massusi"
+          />
+        </a>
+      </section>
       <div class="prd-container" id="prd-container"></div>
       <div class="prd-pagination" id="prd-pagination"></div>
 
@@ -353,6 +363,37 @@
           </button>
         </div>
       </div>
+
+      <!-- MOBILE BOTTOM NAV -->
+      <nav class="mobile-bottom-nav">
+        <a href="/" class="active">
+          <i data-lucide="house"></i>
+          <span>Beranda</span>
+        </a>
+
+        <a href="#sbc-kategori">
+          <i data-lucide="grid-2x2"></i>
+          <span>Kategori</span>
+        </a>
+
+        <button type="button" onclick="toggleCart()">
+          <i data-lucide="shopping-bag"></i>
+          <span>Keranjang</span>
+        </button>
+
+        <button
+          type="button"
+          onclick="showAlert('Fitur favorit segera hadir!')"
+        >
+          <i data-lucide="heart"></i>
+          <span>Favorit</span>
+        </button>
+
+        <button type="button" onclick="showAlert('Fitur akun segera hadir!')">
+          <i data-lucide="user-round"></i>
+          <span>Akun</span>
+        </button>
+      </nav>
     </section>
     <!-- =====================================================
      FOOTER SERVICE BAR
