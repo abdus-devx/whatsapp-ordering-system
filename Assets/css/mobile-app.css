@@ -39,8 +39,9 @@
 
   .shop-actions {
     gap: 4px;
-    margin: 0 20px 0 210px;
+    margin: 0 20px 0 auto;
     justify-content: flex-end;
+    flex-shrink: 0;
   }
 
   .shop-action {
