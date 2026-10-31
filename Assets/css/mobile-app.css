@@ -31,15 +31,43 @@
 
   /* HEADER*/
   .shop-nav {
+    gap: 10px;
     margin: auto 10px;
   }
+
+  .shop-logo {
+    flex-shrink: 0;
+  }
+
   .shop-logo-text {
     display: none;
   }
 
+  .prd-search-wrapper {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: auto;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .prd-search-wrapper input {
+    height: 38px;
+    padding: 0 10px 0 34px;
+    font-size: 12px;
+  }
+
+  .prd-search-wrapper::before {
+    left: 12px;
+    width: 14px;
+    height: 14px;
+  }
+
   .shop-actions {
     gap: 4px;
-    margin: 0 20px 0 auto;
+    margin-left: 0;
     justify-content: flex-end;
     flex-shrink: 0;
   }
