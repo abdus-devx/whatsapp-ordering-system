@@ -355,3 +355,37 @@ function showAlert(message) {
     toast.classList.remove("show");
   }, 3000);
 }
+
+function initCategoryScrollIndicator() {
+  const list = document.querySelector(".sbc-list");
+  const indicator = document.querySelector(".sbc-scroll-indicator");
+  const thumb = document.querySelector(".sbc-scroll-thumb");
+
+  if (!list || !indicator || !thumb) return;
+
+  function updateIndicator() {
+    const maxScroll = list.scrollWidth - list.clientWidth;
+    const trackWidth = indicator.clientWidth;
+
+    if (maxScroll <= 1) {
+      indicator.style.display = "none";
+      return;
+    }
+
+    indicator.style.display = "block";
+
+    const thumbWidth = (list.clientWidth / list.scrollWidth) * trackWidth;
+    const maxThumbMove = trackWidth - thumbWidth;
+    const scrollProgress = list.scrollLeft / maxScroll;
+
+    thumb.style.width = `${thumbWidth}px`;
+    thumb.style.transform = `translateX(${scrollProgress * maxThumbMove}px)`;
+  }
+
+  list.addEventListener("scroll", updateIndicator, { passive: true });
+  window.addEventListener("resize", updateIndicator);
+
+  updateIndicator();
+}
+
+document.addEventListener("DOMContentLoaded", initCategoryScrollIndicator);

@@ -154,6 +154,12 @@
     align-items: center;
     gap: 5px;
   }
+  .sbc-item:hover,
+  .sbc-item.sbc-active .sbc-icon {
+    transform: none;
+    box-shadow: none;
+    background: inherit;
+  }
 
   .sbc-icon {
     width: 49px;
@@ -184,6 +190,29 @@
   .sbc-item.sbc-active .sbc-icon {
     background: #16845b;
     color: #fff;
+  }
+
+  .sbc-scroll-wrap {
+    width: 100%;
+  }
+
+  .sbc-scroll-indicator {
+    width: 44px;
+    height: 3px;
+    margin: 9px auto 0;
+    border-radius: 10px;
+    background: #e5ebe7;
+    overflow: hidden;
+  }
+
+  .sbc-scroll-thumb {
+    display: block;
+    width: 30%;
+    height: 100%;
+    border-radius: inherit;
+    background: #16845b;
+    transform: translateX(0);
+    transition: background 0.2s;
   }
 
   /* BANNER PROMOSI */
