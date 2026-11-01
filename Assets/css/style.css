@@ -50,7 +50,7 @@ input {
 }
 
 .section-container {
-  width: min(1180px, calc(100% - 30px));
+  width: min(1180px, calc(100% - 40px));
   margin: auto;
 }
 
