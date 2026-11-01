@@ -242,15 +242,15 @@
   .prd-container {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 11px;
-    padding: 0 12px;
+    gap: 4px;
+    padding: 0;
   }
 
   .prd-card {
     min-width: 0;
     width: 100%;
     overflow: hidden;
-    border-radius: 13px;
+    border-radius: 6px;
     background: #fff;
   }
 
