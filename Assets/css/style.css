@@ -546,6 +546,8 @@ input {
 }
 
 .prd-price {
+  display: flex;
+  align-items: baseline;
   margin-top: auto;
   font-size: 16px;
   font-weight: 700;
@@ -560,7 +562,7 @@ input {
 .qty-control {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 8px;
   width: 100%;
 }

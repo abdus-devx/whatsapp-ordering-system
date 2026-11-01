@@ -277,13 +277,21 @@
   }
 
   .prd-title {
-    font-size: 12px;
+    font-size: 11px;
+    font-weight: 500;
     line-height: 1.4;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     line-clamp: 2;
     overflow: hidden;
+  }
+
+  .prd-desc {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .prd-description {
@@ -296,14 +304,43 @@
     overflow: hidden;
   }
 
-  .prd-price {
-    font-size: 13px;
+  .prd-old-price {
+    font-size: 8px;
   }
-
+  .prd-price {
+    font-size: 12px;
+    gap: 6px;
+  }
+  .prd-promo-price {
+    font-size: 12px;
+  }
   .prd-pagination {
     padding: 20px 12px;
   }
+  .prd-btn-cart {
+    width: 30px;
+    height: 30px;
+  }
+  .prd-bestseller {
+    top: 8px;
+    right: 8px;
 
+    padding: 2px 4px;
+    font-size: 7px;
+    letter-spacing: 0.3px;
+  }
+  .prd-promo-badge {
+    bottom: 160px;
+    right: 2px;
+
+    min-width: 50px;
+    padding: 2px 4px;
+
+    border-radius: 6px;
+
+    font-size: 7px;
+    letter-spacing: 0.3px;
+  }
   /* TOMBOL CHECKOUT MENGAPUNG */
   .prd-btn-checkout {
     position: fixed;
