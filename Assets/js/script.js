@@ -4,34 +4,20 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 // FUNGSI CARI PRODUK
 function prdSearchFunction() {
   const input = document.getElementById("prd-search-box");
-  const container = document.getElementById("prd-container");
 
   if (!input) return;
 
   const keyword = input.value.trim();
 
-  // Jika berada di halaman detail, arahkan pencarian ke katalog
+  const container = document.getElementById("prd-container");
+
   if (!container) {
     window.location.href = `/?search=${encodeURIComponent(keyword)}`;
     return;
   }
 
-  const filter = keyword.toUpperCase();
-  const cards = container.getElementsByClassName("prd-card");
-
-  for (let i = 0; i < cards.length; i++) {
-    const title = cards[i].querySelector(".prd-title");
-    const name = cards[i].dataset.name || "";
-
-    if (
-      (title?.innerText || "").toUpperCase().includes(filter) ||
-      name.toUpperCase().includes(filter)
-    ) {
-      cards[i].style.display = "";
-    } else {
-      cards[i].style.display = "none";
-    }
-  }
+  searchKeyword = keyword;
+  filterProducts();
 }
 
 // FUNGSI SIMPAN DATA KERANJANG
@@ -217,7 +203,8 @@ function initProductSearch() {
   if (!input) return;
 
   input.value = keyword;
-  prdSearchFunction();
+  searchKeyword = keyword;
+  filterProducts();
 }
 
 initProductSearch();

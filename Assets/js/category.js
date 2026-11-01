@@ -1,15 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const sbcButtons = document.querySelectorAll(
-    ".sbc-item"
-  );
+  const sbcButtons = document.querySelectorAll(".sbc-item");
 
-  const sbcProducts = document.querySelectorAll(
-    "#prd-container .prd-card"
-  );
   sbcButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      const selectedCategory =
-        button.dataset.sbcCategory;
+      selectedCategory = button.dataset.sbcCategory;
 
       sbcButtons.forEach((item) => {
         item.classList.remove("sbc-active");
@@ -17,27 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       button.classList.add("sbc-active");
 
-      /* ==============================
-         FILTER PRODUCT
-      ============================== */
-      sbcProducts.forEach((product) => {
-        const productCategory =
-          product.dataset.sbcCategory;
-        if (
-          selectedCategory === "all" ||
-          productCategory === selectedCategory
-        ) {
-          product.classList.remove(
-            "sbc-hidden"
-          );
-
-        } else {
-          product.classList.add(
-            "sbc-hidden"
-          );
-        }
-      });
+      filterProducts();
     });
   });
 });
-
