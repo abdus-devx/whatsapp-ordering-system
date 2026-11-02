@@ -209,7 +209,7 @@
     height: 390px;
     max-height: none;
     aspect-ratio: auto;
-    object-fit: contain;
+    object-fit: cover;
     padding: 0;
     margin: 0;
     background: #f7f9f7;
