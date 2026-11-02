@@ -449,9 +449,9 @@ Blok 7 — Product Additional Information: mengatur informasi pendukung produk.
   box-sizing: content-box;
 }
 
-/*====================
+/*=======================
 Blok 9 — Product Info Accordion
-======================*/
+===========================*/
 
 .product-info {
   margin-top: 28px;
@@ -538,7 +538,7 @@ Blok 9 — Product Info Accordion
   }
 }
 
-/* Preview Informasi Produk */
+/* Preview Informasi Produk*/
 .product-info-preview {
   padding: 12px 20px 16px;
   color: #59675e;
