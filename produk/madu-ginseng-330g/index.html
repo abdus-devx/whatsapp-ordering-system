@@ -27,7 +27,7 @@
 </head>
 <body>
 
-  <header class="shop-header">
+  <header class="product-detail-page shop-header">
     <nav class="shop-nav">
       <a href="/" class="shop-logo">
         <span class="shop-logo-icon">
@@ -70,6 +70,38 @@
       </div>
     </nav>
   </header>
+  <header class="detail-header" id="detailHeader">
+  <nav class="detail-nav">
+
+    <!-- Back -->
+    <button class="detail-action" type="button" aria-label="Kembali" onclick="history.back()">
+      <i data-lucide="arrow-left"></i>
+    </button>
+
+    <!-- Search -->
+    <div class="detail-search">
+      <i data-lucide="search"></i>
+      <input type="search" placeholder="Cari produk herbal...">
+    </div>
+
+    <!-- Actions -->
+    <div class="detail-actions">
+      <button class="detail-action" type="button" aria-label="Bagikan">
+        <i data-lucide="share-2"></i>
+      </button>
+
+      <button class="detail-action" type="button" aria-label="Keranjang" onclick="toggleCart()">
+        <i data-lucide="shopping-cart"></i>
+        <span id="detail-cart-count">0</span>
+      </button>
+
+      <button class="detail-action" type="button" aria-label="Lainnya">
+        <i data-lucide="more-vertical"></i>
+      </button>
+    </div>
+
+  </nav>
+</header>
   <main class="product-detail" data-product-name="Madu Ginseng (330g)" data-product-price="190000">
     <nav class="product-breadcrumb" aria-label="Breadcrumb">
       <a href="/">Home</a>
@@ -168,14 +200,19 @@
         <button
         type="button"
         class="product-info-toggle"
-        aria-expanded="true"
+        aria-expanded="false"
         aria-controls="product-info-content"
         >
         <span>Informasi Produk</span>
-        <i data-lucide="chevron-up"></i>
+        <i data-lucide="chevron-down"></i>
         </button>
 
-        <div class="product-info-content" id="product-info-content">
+        <div class="product-info-preview">
+  Madu Ginseng merupakan produk madu dengan ginseng dalam kemasan 330 gram.
+  <span>Baca selengkapnya</span>
+</div>
+
+<div class="product-info-content" id="product-info-content" hidden>
 
           <p>Madu Ginseng merupakan produk madu dengan ginseng dalam kemasan 330 gram.</p>
 
@@ -281,25 +318,6 @@
         </a>
       
         <a
-          href="../kapsul-toper-30-kapsul/"
-          class="recommendation-card"
-        >
-          <div class="recommendation-image">
-            <img
-              src="../../Assets/images/sig2.png"
-              alt="Kapsul Toper (30 Kapsul)"
-              loading="lazy"
-            />
-          </div>
-
-          <div class="recommendation-info">
-            <h3>Kapsul Toper (30 Kapsul)</h3>
-            <p>Produk herbal dalam bentuk kapsul dengan kemasan isi 30 kapsul.</p>
-            <strong>Rp200.000</strong>
-          </div>
-        </a>
-      
-        <a
           href="../madu-arjuna-pria-dewasa/"
           class="recommendation-card"
         >
@@ -315,6 +333,25 @@
             <h3>Madu Arjuna (Pria Dewasa)</h3>
             <p>Madu herbal untuk pria dewasa dengan fokus pada vitalitas dan stamina.</p>
             <strong>Rp150.000</strong>
+          </div>
+        </a>
+      
+        <a
+          href="../kapsul-toper-30-kapsul/"
+          class="recommendation-card"
+        >
+          <div class="recommendation-image">
+            <img
+              src="../../Assets/images/sig2.png"
+              alt="Kapsul Toper (30 Kapsul)"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="recommendation-info">
+            <h3>Kapsul Toper (30 Kapsul)</h3>
+            <p>Produk herbal dalam bentuk kapsul dengan kemasan isi 30 kapsul.</p>
+            <strong>Rp200.000</strong>
           </div>
         </a>
       
@@ -361,6 +398,8 @@
     document.addEventListener("DOMContentLoaded", () => {
       const infoToggle = document.querySelector(".product-info-toggle");
       const infoContent = document.querySelector(".product-info-content");
+      const infoPreview = document.querySelector(".product-info-preview");
+
 
       if (infoToggle && infoContent) {
       infoToggle.addEventListener("click", () => {
@@ -369,6 +408,9 @@
 
       infoToggle.setAttribute("aria-expanded", String(!isExpanded));
       infoContent.hidden = isExpanded;
+      if (infoPreview) {
+        infoPreview.hidden = !isExpanded;
+      }
 
       const icon = infoToggle.querySelector("[data-lucide]");
 
@@ -493,23 +535,65 @@ document.querySelectorAll(".product-faq-question").forEach((button) => {
       const addButton = document.getElementById("product-add-to-cart");
       const productDetail = document.querySelector(".product-detail");
       const mainImage = document.getElementById("product-main-image");
-      const thumbnails = document.querySelectorAll(".product-thumbnail");
+const thumbnails = document.querySelectorAll(".product-thumbnail");
 
-      thumbnails.forEach((thumbnail) => {
-      thumbnail.addEventListener("click", () => {
-      if (!mainImage) return;
+let activeImageIndex = 0;
+let touchStartX = 0;
+let touchStartY = 0;
 
-      mainImage.src = thumbnail.dataset.image;
+function changeProductImage(index) {
+  if (!mainImage || thumbnails.length === 0) return;
 
-      thumbnails.forEach((item) => {
-        item.classList.remove("active");
-        item.setAttribute("aria-pressed", "false");
-      });
+  // Loop gambar
+  activeImageIndex =
+    (index + thumbnails.length) % thumbnails.length;
 
-      thumbnail.classList.add("active");
-      thumbnail.setAttribute("aria-pressed", "true");
-      });
-    });
+  const activeThumbnail = thumbnails[activeImageIndex];
+
+  mainImage.src = activeThumbnail.dataset.image;
+
+  thumbnails.forEach((thumbnail, i) => {
+    const isActive = i === activeImageIndex;
+
+    thumbnail.classList.toggle("active", isActive);
+    thumbnail.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
+// Klik thumbnail
+thumbnails.forEach((thumbnail, index) => {
+  thumbnail.addEventListener("click", () => {
+    changeProductImage(index);
+  });
+});
+
+// Mulai swipe
+if (mainImage) {
+  mainImage.addEventListener("touchstart", (event) => {
+    touchStartX = event.changedTouches[0].clientX;
+    touchStartY = event.changedTouches[0].clientY;
+  }, { passive: true });
+
+  // Selesai swipe
+  mainImage.addEventListener("touchend", (event) => {
+    const touchEndX = event.changedTouches[0].clientX;
+    const touchEndY = event.changedTouches[0].clientY;
+
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+
+    // Abaikan gerakan vertikal dan swipe terlalu pendek
+    if (Math.abs(diffX) < 45 || Math.abs(diffX) < Math.abs(diffY)) {
+      return;
+    }
+
+    if (diffX < 0) {
+      changeProductImage(activeImageIndex + 1);
+    } else {
+      changeProductImage(activeImageIndex - 1);
+    }
+  }, { passive: true });
+}
 
       if (!quantityInput || !minusButton || !plusButton || !addButton || !productDetail) {
         return;

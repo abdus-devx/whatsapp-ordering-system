@@ -377,14 +377,26 @@ function createProductPage(product) {
         <button
         type="button"
         class="product-info-toggle"
-        aria-expanded="true"
+        aria-expanded="false"
         aria-controls="product-info-content"
         >
         <span>Informasi Produk</span>
-        <i data-lucide="chevron-up"></i>
+        <i data-lucide="chevron-down"></i>
         </button>
 
-        <div class="product-info-content" id="product-info-content">
+        <div class="product-info-preview">
+  ${
+    overview
+      ? overview
+          .split(/\n\s*\n/)
+          .filter(Boolean)[0]
+          .trim()
+      : ""
+  }
+  <span>Baca selengkapnya</span>
+</div>
+
+<div class="product-info-content" id="product-info-content" hidden>
 
           ${
             overview
@@ -628,6 +640,8 @@ ${
     document.addEventListener("DOMContentLoaded", () => {
       const infoToggle = document.querySelector(".product-info-toggle");
       const infoContent = document.querySelector(".product-info-content");
+      const infoPreview = document.querySelector(".product-info-preview");
+
 
       if (infoToggle && infoContent) {
       infoToggle.addEventListener("click", () => {
@@ -636,6 +650,9 @@ ${
 
       infoToggle.setAttribute("aria-expanded", String(!isExpanded));
       infoContent.hidden = isExpanded;
+      if (infoPreview) {
+        infoPreview.hidden = !isExpanded;
+      }
 
       const icon = infoToggle.querySelector("[data-lucide]");
 

@@ -453,8 +453,6 @@ Blok 7 — Product Additional Information: mengatur informasi pendukung produk.
 Blok 9 — Product Info Accordion
 ======================*/
 
-/* Blok 9 — Product Info Accordion */
-
 .product-info {
   margin-top: 28px;
   padding: 0;
@@ -540,6 +538,22 @@ Blok 9 — Product Info Accordion
   }
 }
 
+/* Preview Informasi Produk */
+.product-info-preview {
+  padding: 12px 20px 16px;
+  color: #59675e;
+  font-size: 13px;
+  line-height: 1.6;
+  border-top: 1px solid #e4ece6;
+}
+
+.product-info-preview span {
+  display: block;
+  margin-top: 5px;
+  color: #16845b;
+  font-size: 12px;
+  font-weight: 700;
+}
 /*====================
 Blok 10 — Product Customer Reviews 
 ======================*/
