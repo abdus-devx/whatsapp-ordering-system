@@ -644,6 +644,13 @@ ${
 
 
       if (infoToggle && infoContent) {
+      if (infoPreview) {
+  infoPreview.style.cursor = "pointer";
+
+  infoPreview.addEventListener("click", () => {
+    infoToggle.click();
+  });
+}
       infoToggle.addEventListener("click", () => {
       const isExpanded =
       infoToggle.getAttribute("aria-expanded") === "true";
@@ -653,6 +660,7 @@ ${
       if (infoPreview) {
         infoPreview.hidden = !isExpanded;
       }
+      
 
       const icon = infoToggle.querySelector("[data-lucide]");
 
@@ -667,6 +675,7 @@ ${
           }
         }
         });
+        
       }
       
 
