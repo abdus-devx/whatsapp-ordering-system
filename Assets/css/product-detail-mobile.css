@@ -316,10 +316,11 @@
     bottom: 0;
     z-index: 1200;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     width: 100%;
-    padding: 11px 15px calc(11px + env(safe-area-inset-bottom));
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
     margin: 0;
     background: rgba(255, 255, 255, 0.97);
     border-top: 1px solid #edf0ed;
@@ -332,6 +333,7 @@
     flex: 0 0 auto;
     display: flex;
     align-items: center;
+    margin: 0;
     height: 42px;
     border: 1px solid #e5eae6;
     border-radius: 9px;
