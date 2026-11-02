@@ -376,3 +376,25 @@ function initCategoryScrollIndicator() {
 }
 
 document.addEventListener("DOMContentLoaded", initCategoryScrollIndicator);
+
+/* =========================================================
+   DETAIL HEADER SCROLL
+========================================================= */
+
+function initDetailHeader() {
+  const header = document.getElementById("detailHeader");
+
+  if (!header) return;
+
+  function updateHeader() {
+    header.classList.toggle("scrolled", window.scrollY > 50);
+  }
+
+  updateHeader();
+
+  window.addEventListener("scroll", updateHeader, {
+    passive: true,
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initDetailHeader);

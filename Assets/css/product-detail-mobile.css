@@ -27,76 +27,156 @@
     gap: 0;
     width: 100%;
   }
-
-  /* =========================
-     2. HEADER TRANSPARENT
-  ========================= */
-
   .shop-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-
-  .shop-nav {
-    min-height: 56px;
-    padding: 0 16px;
-    justify-content: flex-end;
-    gap: 10px;
-    background: transparent;
-  }
-
-  .shop-logo,
-  .prd-search-wrapper,
-  .shop-actions button[aria-label="Akun"] {
     display: none;
   }
 
-  .shop-actions {
+  /* =========================================================
+   2. DETAIL HEADER
+========================================================= */
+
+  .detail-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1100;
+    width: 100%;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease,
+      backdrop-filter 0.3s ease;
+  }
+
+  .detail-nav {
     display: flex;
     align-items: center;
     gap: 10px;
+    width: 100%;
+    min-height: 56px;
+    padding: 8px 14px;
   }
 
-  .shop-action {
+  .detail-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+  }
+
+  .detail-action {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 38px;
     width: 38px;
     height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #25352d;
-    background: rgba(255, 255, 255, 0.88);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 50%;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  }
-
-  .shop-action svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  .shop-action span {
-    position: absolute;
-    top: 3px;
-    right: 3px;
-    min-width: 15px;
-    height: 15px;
-    padding: 0 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 0;
     color: #fff;
-    background: #16845b;
+    background: rgba(0, 0, 0, 0.32);
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .detail-action i {
+    width: 19px;
+    height: 19px;
+    stroke-width: 2;
+  }
+
+  .detail-action span {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
+    color: #fff;
+    background: #e53935;
     border-radius: 20px;
-    font-size: 9px;
+    font-size: 10px;
+  }
+
+  /* Search: tersembunyi saat di atas */
+
+  .detail-search {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    height: 36px;
+    padding: 0 11px;
+    gap: 8px;
+    background: #f2f4f2;
+    border-radius: 20px;
+    opacity: 0;
+    visibility: hidden;
+    max-width: 0;
+    overflow: hidden;
+    transition:
+      opacity 0.3s ease,
+      max-width 0.3s ease,
+      visibility 0.3s ease;
+  }
+
+  .detail-search i {
+    width: 17px;
+    height: 17px;
+    color: #68756d;
+    flex-shrink: 0;
+  }
+
+  .detail-search input {
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    color: #26332b;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 12px;
+  }
+
+  /* Header setelah scroll */
+
+  .detail-header.scrolled {
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom-color: #e8ece9;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .detail-header.scrolled .detail-action {
+    color: #26332b;
+    background: #f0f3f0;
+  }
+
+  .detail-header.scrolled .detail-search {
+    max-width: 100%;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Mobile */
+
+  @media (max-width: 768px) {
+    .detail-header {
+      display: block;
+    }
+  }
+
+  /* Desktop: header detail tidak ditampilkan dahulu */
+
+  @media (min-width: 769px) {
+    .detail-header {
+      display: none;
+    }
   }
 
   /* =========================

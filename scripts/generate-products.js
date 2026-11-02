@@ -232,6 +232,38 @@ function createProductPage(product) {
       </div>
     </nav>
   </header>
+  <header class="detail-header" id="detailHeader">
+  <nav class="detail-nav">
+
+    <!-- Back -->
+    <button class="detail-action" type="button" aria-label="Kembali" onclick="history.back()">
+      <i data-lucide="arrow-left"></i>
+    </button>
+
+    <!-- Search -->
+    <div class="detail-search">
+      <i data-lucide="search"></i>
+      <input type="search" placeholder="Cari produk herbal...">
+    </div>
+
+    <!-- Actions -->
+    <div class="detail-actions">
+      <button class="detail-action" type="button" aria-label="Bagikan">
+        <i data-lucide="share-2"></i>
+      </button>
+
+      <button class="detail-action" type="button" aria-label="Keranjang" onclick="toggleCart()">
+        <i data-lucide="shopping-cart"></i>
+        <span id="detail-cart-count">0</span>
+      </button>
+
+      <button class="detail-action" type="button" aria-label="Lainnya">
+        <i data-lucide="more-vertical"></i>
+      </button>
+    </div>
+
+  </nav>
+</header>
   <main class="product-detail" data-product-name="${name}" data-product-price="${price}">
     <nav class="product-breadcrumb" aria-label="Breadcrumb">
       <a href="/">Home</a>
