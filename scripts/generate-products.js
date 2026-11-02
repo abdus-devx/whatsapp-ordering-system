@@ -760,23 +760,65 @@ document.querySelectorAll(".product-faq-question").forEach((button) => {
       const addButton = document.getElementById("product-add-to-cart");
       const productDetail = document.querySelector(".product-detail");
       const mainImage = document.getElementById("product-main-image");
-      const thumbnails = document.querySelectorAll(".product-thumbnail");
+const thumbnails = document.querySelectorAll(".product-thumbnail");
 
-      thumbnails.forEach((thumbnail) => {
-      thumbnail.addEventListener("click", () => {
-      if (!mainImage) return;
+let activeImageIndex = 0;
+let touchStartX = 0;
+let touchStartY = 0;
 
-      mainImage.src = thumbnail.dataset.image;
+function changeProductImage(index) {
+  if (!mainImage || thumbnails.length === 0) return;
 
-      thumbnails.forEach((item) => {
-        item.classList.remove("active");
-        item.setAttribute("aria-pressed", "false");
-      });
+  // Loop gambar
+  activeImageIndex =
+    (index + thumbnails.length) % thumbnails.length;
 
-      thumbnail.classList.add("active");
-      thumbnail.setAttribute("aria-pressed", "true");
-      });
-    });
+  const activeThumbnail = thumbnails[activeImageIndex];
+
+  mainImage.src = activeThumbnail.dataset.image;
+
+  thumbnails.forEach((thumbnail, i) => {
+    const isActive = i === activeImageIndex;
+
+    thumbnail.classList.toggle("active", isActive);
+    thumbnail.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
+// Klik thumbnail
+thumbnails.forEach((thumbnail, index) => {
+  thumbnail.addEventListener("click", () => {
+    changeProductImage(index);
+  });
+});
+
+// Mulai swipe
+if (mainImage) {
+  mainImage.addEventListener("touchstart", (event) => {
+    touchStartX = event.changedTouches[0].clientX;
+    touchStartY = event.changedTouches[0].clientY;
+  }, { passive: true });
+
+  // Selesai swipe
+  mainImage.addEventListener("touchend", (event) => {
+    const touchEndX = event.changedTouches[0].clientX;
+    const touchEndY = event.changedTouches[0].clientY;
+
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+
+    // Abaikan gerakan vertikal dan swipe terlalu pendek
+    if (Math.abs(diffX) < 45 || Math.abs(diffX) < Math.abs(diffY)) {
+      return;
+    }
+
+    if (diffX < 0) {
+      changeProductImage(activeImageIndex + 1);
+    } else {
+      changeProductImage(activeImageIndex - 1);
+    }
+  }, { passive: true });
+}
 
       if (!quantityInput || !minusButton || !plusButton || !addButton || !productDetail) {
         return;
