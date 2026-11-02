@@ -189,7 +189,7 @@ function createProductPage(product) {
 </head>
 <body>
 
-  <header class="shop-header">
+  <header class="product-detail-page shop-header">
     <nav class="shop-nav">
       <a href="/" class="shop-logo">
         <span class="shop-logo-icon">
