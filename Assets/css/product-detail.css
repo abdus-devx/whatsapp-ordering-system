@@ -1,7 +1,9 @@
 /*====================
 Blok 1 — Product Detail: mengatur fondasi, lebar, dan warna halaman detail produk.
 ======================*/
-
+.detail-header {
+  display: none;
+}
 .product-detail {
   width: min(1160px, calc(100% - 64px));
   margin: 40px auto 80px;
