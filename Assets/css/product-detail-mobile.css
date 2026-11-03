@@ -754,6 +754,54 @@
   .cart-drawer {
     max-width: 100%;
   }
+
+  /* =========================
+     12. DETAIL MORE MENU
+  ========================= */
+
+  .detail-more-wrapper {
+    position: relative;
+  }
+
+  .detail-more-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 180px;
+    padding: 6px;
+    background: #fff;
+    border: 1px solid #e8edf0;
+    border-radius: 12px;
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.12);
+    z-index: 1100;
+  }
+
+  .detail-more-menu[hidden] {
+    display: none;
+  }
+
+  .detail-more-menu a,
+  .detail-more-menu button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 11px 12px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #263746;
+    font: inherit;
+    font-size: 13px;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .detail-more-menu a:hover,
+  .detail-more-menu button:hover {
+    background: #f1f5f9;
+  }
 }
 
 /* =========================================================

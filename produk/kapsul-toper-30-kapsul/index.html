@@ -123,9 +123,21 @@
         <span id="detail-cart-count">0</span>
       </button>
 
-      <button class="detail-action" type="button" aria-label="Lainnya">
-        <i data-lucide="more-vertical"></i>
-      </button>
+      <div class="detail-more-wrapper">
+        <button
+          class="detail-action"
+          type="button"
+          id="detail-more-btn"
+          aria-label="Menu lainnya"
+          aria-expanded="false">
+          <i data-lucide="more-vertical"></i>
+        </button>
+
+        <div class="detail-more-menu" id="detail-more-menu" hidden>
+          <a href="/">Beranda Toko</a>
+          <button type="button" id="detail-copy-link">Salin Link Produk</button>
+        </div>
+      </div>
     </div>
 
   </nav>
@@ -332,25 +344,6 @@
     <div class="product-recommendations-grid">
       
         <a
-          href="../kapsul-sari-ikan-gabus/"
-          class="recommendation-card"
-        >
-          <div class="recommendation-image">
-            <img
-              src="../../Assets/images/sig1.png"
-              alt="Kapsul Sari Ikan Gabus"
-              loading="lazy"
-            />
-          </div>
-
-          <div class="recommendation-info">
-            <h3>Kapsul Sari Ikan Gabus</h3>
-            <p>Ekstrak ikan gabus dalam bentuk kapsul yang praktis.</p>
-            <strong>Rp170.000</strong>
-          </div>
-        </a>
-      
-        <a
           href="../madu-arjuna-pria-dewasa/"
           class="recommendation-card"
         >
@@ -366,6 +359,25 @@
             <h3>Madu Arjuna (Pria Dewasa)</h3>
             <p>Madu herbal untuk pria dewasa dengan fokus pada vitalitas dan stamina.</p>
             <strong>Rp150.000</strong>
+          </div>
+        </a>
+      
+        <a
+          href="../kapsul-sari-ikan-gabus/"
+          class="recommendation-card"
+        >
+          <div class="recommendation-image">
+            <img
+              src="../../Assets/images/sig1.png"
+              alt="Kapsul Sari Ikan Gabus"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="recommendation-info">
+            <h3>Kapsul Sari Ikan Gabus</h3>
+            <p>Ekstrak ikan gabus dalam bentuk kapsul yang praktis.</p>
+            <strong>Rp170.000</strong>
           </div>
         </a>
       
@@ -521,6 +533,42 @@ if (reviewTrack && reviewPrev && reviewNext) {
   window.addEventListener("resize", updateReviewButtons);
 
   updateReviewButtons();
+}
+
+// MENU LAINNYA
+const moreButton = document.getElementById("detail-more-btn");
+const moreMenu = document.getElementById("detail-more-menu");
+const copyLinkButton = document.getElementById("detail-copy-link");
+
+if (moreButton && moreMenu) {
+  moreButton.addEventListener("click", () => {
+    const isOpen = !moreMenu.hidden;
+
+    moreMenu.hidden = isOpen;
+    moreButton.setAttribute("aria-expanded", String(!isOpen));
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!moreButton.contains(event.target) && !moreMenu.contains(event.target)) {
+      moreMenu.hidden = true;
+      moreButton.setAttribute("aria-expanded", "false");
+    }
+  });
+}
+
+// SALIN LINK PRODUK
+if (copyLinkButton) {
+  copyLinkButton.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      showAlert("Link produk berhasil disalin!");
+      moreMenu.hidden = true;
+      moreButton.setAttribute("aria-expanded", "false");
+    } catch (error) {
+      console.error("Gagal menyalin link:", error);
+      showAlert("Tidak dapat menyalin link produk.");
+    }
+  });
 }
 
 // Review Image Lightbox
