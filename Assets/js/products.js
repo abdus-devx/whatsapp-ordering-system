@@ -10,6 +10,7 @@ const globalFaq = [
       "Informasi ongkos kirim akan dikonfirmasi melalui WhatsApp berdasarkan alamat tujuan.",
   },
 ];
+
 const products = [
   {
     id: 1,
@@ -101,7 +102,7 @@ const products = [
     },
 
     bestseller: true,
-    promo: false,
+    promo: true,
   },
   {
     id: 2,
