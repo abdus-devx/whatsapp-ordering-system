@@ -101,10 +101,15 @@
     </button>
 
     <!-- Search -->
-    <div class="detail-search">
-      <i data-lucide="search"></i>
-      <input type="search" placeholder="Cari produk herbal...">
-    </div>
+    <form class="detail-search" id="detail-search-form">
+  <i data-lucide="search"></i>
+  <input
+    type="search"
+    id="detail-search-input"
+    placeholder="Cari produk herbal..."
+    aria-label="Cari produk"
+  >
+</form>
 
     <!-- Actions -->
     <div class="detail-actions">
@@ -464,7 +469,22 @@
         
       }
       
+// PENCARIAN DARI HALAMAN DETAIL
+const detailSearchForm = document.getElementById("detail-search-form");
+const detailSearchInput = document.getElementById("detail-search-input");
 
+if (detailSearchForm && detailSearchInput) {
+  detailSearchForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const keyword = detailSearchInput.value.trim();
+
+    if (!keyword) return;
+
+    window.location.href = "/?search=" + encodeURIComponent(keyword);
+  });
+}
+  
 const reviewTrack = document.querySelector("#product-reviews-track");
 const reviewPrev = document.querySelector("[data-review-prev]");
 const reviewNext = document.querySelector("[data-review-next]");

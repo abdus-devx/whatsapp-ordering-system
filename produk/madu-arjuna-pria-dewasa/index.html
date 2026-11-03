@@ -101,10 +101,15 @@
     </button>
 
     <!-- Search -->
-    <div class="detail-search">
-      <i data-lucide="search"></i>
-      <input type="search" placeholder="Cari produk herbal...">
-    </div>
+    <form class="detail-search" id="detail-search-form">
+  <i data-lucide="search"></i>
+  <input
+    type="search"
+    id="detail-search-input"
+    placeholder="Cari produk herbal..."
+    aria-label="Cari produk"
+  >
+</form>
 
     <!-- Actions -->
     <div class="detail-actions">
@@ -327,21 +332,21 @@
     <div class="product-recommendations-grid">
       
         <a
-          href="../kapsul-sari-ikan-gabus/"
+          href="../madu-ginseng-330g/"
           class="recommendation-card"
         >
           <div class="recommendation-image">
             <img
-              src="../../Assets/images/sig1.png"
-              alt="Kapsul Sari Ikan Gabus"
+              src="../../Assets/images/ginseng_madu.avif"
+              alt="Madu Ginseng (330g)"
               loading="lazy"
             />
           </div>
 
           <div class="recommendation-info">
-            <h3>Kapsul Sari Ikan Gabus</h3>
-            <p>Ekstrak ikan gabus dalam bentuk kapsul yang praktis.</p>
-            <strong>Rp170.000</strong>
+            <h3>Madu Ginseng (330g)</h3>
+            <p>Madu ginseng dalam kemasan 330 gram.</p>
+            <strong>Rp190.000</strong>
           </div>
         </a>
       
@@ -365,21 +370,21 @@
         </a>
       
         <a
-          href="../madu-ginseng-330g/"
+          href="../kapsul-sari-ikan-gabus/"
           class="recommendation-card"
         >
           <div class="recommendation-image">
             <img
-              src="../../Assets/images/ginseng_madu.avif"
-              alt="Madu Ginseng (330g)"
+              src="../../Assets/images/sig1.png"
+              alt="Kapsul Sari Ikan Gabus"
               loading="lazy"
             />
           </div>
 
           <div class="recommendation-info">
-            <h3>Madu Ginseng (330g)</h3>
-            <p>Madu ginseng dalam kemasan 330 gram.</p>
-            <strong>Rp190.000</strong>
+            <h3>Kapsul Sari Ikan Gabus</h3>
+            <p>Ekstrak ikan gabus dalam bentuk kapsul yang praktis.</p>
+            <strong>Rp170.000</strong>
           </div>
         </a>
       
@@ -464,7 +469,22 @@
         
       }
       
+// PENCARIAN DARI HALAMAN DETAIL
+const detailSearchForm = document.getElementById("detail-search-form");
+const detailSearchInput = document.getElementById("detail-search-input");
 
+if (detailSearchForm && detailSearchInput) {
+  detailSearchForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const keyword = detailSearchInput.value.trim();
+
+    if (!keyword) return;
+
+    window.location.href = "/?search=" + encodeURIComponent(keyword);
+  });
+}
+  
 const reviewTrack = document.querySelector("#product-reviews-track");
 const reviewPrev = document.querySelector("[data-review-prev]");
 const reviewNext = document.querySelector("[data-review-next]");
