@@ -130,6 +130,7 @@ function createProductPage(product) {
   const bpom = escapeHtml(legality.bpom || "");
   const halal = escapeHtml(legality.halal || "");
   const image = getImagePath(product.image);
+  const shareImage = image.replace(/\.(avif|webp|png)$/i, ".jpg");
   const price = Number(product.price);
 
   if (!Number.isFinite(price) || price < 0) {
@@ -146,8 +147,12 @@ function createProductPage(product) {
     "@type": "Product",
     name: product.name,
     description: product.description || "",
-    image: `https://store.massusi.net${image}`,
+    image: [`https://store.massusi.net${image}`],
     category: product.category || "Produk Massusi",
+    brand: {
+      "@type": "Brand",
+      name: "Massusi",
+    },
     offers: {
       "@type": "Offer",
       url: canonical,
@@ -165,25 +170,47 @@ function createProductPage(product) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${name} | Toko Massusi</title>
-  <meta name="description" content="${description}">
+
+  <!-- SEO -->
+  <title>${escapeHtml(name)} | Toko Massusi</title>
+  <meta name="description" content="${escapeHtml(description)}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="${canonical}">
 
+  <!-- Open Graph -->
   <meta property="og:type" content="product">
-  <meta property="og:title" content="${name} | Toko Massusi">
-  <meta property="og:description" content="${description}">
+  <meta property="og:site_name" content="Massusi Store">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:title" content="${escapeHtml(name)} | Toko Massusi">
+  <meta property="og:description" content="${escapeHtml(description)}">
   <meta property="og:url" content="${canonical}">
-  <meta property="og:image" content="https://store.massusi.net${image}">
+  <meta property="og:image" content="https://store.massusi.net${shareImage}">
+  <meta property="og:image:alt" content="${escapeHtml(name)}">
+  <meta property="og:image:type" content="image/jpeg">
 
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(name)} | Toko Massusi">
+  <meta name="twitter:description" content="${escapeHtml(description)}">
+  <meta name="twitter:image" content="https://store.massusi.net${shareImage}">
+
+  <!-- Browser Theme -->
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="/Assets/images/favicon500.png">
+
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="/Assets/css/style.css">
   <link rel="stylesheet" href="/Assets/css/utils.css">
   <link rel="stylesheet" href="/Assets/css/cart.css">
   <link rel="stylesheet" href="/Assets/css/product-detail.css">
   <link rel="stylesheet" href="/Assets/css/product-detail-mobile.css">
 
+  <!-- Structured Data -->
   <script type="application/ld+json">${productJsonLd}</script>
+
+  <!-- Scripts -->
   <script src="https://unpkg.com/lucide@latest" defer></script>
   <script src="/Assets/js/script.js" defer></script>
 </head>
@@ -248,7 +275,8 @@ function createProductPage(product) {
 
     <!-- Actions -->
     <div class="detail-actions">
-      <button class="detail-action" type="button" aria-label="Bagikan">
+      <button
+        class="detail-action" type="button" id="detail-share-btn" aria-label="Bagikan produk">
         <i data-lucide="share-2"></i>
       </button>
 
@@ -264,7 +292,12 @@ function createProductPage(product) {
 
   </nav>
 </header>
-  <main class="product-detail" data-product-name="${name}" data-product-price="${price}">
+  <main
+  class="product-detail"
+  data-product-name="${name}"
+  data-product-price="${price}"
+  data-product-description="${escapeHtml(description)}"
+  data-product-image="${image}">
     <nav class="product-breadcrumb" aria-label="Breadcrumb">
       <a href="/">Home</a>
       <span aria-hidden="true">/</span>
@@ -852,7 +885,40 @@ if (mainImage) {
 
       const productName = productDetail.dataset.productName;
       const productPrice = Number(productDetail.dataset.productPrice);
+      // Share Product
+const shareButton = document.getElementById("detail-share-btn");
 
+if (shareButton) {
+  shareButton.addEventListener("click", async () => {
+    const productDescription = productDetail.dataset.productDescription;
+    const productUrl = window.location.href;
+
+    const shareData = {
+      title: productName,
+      text:
+        "Temukan " + productName + " di Massusi Store.\n\n" +
+        productDescription +
+        "\n\nLihat detail produk dan pesan di sini:",
+      url: productUrl
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(
+          shareData.text + "\n" + productUrl
+        );
+        alert("Link produk berhasil disalin.");
+      }
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        console.error("Gagal membagikan produk:", error);
+      }
+    }
+  });
+}
+      
       const getQuantity = () => {
         const value = Number.parseInt(quantityInput.value, 10);
         return Number.isFinite(value) && value > 0 ? value : 1;
