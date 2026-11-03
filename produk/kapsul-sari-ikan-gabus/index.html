@@ -495,21 +495,21 @@
     <div class="product-recommendations-grid">
       
         <a
-          href="../madu-arjuna-pria-dewasa/"
+          href="../madu-ginseng-330g/"
           class="recommendation-card"
         >
           <div class="recommendation-image">
             <img
-              src="../../Assets/images/sig3.png"
-              alt="Madu Arjuna (Pria Dewasa)"
+              src="../../Assets/images/ginseng_madu.avif"
+              alt="Madu Ginseng (330g)"
               loading="lazy"
             />
           </div>
 
           <div class="recommendation-info">
-            <h3>Madu Arjuna (Pria Dewasa)</h3>
-            <p>Madu herbal untuk pria dewasa dengan fokus pada vitalitas dan stamina.</p>
-            <strong>Rp150.000</strong>
+            <h3>Madu Ginseng (330g)</h3>
+            <p>Madu ginseng dalam kemasan 330 gram.</p>
+            <strong>Rp190.000</strong>
           </div>
         </a>
       
@@ -533,21 +533,21 @@
         </a>
       
         <a
-          href="../madu-ginseng-330g/"
+          href="../madu-arjuna-pria-dewasa/"
           class="recommendation-card"
         >
           <div class="recommendation-image">
             <img
-              src="../../Assets/images/ginseng_madu.avif"
-              alt="Madu Ginseng (330g)"
+              src="../../Assets/images/sig3.png"
+              alt="Madu Arjuna (Pria Dewasa)"
               loading="lazy"
             />
           </div>
 
           <div class="recommendation-info">
-            <h3>Madu Ginseng (330g)</h3>
-            <p>Madu ginseng dalam kemasan 330 gram.</p>
-            <strong>Rp190.000</strong>
+            <h3>Madu Arjuna (Pria Dewasa)</h3>
+            <p>Madu herbal untuk pria dewasa dengan fokus pada vitalitas dan stamina.</p>
+            <strong>Rp150.000</strong>
           </div>
         </a>
       
@@ -817,13 +817,9 @@ if (shareButton) {
     const shareData = {
       title: productName,
       text:
-        "Temukan " + productName + " di Massusi Store.
-
-" +
+        "Temukan " + productName + " di Massusi Store.\n\n" +
         productDescription +
-        "
-
-Lihat detail produk dan pesan di sini:",
+        "\n\nLihat detail produk dan pesan di sini:",
       url: productUrl
     };
 
@@ -832,8 +828,7 @@ Lihat detail produk dan pesan di sini:",
         await navigator.share(shareData);
       } else {
         await navigator.clipboard.writeText(
-          shareData.text + "
-" + productUrl
+          shareData.text + "\n" + productUrl
         );
         alert("Link produk berhasil disalin.");
       }

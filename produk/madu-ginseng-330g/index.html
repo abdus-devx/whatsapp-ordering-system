@@ -346,25 +346,6 @@
         </a>
       
         <a
-          href="../kapsul-toper-30-kapsul/"
-          class="recommendation-card"
-        >
-          <div class="recommendation-image">
-            <img
-              src="../../Assets/images/sig2.png"
-              alt="Kapsul Toper (30 Kapsul)"
-              loading="lazy"
-            />
-          </div>
-
-          <div class="recommendation-info">
-            <h3>Kapsul Toper (30 Kapsul)</h3>
-            <p>Produk herbal dalam bentuk kapsul dengan kemasan isi 30 kapsul.</p>
-            <strong>Rp200.000</strong>
-          </div>
-        </a>
-      
-        <a
           href="../madu-arjuna-pria-dewasa/"
           class="recommendation-card"
         >
@@ -380,6 +361,25 @@
             <h3>Madu Arjuna (Pria Dewasa)</h3>
             <p>Madu herbal untuk pria dewasa dengan fokus pada vitalitas dan stamina.</p>
             <strong>Rp150.000</strong>
+          </div>
+        </a>
+      
+        <a
+          href="../kapsul-toper-30-kapsul/"
+          class="recommendation-card"
+        >
+          <div class="recommendation-image">
+            <img
+              src="../../Assets/images/sig2.png"
+              alt="Kapsul Toper (30 Kapsul)"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="recommendation-info">
+            <h3>Kapsul Toper (30 Kapsul)</h3>
+            <p>Produk herbal dalam bentuk kapsul dengan kemasan isi 30 kapsul.</p>
+            <strong>Rp200.000</strong>
           </div>
         </a>
       
@@ -649,13 +649,9 @@ if (shareButton) {
     const shareData = {
       title: productName,
       text:
-        "Temukan " + productName + " di Massusi Store.
-
-" +
+        "Temukan " + productName + " di Massusi Store.\n\n" +
         productDescription +
-        "
-
-Lihat detail produk dan pesan di sini:",
+        "\n\nLihat detail produk dan pesan di sini:",
       url: productUrl
     };
 
@@ -664,8 +660,7 @@ Lihat detail produk dan pesan di sini:",
         await navigator.share(shareData);
       } else {
         await navigator.clipboard.writeText(
-          shareData.text + "
-" + productUrl
+          shareData.text + "\n" + productUrl
         );
         alert("Link produk berhasil disalin.");
       }

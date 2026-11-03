@@ -896,9 +896,9 @@ if (shareButton) {
     const shareData = {
       title: productName,
       text:
-        "Temukan " + productName + " di Massusi Store.\n\n" +
+        "Temukan " + productName + " di Massusi Store.\\n\\n" +
         productDescription +
-        "\n\nLihat detail produk dan pesan di sini:",
+        "\\n\\nLihat detail produk dan pesan di sini:",
       url: productUrl
     };
 
@@ -907,7 +907,7 @@ if (shareButton) {
         await navigator.share(shareData);
       } else {
         await navigator.clipboard.writeText(
-          shareData.text + "\n" + productUrl
+          shareData.text + "\\n" + productUrl
         );
         alert("Link produk berhasil disalin.");
       }
