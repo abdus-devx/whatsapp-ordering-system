@@ -276,9 +276,12 @@
     object-fit: contain;
   }
 
+  .prd-content {
+    padding: 7px 7px 6px;
+  }
   .prd-title {
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.4;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -295,7 +298,7 @@
   }
 
   .prd-description {
-    font-size: 10px;
+    font-size: 9px;
     line-height: 1.4;
     display: -webkit-box;
     -webkit-box-orient: vertical;
