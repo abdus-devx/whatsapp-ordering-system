@@ -47,80 +47,48 @@
   }
 }
 
+.prd-image-wrapper {
+  position: relative;
+}
+
 .prd-promo-badge {
   position: absolute;
-  bottom: 187px;
-  right: 12px;
+  top: 10px;
+  left: 10px;
   z-index: 2;
 
-  display: flex;
-  flex-direction: row;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  min-width: 62px;
-  padding: 6px 9px;
+  padding: 4px 8px;
+  border-radius: 5px;
 
-  border-radius: 10px;
+  background: #f1f5f9;
+  color: #475569;
 
   font-size: 10px;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: 0.4px;
-
-  background: #015735;
-  color: #fff;
-
-  pointer-events: none;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.2px;
 }
-
-.prd-promo-label {
-  font-size: 10px;
-  width: 100%;
-  text-align: left;
+.prd-price {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
 }
 
 .prd-old-price {
   display: inline-block;
-
-  font-size: 13px;
+  font-size: 11px;
   text-decoration: line-through;
   opacity: 0.55;
 }
 
 .prd-promo-price {
   display: block;
-
   font-size: 18px;
   font-weight: 700;
-}
-.prd-discount-wrap {
-  display: flex;
-}
-.prd-discount {
-  display: inline-block;
-  margin-top: 2px;
-
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.prd-discount.discount-highlight {
-  animation: discountHighlight 0.5s ease-out;
-}
-
-@keyframes discountHighlight {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.2);
-  }
-
-  100% {
-    transform: scale(1);
-  }
 }
 
 /* Tooltip - social footer */

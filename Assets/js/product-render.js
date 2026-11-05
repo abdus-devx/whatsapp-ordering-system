@@ -23,36 +23,30 @@ function createProductCard(product) {
       data-sbc-category="${product.category}"
     >
       ${product.bestseller ? '<span class="prd-bestseller">★ BEST SELLER</span>' : ""}
+    <div class="prd-image-wrapper">
       ${
-        product.promo
+        product.promo && product.oldPrice > product.price
           ? `
-                      <span class="prd-promo-badge">
-                        <span class="prd-promo-label">⚡ PROMO</span>
-                        <div class="prd-discount-wrap>
-                        <span class="prd-promo-label">HEMAT</span>
-                        <span
-                          class="prd-discount"
-                          data-discount="${calculateDiscount(
-                            product.oldPrice,
-                            product.price,
-                          )}"
-                        > 0%</span>
-                        </div>
-                      </span>
-                    `
+        <span class="prd-promo-badge">
+          -${calculateDiscount(product.oldPrice, product.price)}%
+        </span>
+      `
           : ""
       }
-      <a
-        href="/produk/${createProductSlug(product)}/"
-        aria-label="Lihat detail ${product.name}"
-      >
-      <img
-        alt="${product.name}"
-        class="prd-img"
-        loading="lazy"
-        src="${product.image}"
-      />
-      </a>
+
+  <a
+    href="/produk/${createProductSlug(product)}/"
+    aria-label="Lihat detail ${product.name}"
+  >
+    <img
+      alt="${product.name}"
+      class="prd-img"
+      loading="lazy"
+      src="${product.image}"
+    />
+  </a>
+  </div>
+       
 
       <div class="prd-content">
         <h3 class="prd-title">

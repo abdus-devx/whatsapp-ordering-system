@@ -1,7 +1,6 @@
 /* SEMBUNYIKAN KOMPONEN MOBILE DI DESKTOP */
 .mobile-promo,
-.mobile-bottom-nav,
-.sft-footer {
+.mobile-bottom-nav {
   display: none;
 }
 /* =========================================
@@ -25,7 +24,8 @@
   .shop-topbar,
   .shop-hero,
   .shop-benefits,
-  .prd-hero-sub {
+  .prd-hero-sub,
+  .sft-footer {
     display: none;
   }
 
@@ -329,17 +329,14 @@
     font-size: 7px;
     letter-spacing: 0.3px;
   }
+
   .prd-promo-badge {
-    bottom: 160px;
-    right: 2px;
-
-    min-width: 50px;
-    padding: 2px 4px;
-
-    border-radius: 6px;
-
-    font-size: 7px;
-    letter-spacing: 0.3px;
+    top: 7px;
+    left: 7px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 9px;
+    letter-spacing: 0.1px;
   }
 
   .prd-scroll-sentinel {
