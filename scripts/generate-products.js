@@ -55,13 +55,21 @@ function formatPrice(price) {
 }
 
 function getImagePath(image) {
-  const filename = path.posix.basename(String(image || ""));
+  const imagePath = String(image || "").trim();
 
-  if (!filename || filename === "." || filename === "..") {
+  if (!imagePath) {
     throw new Error("Gambar produk tidak valid.");
   }
 
-  return `/Assets/images/${encodeURIComponent(filename)}`;
+  // Hilangkan ./ di awal path
+  const cleanPath = imagePath.replace(/^\.\/+/, "");
+
+  // Pastikan path berada di dalam assets/images
+  if (!cleanPath.startsWith("assets/images/")) {
+    throw new Error("Lokasi gambar tidak valid.");
+  }
+
+  return `/${cleanPath.split("/").map(encodeURIComponent).join("/")}`;
 }
 
 const usedSlugs = new Set();
