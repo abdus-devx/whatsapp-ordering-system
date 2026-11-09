@@ -21,12 +21,12 @@ const products = [
     price: 170000,
 
     // Foto katalog dan galeri detail
-    image: "./Assets/images/sig1.png",
+    image: "./assets/images/sig1.png",
     images: [
-      "./Assets/images/sig1.png",
-      "./Assets/images/ginseng_madu.avif",
-      "./Assets/images/sig1-detail-2.png",
-      "./Assets/images/sig1-kemasan.png",
+      "./assets/images/sig1.png",
+      "./assets/images/ginseng_madu.avif",
+      "./assets/images/sig1-detail-2.png",
+      "./assets/images/sig1-kemasan.png",
     ],
 
     // Informasi ringkas untuk katalog
@@ -89,7 +89,7 @@ const products = [
           message: "Produk dikemas dengan baik dan sampai dengan aman.",
           date: "September 2026",
           rating: 4,
-          image: "./Assets/images/sig1.png",
+          image: "./assets/images/sig1.png",
         },
       ],
 
@@ -112,8 +112,8 @@ const products = [
     oldPrice: 179000,
     price: 150000,
 
-    image: "./Assets/images/sig3.png",
-    images: ["./Assets/images/sig3.png"],
+    image: "./assets/images/sig3.png",
+    images: ["./assets/images/sig3.png"],
 
     shortDescription:
       "Madu herbal untuk pria dewasa dengan fokus pada vitalitas dan stamina.",
@@ -143,8 +143,8 @@ const products = [
     category: "kapsul",
     price: 200000,
 
-    image: "./Assets/images/sig2.png",
-    images: ["./Assets/images/sig2.png"],
+    image: "./assets/images/sig2.png",
+    images: ["./assets/images/sig2.png"],
 
     shortDescription:
       "Produk herbal dalam bentuk kapsul dengan kemasan isi 30 kapsul.",
@@ -174,8 +174,8 @@ const products = [
     category: "madu",
     price: 190000,
 
-    image: "./Assets/images/ginseng_madu.avif",
-    images: ["./Assets/images/ginseng_madu.avif"],
+    image: "./assets/images/ginseng_madu.avif",
+    images: ["./assets/images/ginseng_madu.avif"],
 
     shortDescription: "Madu ginseng dalam kemasan 330 gram.",
     description:

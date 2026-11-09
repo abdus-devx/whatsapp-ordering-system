@@ -47,7 +47,6 @@ function createProductCard(product) {
   </a>
   </div>
        
-
       <div class="prd-content">
         <h3 class="prd-title">
           <a href="/produk/${createProductSlug(product)}/">
@@ -252,40 +251,6 @@ window.addEventListener("resize", () => {
   renderProducts(activeProductList);
   renderPagination(activeProductList);
 });
-
-function animateDiscounts() {
-  const discounts = document.querySelectorAll(".prd-discount");
-
-  discounts.forEach((element) => {
-    const target = Number(element.dataset.discount);
-
-    let current = 0;
-
-    function countUp() {
-      current++;
-
-      element.textContent = `${current}%`;
-
-      if (current < target) {
-        setTimeout(countUp, 70);
-      } else {
-        element.classList.add("discount-highlight");
-
-        setTimeout(() => {
-          element.classList.remove("discount-highlight");
-        }, 500);
-
-        setTimeout(() => {
-          current = 0;
-          element.textContent = "0%";
-          countUp();
-        }, 3500);
-      }
-    }
-
-    countUp();
-  });
-}
 
 renderProducts(products);
 renderPagination(products);

@@ -3,7 +3,7 @@ const path = require("path");
 const vm = require("vm");
 
 const rootDir = path.resolve(__dirname, "..");
-const productsFile = path.join(rootDir, "Assets/js/products.js");
+const productsFile = path.join(rootDir, "assets/js/products.js");
 const outputDir = path.join(rootDir, "produk");
 
 const source = fs.readFileSync(productsFile, "utf8");
@@ -88,7 +88,7 @@ function createProductPage(product) {
   usedSlugs.add(slug);
 
   const name = escapeHtml(product.name);
-  const category = escapeHtml(product.category || "Produk Massusi");
+  const category = escapeHtml(product.category || "Produk Suuqy");
   const description = escapeHtml(product.description || "");
   const detail = product.detail || {};
   const recommendedProducts = products
@@ -139,13 +139,37 @@ function createProductPage(product) {
   const halal = escapeHtml(legality.halal || "");
   const image = getImagePath(product.image);
   const shareImage = image.replace(/\.(avif|webp|png)$/i, ".jpg");
-  const price = Number(product.price);
+
+  // Data varian
+  const variants = product.variants || null;
+
+  const combinations = Array.isArray(variants?.combinations)
+    ? variants.combinations
+    : [];
+
+  const variantPrices = combinations
+    .map((variant) => Number(variant.price))
+    .filter((price) => Number.isFinite(price) && price > 0);
+
+  // Harga katalog mengambil harga termurah dari varian
+  const price = variantPrices.length
+    ? Math.min(...variantPrices)
+    : Number(product.price);
+
+  // Siapkan data varian untuk halaman produk
+  const variantData = combinations.map((variant) => ({
+    id: variant.id,
+    options: variant.options,
+    price: Number(variant.price),
+    stock: variant.stock,
+    image: getImagePath(variant.image || product.image),
+  }));
 
   if (!Number.isFinite(price) || price < 0) {
     throw new Error(`Harga tidak valid untuk produk "${product.name}".`);
   }
 
-  const canonical = `https://store.massusi.net/produk/${slug}/`;
+  const canonical = `https://suuqy.com/produk/${slug}/`;
   const oldPrice = Number(product.oldPrice);
   const hasOldPrice =
     Number.isFinite(oldPrice) && oldPrice > price && oldPrice > 0;
@@ -155,11 +179,11 @@ function createProductPage(product) {
     "@type": "Product",
     name: product.name,
     description: product.description || "",
-    image: [`https://store.massusi.net${image}`],
-    category: product.category || "Produk Massusi",
+    image: [`https://suuqy.vercel.app/${image}`],
+    category: product.category || "Produk Suuqy",
     brand: {
       "@type": "Brand",
-      name: "Massusi",
+      name: "Suuqy",
     },
     offers: {
       "@type": "Offer",
@@ -180,47 +204,49 @@ function createProductPage(product) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO -->
-  <title>${escapeHtml(name)} | Toko Massusi</title>
+  <title>${escapeHtml(name)} | Toko Suuqy</title>
   <meta name="description" content="${escapeHtml(description)}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="${canonical}">
 
   <!-- Open Graph -->
   <meta property="og:type" content="product">
-  <meta property="og:site_name" content="Massusi Store">
+  <meta property="og:site_name" content="Suuqy Store">
   <meta property="og:locale" content="id_ID">
-  <meta property="og:title" content="${escapeHtml(name)} | Toko Massusi">
+  <meta property="og:title" content="${escapeHtml(name)} | Toko Suuqy">
   <meta property="og:description" content="${escapeHtml(description)}">
   <meta property="og:url" content="${canonical}">
-  <meta property="og:image" content="https://store.massusi.net${shareImage}">
+  <meta property="og:image" content="https://suuqy.vercel.app${shareImage}">
   <meta property="og:image:alt" content="${escapeHtml(name)}">
   <meta property="og:image:type" content="image/jpeg">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${escapeHtml(name)} | Toko Massusi">
+  <meta name="twitter:title" content="${escapeHtml(name)} | Toko Suuqy">
   <meta name="twitter:description" content="${escapeHtml(description)}">
-  <meta name="twitter:image" content="https://store.massusi.net${shareImage}">
+  <meta name="twitter:image" content="https://suuqy.vercel.app/${shareImage}">
 
   <!-- Browser Theme -->
   <meta name="theme-color" content="#ffffff">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/Assets/images/favicon500.png">
+  <link rel="icon" type="image/png" href="/assets/images/favicon500.png">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="/Assets/css/style.css">
-  <link rel="stylesheet" href="/Assets/css/utils.css">
-  <link rel="stylesheet" href="/Assets/css/cart.css">
-  <link rel="stylesheet" href="/Assets/css/product-detail.css">
-  <link rel="stylesheet" href="/Assets/css/product-detail-mobile.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/utils.css">
+  <link rel="stylesheet" href="/assets/css/cart.css">
+  <link rel="stylesheet" href="/assets/css/product-detail.css">
+  <link rel="stylesheet" href="/assets/css/product-detail-mobile.css">
 
   <!-- Structured Data -->
   <script type="application/ld+json">${productJsonLd}</script>
 
   <!-- Scripts -->
   <script src="https://unpkg.com/lucide@latest" defer></script>
-  <script src="/Assets/js/script.js" defer></script>
+  <script src="/assets/js/cart.js" defer></script>
+  <script src="/assets/js/script.js" defer></script>
+  <script src="/assets/js/product-detail.js" defer></script>
 </head>
 <body>
 
@@ -228,10 +254,10 @@ function createProductPage(product) {
     <nav class="shop-nav">
       <a href="/" class="shop-logo">
         <span class="shop-logo-icon">
-          <img src="/Assets/images/MassLogo.avif" alt="Massusi Store">
+          <img src="/assets/images/MassLogo.avif" alt="Suuqy Store">
         </span>
         <span class="shop-logo-text">
-          <strong>MASSUSI</strong>
+          <strong>Suuqy</strong>
           <small>STORE</small>
         </span>
       </a>
@@ -319,10 +345,7 @@ function createProductPage(product) {
 </header>
   <main
   class="product-detail"
-  data-product-name="${name}"
-  data-product-price="${price}"
-  data-product-description="${escapeHtml(description)}"
-  data-product-image="${image}">
+  data-product-name="${name}" data-product-price="${price}" data-product-description="${escapeHtml(description)}" data-product-image="${image}" data-product-variants="${escapeHtml(JSON.stringify(variantData))}">
     <nav class="product-breadcrumb" aria-label="Breadcrumb">
       <a href="/">Home</a>
       <span aria-hidden="true">/</span>
@@ -331,13 +354,7 @@ function createProductPage(product) {
 
     <section class="product-layout">
       <div class="product-gallery">
-        <img
-          class="product-image"
-          id="product-main-image"
-          src="${image}"
-          alt="${name}"
-          fetchpriority="high"
-        >
+        <img class="product-image" id="product-main-image" src="${image}" alt="${name}" fetchpriority="high">
 
         ${(Array.isArray(product.images) ? product.images : [product.image])
           .filter(Boolean)
@@ -370,14 +387,50 @@ function createProductPage(product) {
 
         <p class="product-description">${description}</p>
 
-        <div class="product-purchase">
-          <div class="product-quantity">
+${
+  product.variants?.attributes?.length
+    ? `
+  <div class="product-variants" id="product-variants">
+    ${product.variants.attributes
+      .map(
+        (attribute, attributeIndex) => `
+      <fieldset
+        class="product-variant-group"
+        data-variant-group="${attributeIndex}"
+      >
+        <legend class="product-variant-label">
+          ${escapeHtml(attribute.name)}
+        </legend>
+
+        <div class="product-variant-options">
+          ${attribute.options
+            .map(
+              (option) => `
             <button
               type="button"
-              class="product-quantity-btn"
-              id="product-qty-minus"
-              aria-label="Kurangi jumlah"
+              class="product-variant-option"
+              data-variant-attribute="${attributeIndex}"
+              data-variant-option="${escapeHtml(option)}"
+              aria-pressed="false"
             >
+              ${escapeHtml(option)}
+            </button>
+          `,
+            )
+            .join("")}
+        </div>
+      </fieldset>
+    `,
+      )
+      .join("")}
+  </div>
+  `
+    : ""
+}
+
+        <div class="product-purchase">
+          <div class="product-quantity">
+            <button type="button" class="product-quantity-btn" id="product-qty-minus" aria-label="Kurangi jumlah">
               <i data-lucide="minus"></i>
             </button>
 
@@ -694,347 +747,7 @@ ${
 
     <img class="review-lightbox-image" src="" alt="Foto ulasan diperbesar">
   </div>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const infoToggle = document.querySelector(".product-info-toggle");
-      const infoContent = document.querySelector(".product-info-content");
-      const infoPreview = document.querySelector(".product-info-preview");
-
-
-      if (infoToggle && infoContent) {
-      if (infoPreview) {
-  infoPreview.style.cursor = "pointer";
-
-  infoPreview.addEventListener("click", () => {
-    infoToggle.click();
-  });
-}
-      infoToggle.addEventListener("click", () => {
-      const isExpanded =
-      infoToggle.getAttribute("aria-expanded") === "true";
-
-      infoToggle.setAttribute("aria-expanded", String(!isExpanded));
-      infoContent.hidden = isExpanded;
-      if (infoPreview) {
-        infoPreview.hidden = !isExpanded;
-      }
-      
-
-      const icon = infoToggle.querySelector("[data-lucide]");
-
-        if (icon) {
-          icon.setAttribute(
-            "data-lucide",
-            isExpanded ? "chevron-down" : "chevron-up"
-          );
-
-        if (window.lucide) {
-          window.lucide.createIcons();
-          }
-        }
-        });
-        
-      }
-      
-// PENCARIAN DARI HALAMAN DETAIL
-const detailSearchForm = document.getElementById("detail-search-form");
-const detailSearchInput = document.getElementById("detail-search-input");
-
-if (detailSearchForm && detailSearchInput) {
-  detailSearchForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const keyword = detailSearchInput.value.trim();
-
-    if (!keyword) return;
-
-    window.location.href = "/?search=" + encodeURIComponent(keyword);
-  });
-}
   
-const reviewTrack = document.querySelector("#product-reviews-track");
-const reviewPrev = document.querySelector("[data-review-prev]");
-const reviewNext = document.querySelector("[data-review-next]");
-
-if (reviewTrack && reviewPrev && reviewNext) {
-  const updateReviewButtons = () => {
-    const maxScroll = reviewTrack.scrollWidth - reviewTrack.clientWidth;
-
-    reviewPrev.disabled = reviewTrack.scrollLeft <= 2;
-    reviewNext.disabled = reviewTrack.scrollLeft >= maxScroll - 2;
-  };
-
-  const scrollReview = (direction) => {
-    const review = reviewTrack.querySelector(".product-review-item");
-    if (!review) return;
-
-    const styles = window.getComputedStyle(reviewTrack);
-    const gap = parseFloat(styles.columnGap) || 0;
-    const distance = review.offsetWidth + gap;
-
-    reviewTrack.scrollBy({
-      left: direction * distance,
-      behavior: "smooth"
-    });
-  };
-
-  reviewPrev.addEventListener("click", () => scrollReview(-1));
-  reviewNext.addEventListener("click", () => scrollReview(1));
-
-  reviewTrack.addEventListener("scroll", updateReviewButtons, {
-    passive: true
-  });
-
-  window.addEventListener("resize", updateReviewButtons);
-
-  updateReviewButtons();
-}
-
-// MENU LAINNYA
-const moreButton = document.getElementById("detail-more-btn");
-const moreMenu = document.getElementById("detail-more-menu");
-const copyLinkButton = document.getElementById("detail-copy-link");
-
-if (moreButton && moreMenu) {
-  moreButton.addEventListener("click", () => {
-    const isOpen = !moreMenu.hidden;
-
-    moreMenu.hidden = isOpen;
-    moreButton.setAttribute("aria-expanded", String(!isOpen));
-  });
-
-  document.addEventListener("click", (event) => {
-    if (!moreButton.contains(event.target) && !moreMenu.contains(event.target)) {
-      moreMenu.hidden = true;
-      moreButton.setAttribute("aria-expanded", "false");
-    }
-  });
-}
-
-// SALIN LINK PRODUK
-if (copyLinkButton) {
-  copyLinkButton.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      showAlert("Link produk berhasil disalin!");
-      moreMenu.hidden = true;
-      moreButton.setAttribute("aria-expanded", "false");
-    } catch (error) {
-      console.error("Gagal menyalin link:", error);
-      showAlert("Tidak dapat menyalin link produk.");
-    }
-  });
-}
-
-// Review Image Lightbox
-const reviewLightbox = document.querySelector("#review-lightbox");
-const lightboxImage = reviewLightbox?.querySelector(".review-lightbox-image");
-const lightboxClose = reviewLightbox?.querySelector(".review-lightbox-close");
-
-if (reviewLightbox && lightboxImage && lightboxClose) {
-  const closeLightbox = () => {
-    reviewLightbox.classList.remove("active");
-    reviewLightbox.setAttribute("aria-hidden", "true");
-    lightboxImage.src = "";
-    document.body.style.overflow = "";
-  };
-
-  document.querySelectorAll("[data-review-image]").forEach((image) => {
-    const openLightbox = () => {
-      lightboxImage.src = image.src;
-      lightboxImage.alt = image.alt;
-      reviewLightbox.classList.add("active");
-      reviewLightbox.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-    };
-
-    image.addEventListener("click", openLightbox);
-
-    image.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        openLightbox();
-      }
-    });
-  });
-
-  lightboxClose.addEventListener("click", closeLightbox);
-
-  reviewLightbox.addEventListener("click", (event) => {
-    if (event.target === reviewLightbox) {
-      closeLightbox();
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && reviewLightbox.classList.contains("active")) {
-      closeLightbox();
-    }
-  });
-}
-
-// Product FAQ Accordion
-document.querySelectorAll(".product-faq-question").forEach((button) => {
-  button.addEventListener("click", () => {
-    const isExpanded = button.getAttribute("aria-expanded") === "true";
-    const answerId = button.getAttribute("aria-controls");
-    const answer = document.getElementById(answerId);
-
-    button.setAttribute("aria-expanded", String(!isExpanded));
-
-    if (answer) {
-      answer.hidden = isExpanded;
-    }
-  });
-});
-
-
-      const quantityInput = document.getElementById("product-qty");
-      const minusButton = document.getElementById("product-qty-minus");
-      const plusButton = document.getElementById("product-qty-plus");
-      const addButton = document.getElementById("product-add-to-cart");
-      const productDetail = document.querySelector(".product-detail");
-      const mainImage = document.getElementById("product-main-image");
-const thumbnails = document.querySelectorAll(".product-thumbnail");
-
-let activeImageIndex = 0;
-let touchStartX = 0;
-let touchStartY = 0;
-
-function changeProductImage(index) {
-  if (!mainImage || thumbnails.length === 0) return;
-
-  // Loop gambar
-  activeImageIndex =
-    (index + thumbnails.length) % thumbnails.length;
-
-  const activeThumbnail = thumbnails[activeImageIndex];
-
-  mainImage.src = activeThumbnail.dataset.image;
-
-  thumbnails.forEach((thumbnail, i) => {
-    const isActive = i === activeImageIndex;
-
-    thumbnail.classList.toggle("active", isActive);
-    thumbnail.setAttribute("aria-pressed", String(isActive));
-  });
-}
-
-// Klik thumbnail
-thumbnails.forEach((thumbnail, index) => {
-  thumbnail.addEventListener("click", () => {
-    changeProductImage(index);
-  });
-});
-
-// Mulai swipe
-if (mainImage) {
-  mainImage.addEventListener("touchstart", (event) => {
-    touchStartX = event.changedTouches[0].clientX;
-    touchStartY = event.changedTouches[0].clientY;
-  }, { passive: true });
-
-  // Selesai swipe
-  mainImage.addEventListener("touchend", (event) => {
-    const touchEndX = event.changedTouches[0].clientX;
-    const touchEndY = event.changedTouches[0].clientY;
-
-    const diffX = touchEndX - touchStartX;
-    const diffY = touchEndY - touchStartY;
-
-    // Abaikan gerakan vertikal dan swipe terlalu pendek
-    if (Math.abs(diffX) < 45 || Math.abs(diffX) < Math.abs(diffY)) {
-      return;
-    }
-
-    if (diffX < 0) {
-      changeProductImage(activeImageIndex + 1);
-    } else {
-      changeProductImage(activeImageIndex - 1);
-    }
-  }, { passive: true });
-}
-
-      if (!quantityInput || !minusButton || !plusButton || !addButton || !productDetail) {
-        return;
-      }
-
-      const productName = productDetail.dataset.productName;
-      const productPrice = Number(productDetail.dataset.productPrice);
-      // Share Product
-const shareButton = document.getElementById("detail-share-btn");
-
-if (shareButton) {
-  shareButton.addEventListener("click", async () => {
-    const productDescription = productDetail.dataset.productDescription;
-    const productUrl = window.location.href;
-
-    const shareData = {
-      title: productName,
-      text:
-        "Temukan " + productName + " di Massusi Store.\\n\\n" +
-        productDescription +
-        "\\n\\nLihat detail produk dan pesan di sini:",
-      url: productUrl
-    };
-
-    try {
-      if (navigator.share) {
-        await navigator.share(shareData);
-      } else {
-        await navigator.clipboard.writeText(
-          shareData.text + "\\n" + productUrl
-        );
-        alert("Link produk berhasil disalin.");
-      }
-    } catch (error) {
-      if (error.name !== "AbortError") {
-        console.error("Gagal membagikan produk:", error);
-      }
-    }
-  });
-}
-      
-      const getQuantity = () => {
-        const value = Number.parseInt(quantityInput.value, 10);
-        return Number.isFinite(value) && value > 0 ? value : 1;
-      };
-
-      quantityInput.addEventListener("change", () => {
-        quantityInput.value = getQuantity();
-      });
-
-      minusButton.addEventListener("click", () => {
-        quantityInput.value = Math.max(1, getQuantity() - 1);
-      });
-
-      plusButton.addEventListener("click", () => {
-        quantityInput.value = getQuantity() + 1;
-      });
-
-      addButton.addEventListener("click", () => {
-        const quantity = getQuantity();
-
-        if (typeof addToCart !== "function") {
-          console.error("Fungsi keranjang belum tersedia.");
-          return;
-        }
-
-        for (let i = 0; i < quantity; i++) {
-          addToCart(productName, productPrice);
-        }
-
-        quantityInput.value = 1;
-
-        if (typeof toggleCart === "function") {
-          const drawer = document.getElementById("cartDrawer");
-          if (drawer && !drawer.classList.contains("open")) {
-            toggleCart();
-          }
-        }
-      });
-    });
-  </script>
 <div id="shop-toast" class="shop-toast">
   <i data-lucide="info"></i>
   <span id="shop-toast-message"></span>

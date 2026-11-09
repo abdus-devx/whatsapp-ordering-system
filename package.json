@@ -1,11 +1,11 @@
 {
   "name": "whatsapp-ordering-system",
   "version": "1.0.0",
-  "description": "",
+  "description": "Toko Online Massusi",
   "main": "index.js",
   "scripts": {
-    "generate:products": "node scripts/generate-products.js",
-    "build": "node scripts/generate-products.js"
+    "generate:page-detail": "node scripts/generate-page-detail.js",
+    "build": "npm run generate:page-detail"
   },
   "repository": {
     "type": "git",
