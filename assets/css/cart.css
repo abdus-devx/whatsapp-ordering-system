@@ -10,14 +10,14 @@ Blok 1 — Cart Drawer: mengatur panel keranjang samping dan transisi buka-tutup
   max-width: 100%;
   height: 100vh;
   height: 100dvh;
-  background: #fff;
-  box-shadow: -12px 0 40px rgba(15, 45, 38, 0.16);
+  background: #ffffff;
+  box-shadow: -12px 0 40px rgba(31, 75, 120, 0.16);
   transform: translateX(105%);
   transition: transform 0.3s ease;
   z-index: 9999;
   display: flex;
   flex-direction: column;
-  color: #24332d;
+  color: #163b63;
 }
 
 .cart-drawer.open {
@@ -30,14 +30,14 @@ Blok 1 — Cart Drawer: mengatur panel keranjang samping dan transisi buka-tutup
   align-items: center;
   gap: 12px;
   padding: 20px;
-  border-bottom: 1px solid #e8efed;
+  border-bottom: 1px solid #e5edf6;
 }
 
 .drawer-header h3 {
   margin: 0;
   font-size: 16px;
   font-weight: 700;
-  color: #244b40;
+  color: #163b63;
 }
 
 .x-drawer {
@@ -49,13 +49,13 @@ Blok 1 — Cart Drawer: mengatur panel keranjang samping dan transisi buka-tutup
   height: 38px;
   border: 0;
   border-radius: 50%;
-  background: #eef7f4;
-  color: #315c57;
+  background: #dceeff;
+  color: #2878c7;
   cursor: pointer;
 }
 
 .x-drawer:hover {
-  background: #d9eee6;
+  background: #b8d8f5;
 }
 
 /*====================
@@ -75,9 +75,9 @@ Blok 2 — Cart Items: mengatur kartu produk, harga, subtotal, dan jarak antarit
   gap: 14px;
   padding: 15px;
   margin-bottom: 12px;
-  border: 1px solid #e5eee9;
+  border: 1px solid #e5edf6;
   border-radius: 14px;
-  background: #f8fbf9;
+  background: #f7fafe;
 }
 
 .drawer-item-info {
@@ -88,18 +88,18 @@ Blok 2 — Cart Items: mengatur kartu produk, harga, subtotal, dan jarak antarit
 }
 
 .drawer-item-name {
-  color: #244b40;
+  color: #163b63;
   font-size: 14px;
   line-height: 1.5;
 }
 
 .drawer-item-price {
-  color: #71827b;
+  color: #64748b;
   font-size: 12px;
 }
 
 .drawer-item-subtotal {
-  color: #08785b;
+  color: #2878c7;
   font-size: 14px;
 }
 
@@ -131,20 +131,20 @@ Blok 3 — Cart Quantity: mengatur tombol tambah dan kurangi jumlah produk.
   flex-shrink: 0;
   border: 0;
   border-radius: 50%;
-  background: #e0f3ee;
-  color: #0f766e;
+  background: #dceeff;
+  color: #2878c7;
   cursor: pointer;
 }
 
 .drawer-qty-control .prd-btn-cart:hover {
-  background: #0f766e;
-  color: #fff;
+  background: #2878c7;
+  color: #ffffff;
 }
 
 .drawer-qty-control .qty-number {
   min-width: 20px;
   padding: 0;
-  color: #244b40;
+  color: #163b63;
   text-align: center;
   font-size: 13px;
   font-weight: 700;
@@ -164,7 +164,7 @@ Blok 4 — Cart Remove: mengatur tombol hapus produk.
   border: 0;
   border-radius: 8px;
   background: transparent;
-  color: #71827b;
+  color: #64748b;
   font-size: 12px;
   cursor: pointer;
 }
@@ -189,19 +189,19 @@ Blok 5 — Cart Empty: mengatur tampilan ketika keranjang belum berisi produk.
   align-items: center;
   gap: 10px;
   padding: 40px 16px;
-  color: #71827b;
+  color: #64748b;
   text-align: center;
 }
 
 .cart-empty .lucide {
   width: 38px;
   height: 38px;
-  color: #0f766e;
+  color: #2878c7;
 }
 
 .cart-empty p {
   margin: 0;
-  color: #244b40;
+  color: #163b63;
   font-size: 15px;
   font-weight: 700;
 }
@@ -222,13 +222,13 @@ Blok 6 — Cart Summary: mengatur total belanja dan area checkout.
   gap: 12px;
   padding: 18px 20px;
   margin: 0;
-  border-top: 1px solid #e8efed;
-  color: #315c57;
+  border-top: 1px solid #e5edf6;
+  color: #64748b;
   font-size: 13px;
 }
 
 .drawer-summary strong {
-  color: #08785b;
+  color: #2878c7;
   font-size: 16px;
   text-align: right;
 }
@@ -238,7 +238,7 @@ Blok 6 — Cart Summary: mengatur total belanja dan area checkout.
   justify-content: center;
   align-items: center;
   padding: 15px 20px 24px;
-  border-top: 1px solid #e8efed;
+  border-top: 1px solid #e5edf6;
 }
 
 .checkout-btn {
@@ -251,8 +251,8 @@ Blok 6 — Cart Summary: mengatur total belanja dan area checkout.
   padding: 14px 20px;
   border: 0;
   border-radius: 30px;
-  background: #0f766e;
-  color: #fff;
+  background: #2878c7;
+  color: #ffffff;
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
@@ -262,7 +262,7 @@ Blok 6 — Cart Summary: mengatur total belanja dan area checkout.
 }
 
 .checkout-btn:hover {
-  background: #075e57;
+  background: #163b63;
   transform: translateY(-1px);
 }
 
@@ -294,11 +294,11 @@ Blok 7 — Floating Checkout: mengatur tombol keranjang mengambang.
   padding: 13px 19px;
   border: 0;
   border-radius: 40px;
-  background: #0f766e;
-  color: #fff;
+  background: #2878c7;
+  color: #ffffff;
   font-size: 13px;
   font-weight: 700;
-  box-shadow: 0 8px 25px rgba(15, 118, 110, 0.25);
+  box-shadow: 0 8px 25px rgba(40, 120, 199, 0.25);
   cursor: pointer;
 }
 
@@ -307,7 +307,7 @@ Blok 7 — Floating Checkout: mengatur tombol keranjang mengambang.
 }
 
 .prd-btn-checkout:hover {
-  background: #075e57;
+  background: #163b63;
 }
 
 .prd-qty {
@@ -317,8 +317,8 @@ Blok 7 — Floating Checkout: mengatur tombol keranjang mengambang.
   width: 23px;
   height: 23px;
   border-radius: 50%;
-  background: #d9f99d;
-  color: #315c2e;
+  background: #b8d8f5;
+  color: #163b63;
   font-size: 11px;
 }
 
@@ -333,7 +333,7 @@ Blok 8 — Checkout Icon: mengatur ukuran ikon pada tombol checkout.
 }
 
 /* =========================
-Blok 8 —   PRODUCT VARIANTS
+Blok 8 — PRODUCT VARIANTS
 ============================ */
 
 .product-variants {
@@ -352,7 +352,7 @@ Blok 8 —   PRODUCT VARIANTS
 
 .product-variant-label {
   margin-bottom: 10px;
-  color: #252525;
+  color: #163b63;
   font-size: 14px;
   font-weight: 600;
 }
@@ -369,10 +369,10 @@ Blok 8 —   PRODUCT VARIANTS
   min-width: 58px;
   min-height: 40px;
   padding: 9px 15px;
-  border: 1px solid #dedede;
+  border: 1px solid #e5edf6;
   border-radius: 8px;
-  background: #fff;
-  color: #333;
+  background: #ffffff;
+  color: #163b63;
   font-family: inherit;
   font-size: 13px;
   font-weight: 500;
@@ -387,25 +387,25 @@ Blok 8 —   PRODUCT VARIANTS
 /* HOVER */
 
 .product-variant-option:hover {
-  border-color: #087f68;
-  color: #087f68;
+  border-color: #2878c7;
+  color: #2878c7;
 }
 
 /* SELECTED */
 
 .product-variant-option.active,
 .product-variant-option[aria-pressed="true"] {
-  border-color: #087f68;
-  background: #eaf6f2;
-  color: #087f68;
+  border-color: #2878c7;
+  background: #dceeff;
+  color: #2878c7;
   font-weight: 600;
-  box-shadow: 0 0 0 1px #087f68;
+  box-shadow: 0 0 0 1px #2878c7;
 }
 
 /* FOCUS */
 
 .product-variant-option:focus-visible {
-  outline: 2px solid #087f68;
+  outline: 2px solid #2878c7;
   outline-offset: 3px;
 }
 
@@ -444,6 +444,7 @@ Blok 9 — Cart Responsive: menyesuaikan keranjang untuk layar HP dan tablet.
   .drawer-footer {
     padding-bottom: max(16px, env(safe-area-inset-bottom));
   }
+
   .product-variants {
     gap: 15px;
     margin: 18px 0;

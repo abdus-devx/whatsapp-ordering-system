@@ -3,6 +3,7 @@
 .mobile-bottom-nav {
   display: none;
 }
+
 /* =========================================
    MASSUSI STORE — MOBILE APP
    Khusus tampilan HP
@@ -11,12 +12,11 @@
 @media (max-width: 767px) {
   /* BASE */
   body {
-    background: #f7f9f8;
+    background: #f7fafe;
   }
 
   .retail-page {
     width: 100%;
-
     padding-bottom: 78px;
   }
 
@@ -29,7 +29,7 @@
     display: none;
   }
 
-  /* HEADER*/
+  /* HEADER */
   .shop-header::before {
     content: "";
     position: absolute;
@@ -37,8 +37,9 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: #fff;
+    background: #ffffff;
   }
+
   .shop-nav {
     gap: 6px;
     margin: auto 10px;
@@ -112,8 +113,8 @@
     width: 100%;
     margin: 0;
     padding: 15px 0 17px;
-    background: #fff;
-    border-bottom: 1px solid #edf1ee;
+    background: #ffffff;
+    border-bottom: 1px solid #e5edf6;
   }
 
   .sbc-heading {
@@ -140,7 +141,7 @@
     width: 48px;
     height: 2px;
     margin-top: 5px;
-    background: #16845b;
+    background: #2878c7;
     transform: skewX(-25deg);
   }
 
@@ -169,6 +170,7 @@
     align-items: center;
     gap: 5px;
   }
+
   .sbc-item:hover,
   .sbc-item.sbc-active .sbc-icon {
     transform: none;
@@ -183,8 +185,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #edf5f0;
-    color: #16845b;
+    background: #dceeff;
+    color: #2878c7;
   }
 
   .sbc-icon .lucide {
@@ -203,8 +205,8 @@
   }
 
   .sbc-item.sbc-active .sbc-icon {
-    background: #16845b;
-    color: #fff;
+    background: #2878c7;
+    color: #ffffff;
   }
 
   .sbc-scroll-wrap {
@@ -217,7 +219,7 @@
     height: 3px;
     margin: 9px auto 0;
     border-radius: 10px;
-    background: #e5ebe7;
+    background: #e5edf6;
     overflow: hidden;
   }
 
@@ -226,7 +228,7 @@
     width: 30%;
     height: 100%;
     border-radius: inherit;
-    background: #16845b;
+    background: #2878c7;
     transform: translateX(0);
     transition: background 0.2s;
   }
@@ -237,8 +239,8 @@
     margin: 15px;
     overflow: hidden;
     border-radius: 15px;
-    background: #164f43;
-    color: #fff;
+    background: #163b63;
+    color: #ffffff;
   }
 
   .mobile-promo a {
@@ -267,7 +269,7 @@
     width: 100%;
     overflow: hidden;
     border-radius: 6px;
-    background: #fff;
+    background: #ffffff;
   }
 
   .prd-card img {
@@ -279,6 +281,7 @@
   .prd-content {
     padding: 7px 7px 6px;
   }
+
   .prd-title {
     font-size: 11px;
     font-weight: 600;
@@ -310,24 +313,28 @@
   .prd-old-price {
     font-size: 8px;
   }
+
   .prd-price {
     font-size: 12px;
     gap: 6px;
   }
+
   .prd-promo-price {
     font-size: 12px;
   }
+
   .prd-pagination {
     display: none;
   }
+
   .prd-btn-cart {
     width: 30px;
     height: 30px;
   }
+
   .prd-bestseller {
     top: 8px;
     right: 8px;
-
     padding: 2px 4px;
     font-size: 7px;
     letter-spacing: 0.3px;
@@ -347,6 +354,7 @@
     width: 100%;
     height: 1px;
   }
+
   /* TOMBOL CHECKOUT MENGAPUNG */
   .prd-btn-checkout {
     position: fixed;
@@ -355,11 +363,9 @@
     right: auto;
     bottom: 106px;
     transform: translateX(-50%);
-
     width: max-content;
     min-width: 170px;
     padding: 11px 20px;
-
     justify-content: center;
     font-size: 12px;
     border-radius: 30px;
@@ -383,9 +389,9 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     align-items: center;
-    background: #fff;
-    border-top: 1px solid #e8eeea;
-    box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.04);
+    background: #ffffff;
+    border-top: 1px solid #e5edf6;
+    box-shadow: 0 -4px 18px rgba(31, 75, 120, 0.06);
   }
 
   .mobile-bottom-nav a,
@@ -399,7 +405,7 @@
     gap: 4px;
     border: 0;
     background: transparent;
-    color: #89968f;
+    color: #8a9bb0;
     text-decoration: none;
     font: inherit;
     cursor: pointer;
@@ -416,7 +422,7 @@
   }
 
   .mobile-bottom-nav .active {
-    color: #16845b;
+    color: #2878c7;
   }
 
   /* TOAST */
