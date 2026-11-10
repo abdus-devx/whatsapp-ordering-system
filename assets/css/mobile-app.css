@@ -233,7 +233,8 @@
     transition: background 0.2s;
   }
 
-  /* BANNER PROMOSI */
+  /* BANNER PROMOSI HP*/
+
   .mobile-promo {
     display: block;
     margin: 15px;
@@ -254,6 +255,11 @@
     width: 100%;
     aspect-ratio: 16 / 6;
     object-fit: cover;
+  }
+  .bottom-banner {
+    background: none;
+    margin: 0;
+    padding: 16px;
   }
 
   /* DAFTAR PRODUK */

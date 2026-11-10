@@ -4,31 +4,31 @@
 
 :root {
   /* Primary */
-  --store-primary: #2878c7;
-  --store-primary-dark: #163b63;
-  --store-primary-soft: #8ec5f0;
+  --store-primary: #0284c7;
+  --store-primary-dark: #0369a1;
+  --store-primary-soft: #7dd3fc;
 
   /* Blue Gradient */
-  --store-light-blue: #dceeff;
-  --store-powder-blue: #b8d8f5;
+  --store-light-blue: #f0f9ff;
+  --store-powder-blue: #bae6fd;
 
   /* Neutral */
   --store-white: #ffffff;
-  --store-background: #f7fafe;
-  --store-border: #e5edf6;
+  --store-background: #f4f8fb;
+  --store-border: #e2e8f0;
 
   /* Text */
-  --store-text: #163b63;
-  --store-text-secondary: #64748b;
-  --store-text-muted: #8a9bb0;
+  --store-text: #0f2942;
+  --store-text-secondary: #526b82;
+  --store-text-muted: #8fa3b8;
 
   /* Accent */
-  --store-cyan: #42c5d9;
-  --store-cyan-soft: #e5f9fc;
+  --store-cyan: #14b8a6;
+  --store-cyan-soft: #f0fdfa;
 
   /* Shadow */
-  --store-shadow: rgba(31, 75, 120, 0.08);
-  --store-shadow-hover: rgba(31, 75, 120, 0.14);
+  --store-shadow: rgba(2, 132, 199, 0.07);
+  --store-shadow-hover: rgba(2, 132, 199, 0.14);
 }
 
 *,
@@ -640,79 +640,79 @@ input {
    PROMO BANNER
 ========================================================= */
 
-.shop-promo {
-  width: min(1180px, calc(100% - 40px));
-  min-height: 145px;
-  margin: 10px auto 45px;
-  border-radius: 18px;
-  overflow: hidden;
+.bottom-banner {
+  width: 100%;
+  margin: 24px auto;
+  padding: 48px 16px;
+  box-sizing: border-box;
+
+  clip-path: ellipse(100% 100% at 50% 50%);
+
+  border-radius: 0;
+
   background:
     radial-gradient(
-      circle at 15% 80%,
-      rgba(255, 255, 255, 0.18),
-      transparent 25%
+      circle at 75% 30%,
+      rgba(255, 255, 255, 0.65),
+      transparent 30%
     ),
-    linear-gradient(105deg, var(--store-primary-dark), var(--store-primary));
-
-  color: var(--store-white);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 28px 45px;
-  position: relative;
+    linear-gradient(
+      110deg,
+      var(--store-light-blue),
+      var(--store-powder-blue) 55%,
+      #eaf5ff
+    );
 }
 
-.shop-promo::before {
-  content: "";
-  width: 180px;
-  height: 180px;
-  position: absolute;
-  left: -50px;
-  top: -70px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
+.banner-item {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 900px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--store-border);
+  background-color: var(--store-white);
+  box-shadow: 0 4px 12px var(--store-shadow);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.shop-promo-content {
-  position: relative;
-  z-index: 2;
+.banner-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
 
-.shop-promo-label {
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  opacity: 0.75;
+/* Efek Hover Elegan */
+.banner-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px var(--store-shadow-hover);
 }
 
-.shop-promo-title {
-  margin: 5px 0 5px;
+/* ==========
+   Responsive Display Switcher
+   ============ */
 
-  font-family: Georgia, serif;
-  font-size: 29px;
-  font-weight: 400;
+.banner-desktop {
+  display: none;
 }
 
-.shop-promo-text {
-  margin: 0;
-  font-size: 11px;
-  opacity: 0.85;
+.banner-mobile {
+  display: block;
 }
 
-.shop-promo-btn {
-  position: relative;
-  z-index: 2;
-  background: var(--store-white);
-  color: var(--store-primary-dark);
-  padding: 12px 22px;
-  border-radius: 30px;
-  font-size: 11px;
-  font-weight: 600;
-  transition: 0.25s ease;
-}
+/* Layar Tablet & Desktop (768px ke atas) */
+@media (min-width: 768px) {
+  .banner-desktop {
+    display: block;
+  }
 
-.shop-promo-btn:hover {
-  transform: translateY(-2px);
+  .banner-mobile {
+    display: none;
+  }
 }
 
 /* =========================================================
