@@ -68,7 +68,14 @@ function getQty(name, variantId = null) {
 }
 
 function toggleCart() {
-  document.getElementById("cartDrawer").classList.toggle("open");
+  const drawer = document.getElementById("cartDrawer");
+  const cartNav = document.querySelector(
+    '.mobile-bottom-nav button[onclick="toggleCart()"]',
+  );
+
+  drawer.classList.toggle("open");
+
+  cartNav?.classList.toggle("active", drawer.classList.contains("open"));
 }
 
 // UPDATE TAMPILAN KERANJANG

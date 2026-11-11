@@ -184,9 +184,9 @@ function initCategoryScrollIndicator() {
 
 document.addEventListener("DOMContentLoaded", initCategoryScrollIndicator);
 
-/* =========================================================
+/* ================================
    DETAIL HEADER SCROLL
-========================================================= */
+=========== */
 
 function initDetailHeader() {
   const header = document.getElementById("detailHeader");
@@ -205,3 +205,21 @@ function initDetailHeader() {
 }
 
 document.addEventListener("DOMContentLoaded", initDetailHeader);
+
+/* ================================
+   HOME ANTI RELOAD
+=========== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const homeLink = document.querySelector('.mobile-bottom-nav a[href="/"]');
+
+  if (homeLink && window.location.pathname === "/") {
+    homeLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  }
+});

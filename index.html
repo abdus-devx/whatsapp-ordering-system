@@ -395,33 +395,49 @@
       </div>
 
       <!-- MOBILE BOTTOM NAV -->
+
       <nav class="mobile-bottom-nav">
-        <a href="/" class="active">
-          <i data-lucide="house"></i>
-          <span>Beranda</span>
+        <a href="/" class="nav-item active">
+          <span class="nav-icon">
+            <i data-lucide="house"></i>
+          </span>
+          <span class="nav-label">Beranda</span>
         </a>
 
-        <a href="#sbc-kategori">
-          <i data-lucide="grid-2x2"></i>
-          <span>Kategori</span>
+        <a href="#sbc-kategori" class="nav-item">
+          <span class="nav-icon">
+            <i data-lucide="layout-grid"></i>
+          </span>
+          <span class="nav-label">Kategori</span>
         </a>
 
-        <button type="button" onclick="toggleCart()">
-          <i data-lucide="shopping-bag"></i>
-          <span>Keranjang</span>
+        <button type="button" class="nav-item nav-cart" onclick="toggleCart()">
+          <span class="nav-icon">
+            <i data-lucide="shopping-bag"></i>
+          </span>
+          <span class="nav-label">Keranjang</span>
         </button>
 
         <button
           type="button"
+          class="nav-item"
           onclick="showAlert('Fitur favorit segera hadir!')"
         >
-          <i data-lucide="heart"></i>
-          <span>Favorit</span>
+          <span class="nav-icon">
+            <i data-lucide="heart"></i>
+          </span>
+          <span class="nav-label">Favorit</span>
         </button>
 
-        <button type="button" onclick="showAlert('Fitur akun segera hadir!')">
-          <i data-lucide="user-round"></i>
-          <span>Akun</span>
+        <button
+          type="button"
+          class="nav-item"
+          onclick="showAlert('Fitur akun segera hadir!')"
+        >
+          <span class="nav-icon">
+            <i data-lucide="user-round"></i>
+          </span>
+          <span class="nav-label">Akun</span>
         </button>
       </nav>
     </section>
